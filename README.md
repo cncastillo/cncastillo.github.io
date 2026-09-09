@@ -12,7 +12,7 @@ A small Jekyll site for GitHub Pages. **Edit YAML for records and Markdown for p
 | Selected projects and their overview text | `_highlights/*.md` |
 | Courses, notes, schedules, and public materials | `teaching/<course-slug>/*.md` |
 | CV education, teaching, grants, awards, and mentoring | `_cv/cv.tex` |
-| Domain, base path, language, and timezone | `_config.yml` |
+| Domain, website repository link, base path, language, and timezone | `_config.yml` |
 
 The two record files are the only sources for publication/presentation metadata. The archive, distinctions, project records, counts, and generated CV all read them. Do not copy a title, byline, paper URL, or award into another record just to display it elsewhere.
 
