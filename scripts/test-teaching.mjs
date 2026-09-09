@@ -10,6 +10,7 @@ assert.match(css, /\.teaching-page\s*\{\s*max-width: 56rem;/, 'Teaching header a
 assert.match(css, /\.prose-wide\s*\{\s*max-width: 56rem;/, 'Teaching container must match the existing body width');
 assert.match(css, /\.teaching-page > \.prose\s*\{\s*padding-top: 0;/, 'Teaching menu must sit directly below the header divider');
 const logoStyle = css.match(/\.mentorship-logo\s*\{([^}]+)\}/)[1];
+assert.match(logoStyle, /width: 0\.75rem;\s*height: 0\.75rem;/, 'Mentorship logos must use the selected compact size');
 assert.match(logoStyle, /background-color: currentColor;/, 'Mentorship logos must inherit the text color');
 assert.match(logoStyle, /mask: var\(--mentorship-logo\) center \/ contain no-repeat;/, 'Mentorship logos must use proportionally sized masks');
 assert.ok(!logoStyle.includes('filter:'), 'Do not approximate the text color with a grayscale filter');
@@ -20,6 +21,7 @@ for (const [, path] of logos) assert.ok(readFileSync(resolve(site, path.slice(1)
 assert.ok(logos.some(([, path]) => path.endsWith('/stanford-mono.svg')), 'Use the Stanford mask with transparent details');
 assert.ok(logos.some(([, path]) => path.endsWith('/gsoc-mono.svg')), 'Use the GSoC mask with transparent code glyphs');
 const institutionStyle = css.match(/\.course-institution-logo\s*\{([^}]+)\}/)[1];
+assert.match(institutionStyle, /width: 1\.25rem;\s*height: 1\.25rem;/, 'Keep course institution icons at their existing size');
 assert.match(institutionStyle, /background-color: currentColor;/, 'Course institution icons must inherit the text color');
 assert.match(institutionStyle, /mask: var\(--institution-logo\) center \/ contain no-repeat;/, 'Course institution icons must use proportionally sized masks');
 const courseHtml = readFileSync(resolve(site, 'teaching/bios-214/index.html'), 'utf8');
