@@ -1,5 +1,5 @@
 ---
-title: Whole-heart MR Angiography at 0.55T
+title: Whole-heart MRI at 0.55T
 area: Low-field cardiovascular MRI
 start_year: 2023
 end_year: 2025
