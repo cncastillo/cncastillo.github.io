@@ -46,7 +46,7 @@ module CV
     names = data['profile']['author_names']
     groups = {
       'publications' => publications.select { |record| record['category'] == 'peer_reviewed' },
-      'presentations' => records(data['presentations']),
+      'presentations' => records(data['presentations'].reject { |record| ['Invited seminar', 'Invited research-group talk'].include?(record['kind']) }),
       'books' => publications.select { |record| record['category'] == 'book' }
     }
     FileUtils.mkdir_p(BUILD)

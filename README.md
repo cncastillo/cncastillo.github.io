@@ -217,6 +217,8 @@ To check the experimental timeline after building, run `node scripts/test-timeli
 
 ## CV and continuous integration
 
+The CV's International conference participation section excludes records with `kind: Invited seminar` or `kind: Invited research-group talk`. Invited conference and educational talks remain included; all records remain on the website and timeline.
+
 The supplied ModernCV layout lives in `_cv/cv.tex`. To rebuild locally, install TeX Live with ModernCV and `latexmk`, then run:
 
 ```sh

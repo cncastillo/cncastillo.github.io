@@ -41,16 +41,23 @@ check(mentorship_entry.include?(' · \\href{https://example.org/post}{Blog \\& t
 CV.generate
 data = Content.load
 names = data['profile']['author_names']
+seminars = data['presentations'].select { |r| ['Invited seminar', 'Invited research-group talk'].include?(r['kind']) }
 groups = {
   'publications' => data['publications'].select { |r| r['category'] == 'peer_reviewed' },
-  'presentations' => data['presentations'],
+  'presentations' => data['presentations'] - seminars,
   'books' => data['publications'].select { |r| r['category'] == 'book' }
 }
 groups.each do |name, records|
   output = File.read(File.join(CV::BUILD, "#{name}.tex"))
   check(output.scan(/\\cventry\{/).size == records.size, "Record count mismatch: #{name}")
   records.each { |r| check(output.include?(CV.byline(r['authors'], names)), "Missing full author list: #{r['title']}") }
+  records.each { |r| check(output.include?(CV.entry(r, names)), "Missing CV entry: #{r['title']}") }
   check(!output.include?('et al.'), "Truncated authors: #{name}")
+end
+
+presentations_output = File.read(File.join(CV::BUILD, 'presentations.tex'))
+seminars.each do |record|
+  check(!presentations_output.include?(CV.entry(record, names)), "Non-conference talk in CV conference list: #{record['event']}")
 end
 
 mentorship_output = File.read(File.join(CV::BUILD, 'mentorship.tex'))
