@@ -1,0 +1,154 @@
+# Edit these records directly. See README.md for copy-and-paste examples.
+# Each record_key must be unique and remain stable once linked from a project.
+
+- year: 2026
+  category: peer_reviewed
+  type: Journal article
+  title: Versatile and Highly Efficient MRI Simulation of Arbitrary Motion in KomaMRI
+  authors: Pablo Villacorta-Aylagas, Carlos Castillo-Passi, Ryan Anders Kierulf, Rosa María Menchón-Lara, Justino R. Rodríguez-Galván, José Benito Sierra-Pallares, Pablo Irarrazaval, and Carlos Alberola-López
+  venue: Magnetic Resonance in Medicine
+  paper: https://doi.org/10.1002/mrm.70145
+  record_key: komamri-motion
+  order: 1
+
+- record_key: cardiac-mri-chapter
+  year: 2026
+  category: book
+  type: Book chapter · In press
+  title: "Cardiac MRI: Myocardial tissue characterization"
+  authors: D. Ennis, C. Castillo-Passi, S. O. A. Thalen, and A. Hannum
+  venue: "Biomechanics of the Heart: From Patient to Model and Back, Elsevier"
+  order: 2
+
+- record_key: juliahealth
+  year: 2026
+  category: peer_reviewed
+  type: Proceedings article
+  title: "Bringing Julia to Health: A Concise Overview of JuliaHealth"
+  authors: Jacob S. Zelko, Carlos Castillo-Passi, Jakub Mitura, Divyansh Goyal, Kosuri Lakshmi Indu, and Jay Sanjay Landge
+  venue: Proceedings of the JuliaCon Conferences
+  paper: https://doi.org/10.21105/jcon.00194
+  order: 2
+
+- year: 2025
+  category: peer_reviewed
+  type: Journal article
+  title: "Simultaneous liver T1, T2, and ADC MR fingerprinting using optimized motion-compensated diffusion preparations: An initial validation on volunteers"
+  authors: Carlos Velasco, Carlos Castillo-Passi, Nadia Chaher, Dimitrios Karampinos, Pablo Irarrazaval, Alkystis Phinikaridou, René Botnar, and Claudia Prieto
+  venue: Magnetic Resonance in Medicine
+  paper: https://doi.org/10.1002/mrm.30622
+  code: https://github.com/cncastillo/DiffPrepMCMRF
+  record_key: liver-mrf
+  abstract_key: liver-mrf-ismrm
+  note: Carlos Velasco and Carlos Castillo-Passi contributed equally.
+  order: 3
+
+- year: 2025
+  category: peer_reviewed
+  type: Journal article
+  title: Highly efficient image navigator based 3D whole-heart cardiac MRA at 0.55T
+  short_title: Whole-heart cardiac MRA at 0.55T
+  authors: Carlos Castillo-Passi, Karl P. Kunze, Michael G. Crabb, Camila Munoz, Anastasia Fotaki, Radhouene Neji, Pablo Irarrazaval, Claudia Prieto, and René M. Botnar
+  venue: Magnetic Resonance in Medicine
+  paper: https://doi.org/10.1002/mrm.30316
+  record_key: low-field-cmra
+  abstract_key: low-field-cmra-ismrm
+  image: /assets/images/whole-heart-mra-paper.jpg
+  image_alt: Coronal whole-heart cardiac MRA, coronary reformats, and maximum-intensity projections from four subjects scanned at 0.55T
+  image_caption: Whole-heart CMRA results for four representative healthy subjects
+  image_credit: Figure 5, Castillo-Passi et al.
+  image_credit_url: https://pmc.ncbi.nlm.nih.gov/articles/PMC11604836/#mrm30316-fig-0005
+  image_license: CC BY 4.0
+  image_license_url: https://creativecommons.org/licenses/by/4.0/
+  image_source: https://pmc.ncbi.nlm.nih.gov/articles/PMC11604836/#mrm30316-fig-0005
+  recognitions:
+    - year: 2026
+      label: Top Viewed Article in MRM (Top 10%)
+  order: 5
+
+- record_key: despot2
+  year: 2024
+  category: peer_reviewed
+  type: Journal article
+  title: Fast and Accessible T2 Mapping Using Off-Resonance Corrected DESPOT2 With Application to 3D Prostate
+  authors: Ronal Coronado, Carlos Castillo-Passi, Cecilia Besa, and Pablo Irarrazaval
+  venue: Magnetic Resonance Imaging
+  paper: https://doi.org/10.1016/j.mri.2024.03.018
+  order: 5
+
+- year: 2023
+  category: peer_reviewed
+  type: Journal article
+  title: "KomaMRI.jl: An Open-Source Framework for General MRI Simulations with GPU Acceleration"
+  short_title: KomaMRI.jl
+  authors: Carlos Castillo-Passi, Ronal Coronado, Gabriel Varela-Mattatall, Carlos Alberola-López, René Botnar, and Pablo Irarrazaval
+  venue: Magnetic Resonance in Medicine
+  paper: https://doi.org/10.1002/mrm.29635
+  abstract_key: mrisim-ismrm-2022
+  record_key: komamri
+  code: https://github.com/JuliaHealth/KomaMRI.jl
+  image: /assets/images/komamri-medical-results.jpg
+  image_alt: Simulated brain images comparing KomaMRI with JEMRIS across several acquisition scenarios
+  image_caption: Medical-image simulations comparing KomaMRI with JEMRIS
+  image_credit: Figure 5, Castillo-Passi et al.
+  image_credit_url: https://doi.org/10.1002/mrm.29635
+  image_license: CC BY 4.0
+  image_license_url: https://creativecommons.org/licenses/by/4.0/
+  image_source: https://doi.org/10.1002/mrm.29635
+  recognitions:
+    - year: 2025
+      label: Top Viewed Article in MRM (Top 10%)
+    - year: 2023
+      label: Editor's Pick, Magnetic Resonance in Medicine
+  order: 6
+  cv_badge: MRMhighlights.png
+
+- record_key: microbial-gene-expression
+  year: 2022
+  category: peer_reviewed
+  type: Journal article
+  title: Accurate characterization of dynamic microbial gene expression and growth rate profiles
+  authors: Gonzalo Vidal, Carolus Vitalis, Macarena Muñoz Silva, Carlos Castillo-Passi, Guillermo Yáñez Feliú, Fernán Federici, and Timothy J. Rudge
+  venue: Synthetic Biology
+  paper: https://doi.org/10.1093/synbio/ysac020
+  order: 7
+
+- record_key: off-resonance-mrf
+  year: 2021
+  category: peer_reviewed
+  type: Journal article
+  title: A spatial off-resonance correction in spirals for Magnetic Resonance Fingerprinting
+  authors: Ronal Coronado, Gastao Cruz, Carlos Castillo-Passi, Cristian Tejos, Sergio Uribe, Claudia Prieto, and Pablo Irarrazaval
+  venue: IEEE Transactions on Medical Imaging
+  paper: https://doi.org/10.1109/TMI.2021.3100293
+  order: 8
+
+- record_key: deepspio
+  year: 2022
+  category: peer_reviewed
+  type: Journal article
+  title: "DeepSPIO: Super Paramagnetic Iron Oxide Particle Quantification using Deep Learning in Magnetic Resonance Imaging"
+  authors: Gabriel Della Maggiora, Carlos Castillo-Passi, Wenqi Qiu, Shuang Liu, Carlos Milovic, Masaki Sekino, Cristian Tejos, Sergio Uribe, and Pablo Irarrazaval
+  venue: IEEE Transactions on Pattern Analysis and Machine Intelligence
+  paper: https://doi.org/10.1109/TPAMI.2020.3012103
+  order: 9
+
+- record_key: mapl1
+  year: 2020
+  category: peer_reviewed
+  type: Journal article
+  title: "MAPL1: q-space reconstruction using ℓ1-regularized mean apparent propagator"
+  authors: Gabriel Varela-Mattatall, Carlos Castillo-Passi, Alexandra Koch, Joaquin Mura, Rüdiger Stirnberg, Sergio Uribe, Cristian Tejos, Tony Stöcker, and Pablo Irarrazaval
+  venue: Magnetic Resonance in Medicine
+  paper: https://doi.org/10.1002/mrm.28268
+  order: 10
+
+- year: 2025
+  category: peer_reviewed
+  type: Journal article
+  title: Simultaneous 3D aortic lumen and vessel wall imaging at 0.55 T at either systole or diastole
+  authors: Matias Paredes, Carlos Castillo-Passi, Karl P. Kunze, Anastasia Fotaki, Simon Littlewood, René M. Botnar, and Claudia Prieto
+  venue: Magnetic Resonance in Medicine
+  paper: https://doi.org/10.1002/mrm.30611
+  record_key: low-field-boost
+  order: 4

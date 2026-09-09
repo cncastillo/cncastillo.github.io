@@ -1,0 +1,5 @@
+{% if include.project.start_year or include.project.end_year %}
+  <p class="project-period">
+    {% if include.project.start_year %}{{ include.project.start_year }}{% if include.project.end_year %}–{{ include.project.end_year }}{% endif %}{% elsif include.project.end_year == 'Present' %}Ongoing{% endif %}{% if include.project.current_institution %} · Currently at {{ include.project.current_institution }}{% endif %}
+  </p>
+{% endif %}

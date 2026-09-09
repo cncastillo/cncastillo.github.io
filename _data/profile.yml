@@ -1,0 +1,27 @@
+name: Carlos Castillo-Passi
+author_names:
+  - Carlos Castillo-Passi
+  - Carlos A Castillo-Passi
+  - C. Castillo-Passi
+description: MRI simulation, sequence development, and quantitative imaging
+role: Postdoctoral Scholar
+institution: Stanford University
+bio:
+  - >-
+    I am a postdoctoral scholar at Stanford working at the intersection of mathematics, physics, computing, and medical imaging. I develop high-performance, open-source methods that turn first-principles MRI models into practical tools for simulation, sequence design, and image reconstruction. My current research uses compiler technology and AI to build efficient, physically consistent methods for medical imaging.
+email: cacp@stanford.edu
+blog_url: https://cncastillo.github.io/BlochHole/
+photo: /assets/images/carlos-castillo-passi.jpg
+photo_alt: Portrait of Carlos Castillo-Passi
+favicon: /assets/favicon.png
+links:
+  - label: ORCID
+    url: https://orcid.org/0000-0001-6227-0477
+    icon: /assets/icons/orcid.svg
+  - label: GitHub
+    url: https://github.com/cncastillo
+    icon: /assets/icons/github.svg
+  - label: Stanford profile
+    url: https://profiles.stanford.edu/carlos-castillo-passi
+    # Official artwork: https://www-media.stanford.edu/assets/favicon/safari-pinned-tab.svg
+    icon: /assets/icons/stanford.svg

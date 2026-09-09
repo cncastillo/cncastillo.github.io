@@ -1,0 +1,13 @@
+---
+layout: default
+---
+<article class="content-page">
+  <header class="page-header">
+    {% if page.kicker %}<p class="eyebrow">{{ page.kicker }}</p>{% endif %}
+    <h1>{{ page.title }}</h1>
+    {% if page.description %}<p>{{ page.description }}</p>{% endif %}
+  </header>
+  <div class="prose prose-wide">
+    {{ content }}
+  </div>
+</article>

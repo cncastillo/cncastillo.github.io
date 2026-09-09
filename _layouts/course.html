@@ -1,0 +1,28 @@
+---
+layout: default
+---
+<article class="content-page course-page">
+  <header class="page-header course-header{% if page.image %} course-header-with-image{% endif %}">
+    <div class="course-heading-copy">
+      <p class="eyebrow">{{ page.code }} · {{ page.term }}</p>
+      <h1>{{ page.title }}</h1>
+      {% if page.program %}<div class="course-program">{{ page.program | markdownify }}</div>{% endif %}
+      <p>{{ page.description }}</p>
+    </div>
+    {% if page.image %}
+      <img class="course-header-image" src="{{ page.image | relative_url }}" alt="{{ page.image_alt }}" width="1448" height="1086">
+    {% endif %}
+  </header>
+
+  {% if page.sections %}
+    <nav class="course-nav" aria-label="Course sections">
+      {% for section in page.sections %}
+        <a href="{{ section.href }}">{{ section.label }}</a>
+      {% endfor %}
+    </nav>
+  {% endif %}
+
+  <div class="prose prose-wide course-content">
+    {{ content }}
+  </div>
+</article>

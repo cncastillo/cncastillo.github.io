@@ -1,0 +1,7 @@
+{%- assign author_text = include.text | escape -%}
+{%- for name in site.data.profile.author_names -%}
+  {%- assign escaped_name = name | escape -%}
+  {%- capture emphasized_name -%}<strong>{{ escaped_name }}</strong>{%- endcapture -%}
+  {%- assign author_text = author_text | replace: escaped_name, emphasized_name -%}
+{%- endfor -%}
+{{- author_text -}}

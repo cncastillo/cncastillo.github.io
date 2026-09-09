@@ -1,0 +1,226 @@
+% Adapted from Carlos's LyX export. Publications and talks are generated from site records.
+\documentclass[12pt,american]{moderncv}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\setcounter{secnumdepth}{0}
+\usepackage{array}
+\usepackage{needspace}
+\usepackage{graphicx}
+\graphicspath{{assets/}}
+\usepackage[a4paper]{geometry}
+\geometry{verbose,tmargin=2cm,bmargin=1.5cm,lmargin=1cm,rmargin=1cm}
+
+\makeatletter
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LyX specific LaTeX commands.
+%% Because html converters don't know tabularnewline
+\providecommand{\tabularnewline}{\\}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+% adjust the page margins
+%\usepackage[scale=0.75]{geometry}
+%\usepackage{fontawesome}
+\moderncvtheme[blue]{classic}
+\name{Carlos}{Castillo-Passi}
+
+\definecolor{gray}{rgb}{.3, .3, .3}
+
+\renewcommand*{\addresssymbol}       {}
+%\renewcommand*{\mobilephonesymbol}   {{\large \faMobilePhone}}
+\renewcommand*{\fixedphonesymbol}    {}
+\renewcommand*{\faxphonesymbol}      {}
+\renewcommand*{\emailsymbol}         {{\scriptsize\faEnvelope}}
+\renewcommand*{\homepagesymbol}      {}
+\renewcommand*{\linkedinsocialsymbol}{}
+\renewcommand*{\twittersocialsymbol} {}
+\renewcommand*{\githubsocialsymbol}  {}
+
+\setlength{\hintscolumnwidth}{2.5cm}
+\setlength{\makecvheadnamewidth}{10cm}
+
+\title{\normalsize Postdoctoral Scholar, Department of Radiology, \\
+Stanford University}
+\email{cacp@stanford.edu}
+
+\usepackage{scalerel}
+\usepackage{tikz}
+\usetikzlibrary{svg.path}
+
+\definecolor{orcidlogocol}{HTML}{A6CE39}
+\tikzset{
+  orcidlogo/.pic={
+    \fill[orcidlogocol] svg{M256,128c0,70.7-57.3,128-128,128C57.3,256,0,198.7,0,128C0,57.3,57.3,0,128,0C198.7,0,256,57.3,256,128z};
+    \fill[white] svg{M86.3,186.2H70.9V79.1h15.4v48.4V186.2z}
+                 svg{M108.9,79.1h41.6c39.6,0,57,28.3,57,53.6c0,27.5-21.5,53.6-56.8,53.6h-41.8V79.1z M124.3,172.4h24.5c34.9,0,42.9-26.5,42.9-39.7c0-21.5-13.7-39.7-43.7-39.7h-23.7V172.4z}
+                 svg{M88.7,56.8c0,5.5-4.5,10.1-10.1,10.1c-5.6,0-10.1-4.6-10.1-10.1c0-5.6,4.5-10.1,10.1-10.1C84.2,46.7,88.7,51.3,88.7,56.8z};
+  }
+}
+
+\newcommand\orcidicon[1]{\href{https://orcid.org/#1}{\mbox{\scalerel*{
+\begin{tikzpicture}[yscale=-1,transform shape]
+\pic{orcidlogo};
+\end{tikzpicture}
+}{|}}}}
+
+\extrainfo{\orcidicon{0000-0001-6227-0477} \href{https://orcid.org/0000-0001-6227-0477}{0000-0001-6227-0477}}
+
+
+\usepackage{fancyhdr} % For custom headers and footers
+\pagestyle{fancy} % Use the fancyhdr package
+\fancyhf{} % Clear all header and footer fields
+\fancyhead[R]{}
+
+% Date
+\fancypagestyle{firstpage}{
+  \fancyhead{} % Clear all header fields
+  \fancyhead[R]{\vspace{1cm}\today}
+  \renewcommand{\headrulewidth}{0pt} % Optional: remove header line
+}
+
+
+% Added by lyx2lyx
+\setlength{\parskip}{\medskipamount}
+\setlength{\parindent}{0pt}
+
+\makeatother
+
+\usepackage{babel}
+\begin{document}
+\maketitle
+\thispagestyle{firstpage}
+
+\section{Education}
+
+\cventry{2025--Present}{Postdoctoral Scholar}{Stanford University}{California}{USA}{}
+
+\cventry{2022--2024}{Joint PhD in Biological and Medical Eng.}{King's College London}{London}{UK}{}
+
+\cventry{2019--2024}{PhD in Biological and Medical Engineering ({\footnotesize Ranked \#1})}{PUC}{Santiago}{Chile}{}
+
+\cventry{2015--2018}{MSc in Electrical Engineering ({\footnotesize Highest Distinction})}{PUC}{Santiago}{Chile}{}
+
+\cventry{2011--2018}{Electrical Engineering}{PUC}{Santiago}{Chile}{}
+
+
+\section{Academic experience}
+
+\subsection{Teaching}
+
+\cventry{2026}{Primary Instructor, BIOS214 Open-Source MRI Sequence Development:
+Simulation to Scanner (Autumn 2026)}{Stanford University}{California}{USA}{}
+
+\cventry{2025}{Guest Lecturer, RAD229 MRI Sequences and Signals (Spring 2025)}{Stanford University}{California}{USA}{}
+
+\cventry{2024}{2-Day Workshop - Advanced Scientific Computing using Julia - \href{https://librehub.github.io/2024/12/19/julia-ws-2024.html}{\nolinkurl{librehub.github.io/2024/12/19/julia-ws-2024.html}}}{PUC}{Santiago}{Chile}{}
+
+\cventry{2019}{Diploma in Fundamentals and Applications of Magnetic Resonance}{PUC}{Santiago}{Chile}{}
+
+\cventry{2014--2015}{Developed 4 Precalculus MOOCs -- \href{https://online.ing.uc.cl}{\nolinkurl{online.ing.uc.cl}}}{PUC}{Santiago}{Chile}{}
+
+\subsection{Teaching assistant}
+
+\hspace{3cm}%
+\noindent\begin{minipage}[t]{\dimexpr\linewidth-3cm\relax}%
+\begin{tabular}{@{}>{\raggedright}p{0.48\linewidth}>{\raggedright}p{0.48\linewidth}@{}}
+\textbf{Electrical Engineering (PUC):} & \textbf{Mathematical Engineering (PUC):}\tabularnewline
+\begin{itemize}
+\item {\scriptsize IEE2103} Signals and Systems {\footnotesize{[}2014-2020{]}}{\footnotesize\par}
+\item {\scriptsize IEE2513} Communications
+\item {\scriptsize IEE3764} Image Formation
+\item {\scriptsize IEE3794} Image{\footnotesize{} }Reconstruction{\footnotesize{}
+{[}2019-2021{]}}{\footnotesize\par}
+\end{itemize}
+\textbf{Medical Imaging Sciences (KCL):}
+\begin{itemize}
+\item {\scriptsize 7MIGEP43} Medical Imaging Acquisition
+\item {\scriptsize 7MIGEP45} Medical Image Reconstruction
+\end{itemize}
+\textbf{Biomedical Engineering (KCL):}
+\begin{itemize}
+\item {\scriptsize 5CCYB050} Signal and Image Processing
+\end{itemize}
+ & \begin{itemize}
+\item {\scriptsize IMT3840} Topics in Inverse Problems
+\end{itemize}
+\textbf{Biomedical Engineering (PUC):}
+\begin{itemize}
+\item {\scriptsize IBM2101} Biomedical Imaging
+\item {\scriptsize IBM2122} Biomedical Design I {\footnotesize{[}2016}--{\footnotesize 2018{]}}{\footnotesize\par}
+\item {\scriptsize IBM2122} Biomedical Design II{\footnotesize{} {[}2016}--{\footnotesize 2018{]}}{\footnotesize\par}
+\item {\scriptsize IBM3103} Mathematical Methods for BME
+\item {\scriptsize IBM3102} Advanced Topics in BME II
+\end{itemize}
+\tabularnewline
+\end{tabular}%
+\end{minipage}
+
+\subsection{Selected scientific publications}
+
+\input{build/publications}
+
+\subsection{International conference participation}
+
+\input{build/presentations}
+
+\cventry{2018--2021}{And 9 other abstracts}{}{}{}{}
+
+\section{Book chapters}
+
+\input{build/books}
+
+\section{Grants/Fellowships}
+
+\cventry{2026}{NumFOCUS Small Development Grant (Julia Health, \$10,000)}{NumFOCUS}{}{}{}
+
+\section{Achievements and awards}
+
+\cventry{2026}{3rd Place Trainee Abstract Award: ``Fast and Accurate Bloch Simulations
+using Magnus Expansions''}{ISMRM Open \& Reproducible Research Study Group}{}{}{}
+
+\cventry{2026}{Top Viewed Article in MRM (Top 10\%): ``Highly efficient image navigator
+based 3D whole-heart cardiac MRA at 0.55T''}{Wiley}{}{}{}
+
+\cventry{2025}{APS DCOMP Travel Award (JuliaCon 2025)}{American Physical Society, Division of Computational Physics (DCOMP)}{}{}{}
+
+\cventry{2025}{Top Viewed Article in MRM (Top 10\%): ``KomaMRI.jl: An Open-Source
+Framework for General MRI Simulations with GPU Acceleration''}{Wiley}{}{}{}
+
+\cventry{2024}{2nd Place for Liver T1, T2, and ADC at 3T}{Trainee Abstract Presentations}{ISMRM MR in Drug Research Business Meeting}{}{}
+
+\cventry{2024}{Magna Cum Laude Merit Award (Top 15\%) for Liver T1, T2, and ADC at
+3T}{ISMRM Annual Meeting}{Singapore}{Singapore}{}
+
+\cventry{2024}{Early Career Award (1st Place) - Basic Science for iT2prep-BOOST at
+0.55T}{CMR2024}{London}{United Kingdom}{}
+
+\cventry{2023}{Summa Cum Laude Merit Award (Top 5\%) and part of MRM's fast-track
+initiative for CMRA at 0.55T}{ISMRM Annual Meeting}{Toronto}{Canada}{}
+
+\cventry{2023}{Editor's pick July 2023 for KomaMRI.jl}{Magnetic Resonance in Medicine (MRM)}{}{}{}
+
+\cventry{2020}{Recognition for his outstanding work as a teacher assistant}{Institute of Biological and Medical Engineering, PUC}{Santiago}{Chile}{}
+
+\cventry{2018}{Recognition for the making of the MOOCs: {\footnotesize EINP001, EINP002,
+EINP003 and EINP004}}{PUC}{Santiago}{Chile}{}
+
+\Needspace{8\baselineskip}
+\section{Mentoring}
+
+\cventry{2026}{Kosuri Indu - Improving JuliaHealth Documentation Accessibility for
+Community Onboarding}{NumFOCUS}{Small Development Grant (SDG)}{USA}{}
+
+\cventry{2026}{Alya Kurt}{Summer Undergraduate Research Fellowship (SURF)}{Stanford University}{USA}{}
+
+\cventry{2026}{Anvika Singhal - komamripy Python Wrapper for KomaMRI.jl}{Julia}{Google Summer of Code (GSoC)}{USA}{}
+
+\cventry{2026}{Kareem Fareed - Differentiable GPU-accelerated MRI Simulations using
+Reactant.jl}{Julia}{Google Summer of Code (GSoC)}{USA}{}
+
+\cventry{2026}{Kareem Fareed - Enabling Fast, Arbitrary, MRI RF Pulse Design}{Research Experience for Undergraduates (REU)}{Stanford University}{USA}{}
+
+\cventry{2025}{Kareem Fareed - Compiler-Level Reverse-Mode Automatic Differentiation
+(AD) of GPU-Accelerated MRI Simulations}{Research Experience for Undergraduates (REU)}{Stanford University}{USA}{}
+
+\cventry{2024}{Ryan Kierulf - Enhancements to KomaMRI.jl GPU Support}{Julia}{Google Summer of Code (GSoC)}{}{ }
+
+\end{document}

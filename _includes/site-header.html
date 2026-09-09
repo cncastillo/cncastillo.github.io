@@ -1,0 +1,11 @@
+<a class="skip-link" href="#content">Skip to content</a>
+<header class="site-header">
+  <a class="site-name" href="{{ '/' | relative_url }}">{{ site.data.profile.name | escape }}</a>
+  <nav aria-label="Primary navigation">
+    <a href="{{ '/' | relative_url }}"{% if page.url == '/' %} aria-current="page"{% endif %}>Home</a>
+    <a href="{{ '/publications/' | relative_url }}"{% if page.url == '/publications/' %} aria-current="page"{% endif %}>Publications &amp; Presentations</a>
+    <a href="{{ '/teaching/' | relative_url }}"{% if page.url contains '/teaching/' %} aria-current="page"{% endif %}>Teaching</a>
+    <a href="{{ '/cv/' | relative_url }}"{% if page.url == '/cv/' %} aria-current="page"{% endif %}>CV</a>
+    {% if site.data.profile.blog_url %}<a href="{{ site.data.profile.blog_url }}">Blog</a>{% endif %}
+  </nav>
+</header>

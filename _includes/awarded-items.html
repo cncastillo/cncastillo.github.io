@@ -1,0 +1,31 @@
+{% assign awarded_publications = site.data.publications | where_exp: 'item', 'item.recognitions.size > 0' %}
+{% assign abstracts = site.data.presentations | where: 'category', 'abstract' %}
+{% assign awarded_abstracts = abstracts | where_exp: 'item', 'item.recognitions.size > 0' %}
+{% assign awarded_items = awarded_publications | concat: awarded_abstracts | sort: 'year' | reverse %}
+
+<div class="award-grid">
+  {% for item in awarded_items %}
+    {% assign item_link = item.paper %}
+    {% if item.category == 'abstract' and item.abstract %}
+      {% assign item_link = item.abstract %}
+    {% endif %}
+    <article class="award-card{% if item.image %} award-card-with-image{% endif %}">
+      {% if item.image %}
+        <a class="award-card-media" href="{{ item.image_source | default: item_link }}" tabindex="-1" aria-hidden="true">
+          <img src="{{ item.image | relative_url }}" alt="" loading="lazy">
+        </a>
+      {% endif %}
+      <div class="award-card-body">
+        <p class="award-card-meta">
+          {{ item.year }} · {% if item.category == 'abstract' %}Conference abstract{% else %}{{ item.type }}{% endif %}
+        </p>
+        <h3>{% if item_link %}<a href="{{ item_link }}">{{ item.title }}</a>{% else %}{{ item.title }}{% endif %}</h3>
+        <p class="award-card-venue">
+          {% if item.category == 'abstract' %}{{ item.event }}{% else %}{{ item.venue }}{% endif %}
+        </p>
+        {% include recognitions.html items=item.recognitions %}
+        {% include work-links.html item=item class='award-card-links' %}
+      </div>
+    </article>
+  {% endfor %}
+</div>

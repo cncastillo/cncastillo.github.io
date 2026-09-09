@@ -1,1 +1,27 @@
-theme: jekyll-theme-minimal
+url: "https://cncastillo.github.io"
+baseurl: ""
+lang: en
+timezone: America/Los_Angeles
+markdown: kramdown
+permalink: pretty
+
+collections:
+  highlights:
+    output: true
+    permalink: /highlights/:name/
+
+defaults:
+  - scope:
+      path: ""
+      type: highlights
+    values:
+      layout: highlight
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - vendor
+  - .bundle
+  - .bundle-home
+  - scripts

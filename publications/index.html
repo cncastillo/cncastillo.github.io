@@ -1,0 +1,75 @@
+---
+layout: default
+title: Publications & presentations
+description: A selection of my peer-reviewed publications, book chapters, conference presentations, invited talks, and seminars.
+permalink: /publications/
+---
+<article class="content-page">
+  <header class="page-header">
+    <p class="eyebrow">Research record</p>
+    <h1>{{ page.title }}</h1>
+    <p>{{ page.description }}</p>
+  </header>
+
+  {% assign publications = site.data.publications | where: 'category', 'peer_reviewed' %}
+  {% assign books = site.data.publications | where: 'category', 'book' %}
+  {% assign abstracts = site.data.presentations | where: 'category', 'abstract' %}
+  {% assign conference_talks = site.data.presentations | where: 'category', 'conference' %}
+  {% assign conference_items = abstracts | concat: conference_talks %}
+  {% assign invited = site.data.presentations | where: 'category', 'invited' %}
+  {% assign award_candidates = site.data.publications | concat: abstracts %}
+  {% assign award_count = 0 %}
+  {% for item in award_candidates %}
+    {% assign award_count = item.recognitions | size | plus: award_count %}
+  {% endfor %}
+
+  <nav class="section-nav" aria-label="Page sections">
+    <a href="#awards">Awarded ({{ award_count }})</a>
+    <a href="#publications">Peer-reviewed publications ({{ publications.size }})</a>
+    <a href="#books">Book chapters ({{ books.size }})</a>
+    <a href="#abstracts">Conference presentations ({{ conference_items.size }})</a>
+    <a href="#invited">Invited talks & seminars ({{ invited.size }})</a>
+  </nav>
+
+  <section class="archive-section awarded-archive" id="awards">
+    <div class="archive-heading">
+      <p class="eyebrow">Selected distinctions</p>
+      <h2>Awarded papers and abstracts</h2>
+    </div>
+    {% include awarded-items.html %}
+  </section>
+
+  <section class="archive-section" id="publications">
+    <div class="archive-heading">
+      <p class="eyebrow">Journals & proceedings</p>
+      <h2>Peer-reviewed publications</h2>
+      {% assign orcid = site.data.profile.links | where: 'label', 'ORCID' | first %}
+      {% if orcid %}<p class="item-links"><a href="{{ orcid.url }}">Complete publication list on ORCID</a></p>{% endif %}
+    </div>
+    {% include archive-list.html items=publications collection='publication' %}
+  </section>
+
+  <section class="archive-section" id="books">
+    <div class="archive-heading">
+      <p class="eyebrow">Other scholarly work</p>
+      <h2>Book chapters</h2>
+    </div>
+    {% include archive-list.html items=books collection='publication' %}
+  </section>
+
+  <section class="archive-section" id="abstracts">
+    <div class="archive-heading">
+      <p class="eyebrow">International meetings</p>
+      <h2>Conference presentations</h2>
+    </div>
+    {% include archive-list.html items=conference_items %}
+  </section>
+
+  <section class="archive-section" id="invited">
+    <div class="archive-heading">
+      <p class="eyebrow">By invitation</p>
+      <h2>Invited talks & seminars</h2>
+    </div>
+    {% include archive-list.html items=invited %}
+  </section>
+</article>

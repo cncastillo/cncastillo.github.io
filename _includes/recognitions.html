@@ -1,0 +1,10 @@
+{% if include.items.size > 0 %}
+  <div class="recognitions">
+    <p class="recognitions-heading">Awards &amp; recognition</p>
+    <ul>
+      {% for recognition in include.items %}
+        <li>{% if recognition.year %}<span>{{ recognition.year }}</span> · {% endif %}{{ recognition.label | escape }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endif %}

@@ -1,0 +1,76 @@
+---
+layout: default
+---
+<article class="detail-page">
+  <header class="detail-header">
+    <p class="eyebrow">{{ page.area }}</p>
+    <h1>{{ page.title }}</h1>
+    {% include project-period.html project=page %}
+    <p class="detail-summary">{{ page.summary }}</p>
+    {% assign main_relation = page.related_outputs | where: 'kind', 'publication' | first %}
+    {% assign main_paper = nil %}
+    {% if main_relation %}{% assign main_paper = site.data.publications | where: 'record_key', main_relation.key | first %}{% endif %}
+    {% if main_paper or page.links %}
+      <div class="item-links">
+        {% if main_paper.paper %}<a href="{{ main_paper.paper }}">Paper</a>{% endif %}
+        {% if main_paper.code %}<a href="{{ main_paper.code }}">Code</a>{% endif %}
+        {% for link in page.links %}<a href="{{ link.url }}">{{ link.label }}</a>{% endfor %}
+      </div>
+    {% endif %}
+  </header>
+  {% if page.image %}
+    <figure class="hero-figure">
+      <img src="{{ page.image | relative_url }}" alt="{{ page.image_alt }}">
+      {% if page.image_caption or page.image_credit %}
+        <figcaption>
+          {{ page.image_caption }}
+          {% if page.image_credit_url %}<a href="{{ page.image_credit_url }}">{{ page.image_credit }}</a>{% elsif page.image_credit %}{{ page.image_credit }}{% endif %}{% if page.image_license %}, <a href="{{ page.image_license_url }}">{{ page.image_license }}</a>{% endif %}.
+        </figcaption>
+      {% endif %}
+    </figure>
+  {% endif %}
+  <div class="prose">
+    {{ content }}
+  </div>
+  {% if page.related_outputs %}
+    {% assign project_outputs = '' | split: '' %}
+    {% for relation in page.related_outputs %}
+      {% if relation.kind == 'publication' %}
+        {% assign matches = site.data.publications | where: 'record_key', relation.key %}
+      {% elsif relation.kind == 'presentation' %}
+        {% assign matches = site.data.presentations | where: 'record_key', relation.key %}
+      {% else %}
+        {% assign matches = '' | split: '' %}
+      {% endif %}
+      {% assign project_outputs = project_outputs | concat: matches %}
+    {% endfor %}
+    {% assign year_groups = project_outputs | group_by: 'year' | sort: 'name' | reverse %}
+    <section class="archive-section project-outputs" aria-labelledby="outputs-title">
+      <div class="archive-heading">
+        <p class="eyebrow">Project record</p>
+        <h2 id="outputs-title">Publications and presentations</h2>
+      </div>
+      <div class="archive-list">
+        {% for year_group in year_groups %}
+          {% assign year_outputs = year_group.items | sort: 'order' %}
+          {% for output in year_outputs %}
+            {% assign relation = page.related_outputs | where: 'key', output.record_key | first %}
+            {% assign output_url = output.abstract | default: output.paper %}
+            {% if relation.kind == 'publication' %}{% assign output_url = output.paper %}{% endif %}
+            {% assign output_venue = output.venue | default: output.event %}
+            <article class="archive-item">
+              <p class="archive-year">{{ output.year }}</p>
+              <div>
+                <p class="archive-type">{{ output.type | default: output.kind }}</p>
+                <h3>{% if output_url %}<a href="{{ output_url }}">{{ output.title }}</a>{% else %}{{ output.title }}{% endif %}</h3>
+                <p class="venue">{{ output_venue }}{% if output.location %} · {{ output.location }}{% endif %}</p>
+                {% include recognitions.html items=output.recognitions %}
+                {% include work-links.html item=output %}
+              </div>
+            </article>
+          {% endfor %}
+        {% endfor %}
+      </div>
+    </section>
+  {% endif %}
+</article>

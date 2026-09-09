@@ -1,0 +1,23 @@
+{% assign year_groups = include.items | group_by: 'year' | sort: 'name' | reverse %}
+<div class="archive-list">
+  {% for year_group in year_groups %}
+    {% assign year_items = year_group.items | sort: 'order' %}
+    {% for item in year_items %}
+      {% assign item_url = item.abstract | default: item.paper %}
+      {% if include.collection == 'publication' %}{% assign item_url = item.paper %}{% endif %}
+      <article class="archive-item">
+        <p class="archive-year">{{ item.year }}</p>
+        <div>
+          <p class="archive-type">{{ item.type | default: item.kind }}</p>
+          <h3>{% if item_url %}<a href="{{ item_url }}">{{ item.title }}</a>{% else %}{{ item.title }}{% endif %}</h3>
+          {% if item.authors %}
+            <p class="authors">{% include author-text.html text=item.authors %}</p>
+          {% endif %}
+          <p class="venue">{{ item.venue | default: item.event }}{% if item.location %} · {{ item.location }}{% endif %}{% if item.note %} · {% include author-text.html text=item.note %}{% endif %}</p>
+          {% include recognitions.html items=item.recognitions %}
+          {% include work-links.html item=item %}
+        </div>
+      </article>
+    {% endfor %}
+  {% endfor %}
+</div>

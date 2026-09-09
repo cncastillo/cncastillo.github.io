@@ -1,0 +1,20 @@
+{% assign linked_paper = include.item.paper %}
+{% assign linked_abstract = include.item.abstract %}
+{% assign linked_code = include.item.code %}
+{% if include.item.publication_key %}
+  {% assign related_paper = site.data.publications | where: 'record_key', include.item.publication_key | first %}
+  {% assign linked_paper = related_paper.paper %}
+  {% assign linked_code = linked_code | default: related_paper.code %}
+{% endif %}
+{% if include.item.abstract_key %}
+  {% assign related_abstract = site.data.presentations | where: 'record_key', include.item.abstract_key | first %}
+  {% assign linked_abstract = related_abstract.abstract %}
+{% endif %}
+{% if linked_abstract or linked_paper or linked_code or include.item.slides %}
+  <div class="{{ include.class | default: 'item-links archive-item-links' }}">
+    {% if linked_abstract %}<a href="{{ linked_abstract }}">Abstract</a>{% endif %}
+    {% if linked_paper %}<a href="{{ linked_paper }}">Paper</a>{% endif %}
+    {% if linked_code %}<a href="{{ linked_code }}">Code</a>{% endif %}
+    {% if include.item.slides %}<a href="{{ include.item.slides }}">Slides</a>{% endif %}
+  </div>
+{% endif %}

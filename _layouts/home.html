@@ -1,0 +1,81 @@
+---
+layout: default
+---
+{% assign profile = site.data.profile %}
+<section class="intro" aria-labelledby="intro-title">
+  <div class="intro-heading">
+    <p class="eyebrow">{{ profile.role }} · {{ profile.institution }}</p>
+    <h1 id="intro-title">{{ profile.name }}</h1>
+  </div>
+  <aside class="intro-profile">
+    <img src="{{ profile.photo | relative_url }}" alt="{{ profile.photo_alt }}" width="1892" height="1920">
+  </aside>
+  <div class="intro-main">
+    <div class="intro-copy">
+      {% for paragraph in profile.bio %}
+        {{ paragraph | markdownify }}
+      {% endfor %}
+    </div>
+    <div class="profile-links" aria-label="Contact and profiles">
+      <a href="mailto:{{ profile.email }}">
+        <img class="profile-link-icon" src="{{ '/assets/icons/email.svg' | relative_url }}" alt="">
+        <span>Email</span>
+      </a>
+      {% for link in profile.links %}
+        <a href="{{ link.url }}">
+          {% if link.icon %}<img class="profile-link-icon" src="{{ link.icon | relative_url }}" alt="">{% endif %}
+          <span>{{ link.label }}</span>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% assign projects = site.highlights | sort: 'order' %}
+{% assign abstracts = site.data.presentations | where: 'category', 'abstract' %}
+{% assign award_candidates = site.data.publications | concat: abstracts %}
+{% assign award_count = 0 %}
+{% for item in award_candidates %}
+  {% assign award_count = item.recognitions | size | plus: award_count %}
+{% endfor %}
+
+<nav class="section-nav" aria-label="Home page sections">
+  <a href="#projects">Selected projects ({{ projects.size }})</a>
+  <a href="#awards">Awarded papers &amp; abstracts ({{ award_count }})</a>
+</nav>
+
+<section class="selected" id="projects" aria-labelledby="selected-title">
+  <div class="section-heading">
+    <p class="eyebrow">Selected</p>
+    <h2 id="selected-title">Projects</h2>
+  </div>
+  <div class="highlight-list">
+    {% for project in projects %}
+      <article class="highlight-row">
+        <a class="highlight-media" href="{{ project.url | relative_url }}" tabindex="-1" aria-hidden="true">
+          <img src="{{ project.image | relative_url }}" alt="" loading="lazy">
+        </a>
+        <div class="highlight-main">
+          <p class="highlight-meta">{{ project.area }}</p>
+          <h3><a href="{{ project.url | relative_url }}">{{ project.title }}</a></h3>
+          {% include project-period.html project=project %}
+          <p>{{ project.summary }}</p>
+          <div class="item-links">
+            <a href="{{ project.url | relative_url }}">Overview{% if project.related_outputs.size > 0 %} ({{ project.related_outputs.size }} output{% if project.related_outputs.size != 1 %}s{% endif %}){% endif %}</a>
+          </div>
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="awards-showcase" id="awards" aria-labelledby="awards-title">
+  <div class="section-heading">
+    <p class="eyebrow">Distinctions</p>
+    <h2 id="awards-title">Awarded papers and abstracts</h2>
+  </div>
+  <div>
+    {% include awarded-items.html %}
+    <p class="awards-showcase-footer"><a href="{{ '/publications/#awards' | relative_url }}">Awards and full publication record →</a></p>
+  </div>
+</section>
