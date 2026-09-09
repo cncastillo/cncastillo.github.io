@@ -4,6 +4,7 @@ title: Course title
 code: COURSE 101
 term: Spring 2027
 institution: University name
+instructors: "**Your Name** and Co-instructor"
 description: A short introduction to the course.
 permalink: /teaching/your-course/
 sections:
@@ -17,7 +18,7 @@ sections:
 
 ## Overview
 
-Describe the course, instructors, and prerequisites.
+Describe the course and prerequisites.
 
 ## Schedule
 

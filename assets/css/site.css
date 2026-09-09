@@ -566,7 +566,7 @@ main { min-height: 70vh; }
 .course-card-with-image {
   display: grid;
   grid-template-columns: minmax(12rem, 18rem) minmax(0, 1fr);
-  align-items: center;
+  align-items: start;
   gap: 2rem;
   max-width: 58rem;
 }
@@ -586,10 +586,10 @@ main { min-height: 70vh; }
   object-fit: cover;
 }
 
-.course-card h2 {
+.course-card .course-card-copy h2 {
   margin: 0.35rem 0 0;
   font-family: var(--serif);
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: 500;
 }
 
@@ -611,6 +611,8 @@ main { min-height: 70vh; }
   line-height: 1.5;
 }
 
+.course-header { padding-bottom: 1.25rem; }
+
 .course-header-with-image {
   display: grid;
   grid-template-columns: minmax(0, 1.2fr) minmax(16rem, 0.8fr);
@@ -619,13 +621,22 @@ main { min-height: 70vh; }
   max-width: none;
 }
 
-.course-heading-copy > p:last-child {
+.course-heading-copy > .course-description {
   max-width: 46rem;
   margin: 1.4rem 0 0;
   color: var(--muted);
   font-family: var(--serif);
   font-size: 1.3rem;
 }
+
+.course-instructors {
+  margin-top: 1rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.course-instructors > p { margin: 0; }
+.course-instructors strong { color: var(--ink); }
 
 .course-header-image {
   display: block;
@@ -640,6 +651,51 @@ main { min-height: 70vh; }
 .course-content { padding-top: 0.5rem; }
 
 .course-content h2 { scroll-margin-top: 1rem; }
+
+.course-content table {
+  width: 100%;
+  margin: 1rem 0 2rem;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.course-content th,
+.course-content td {
+  padding: 0.7rem 0.75rem;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+  overflow-wrap: anywhere;
+}
+
+.course-content .course-break { text-align: center; }
+
+.course-day-header,
+.course-session {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.5rem;
+}
+
+.course-session > a {
+  margin-left: auto;
+  text-align: right;
+}
+
+.course-icon {
+  width: 1em;
+  height: 1em;
+  margin-right: 0.2em;
+  vertical-align: -0.12em;
+}
+
+.course-content a[aria-disabled="true"] {
+  color: var(--muted);
+  text-decoration: none;
+  cursor: default;
+}
 
 .button-link {
   display: inline-block;

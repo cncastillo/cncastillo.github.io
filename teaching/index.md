@@ -17,10 +17,9 @@ permalink: /teaching/
         </a>
       {% endif %}
       <div class="course-card-copy">
-        <p class="archive-type">{{ course.term }}{% if course.institution %} · {{ course.institution }}{% endif %}</p>
-        <h2><a href="{{ course.url | relative_url }}">{{ course.code }}</a></h2>
-        <p>{{ course.title }}.</p>
-        {% if course.program %}<div class="course-program">{{ course.program | markdownify }}</div>{% endif %}
+        <p class="archive-type">{{ course.code }} · {{ course.term }}{% if course.institution %} · {{ course.institution }}{% endif %}</p>
+        <h2><a href="{{ course.url | relative_url }}">{{ course.title }}</a></h2>
+        <p>{{ course.description }}</p>
         <a class="text-link" href="{{ course.url | relative_url }}">Course page →</a>
       </div>
     </article>

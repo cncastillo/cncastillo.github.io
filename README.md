@@ -128,9 +128,13 @@ Do not change IDs or remove records without updating references. Validation repo
 
 Copy `_templates/course.md` to `teaching/my-course/index.md` and edit its front matter and Markdown. It appears on the teaching index automatically; no HTML edit is needed.
 
-Use the optional `program` field for the official program/department description, with Markdown links if useful. The `sections` list controls the course menu. Its anchors must match the page headings (`## Materials` → `#materials`).
+Use the optional `program` field for the official program/department description at the end of the course page, with Markdown links if useful. The `sections` list controls the course menu. Its anchors must match the page headings (`## Materials` → `#materials`).
+
+The optional `instructors` field appears as a byline below the course title and supports Markdown, for example `instructors: "**Your Name** and Co-instructor"`.
 
 Add lecture notes below the course folder as Markdown with `layout: page` and a `title`, then link them from the course page. Link slides, notebooks, and downloads the same way. Keep submissions, grades, and private student material in Canvas or another course system.
+
+For BIOS 214, edit the materials table in `teaching/bios-214/index.md`: one row per week, with Monday/Wednesday/Friday columns. The table uses HTML to merge the Thanksgiving break cells; each teaching cell has `markdown="span"`, so its contents and links remain editable in Markdown. Keep the `course-day-header` and `course-session` spans in place; they handle alignment. Mark room exceptions with `<sup>*</sup>` beside the date and explain them in the classroom note below the table. Replace the whole `<a role="link" aria-disabled="true">Coming soon</a>` placeholder with a Markdown link such as `[Notes](week-1/monday/)` or `[Lab](week-1/friday/)` once those materials exist.
 
 ## Check and preview
 

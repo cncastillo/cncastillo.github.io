@@ -4,10 +4,12 @@ layout: default
 <article class="content-page course-page">
   <header class="page-header course-header{% if page.image %} course-header-with-image{% endif %}">
     <div class="course-heading-copy">
-      <p class="eyebrow">{{ page.code }} · {{ page.term }}</p>
+      <p class="eyebrow">{{ page.code }} · {{ page.term }}{% if page.institution %} · {{ page.institution }}{% endif %}</p>
       <h1>{{ page.title }}</h1>
-      {% if page.program %}<div class="course-program">{{ page.program | markdownify }}</div>{% endif %}
-      <p>{{ page.description }}</p>
+      {% if page.instructors %}
+        <div class="course-instructors">{{ page.instructors | prepend: 'Taught by ' | markdownify }}</div>
+      {% endif %}
+      <p class="course-description">{{ page.description }}</p>
     </div>
     {% if page.image %}
       <img class="course-header-image" src="{{ page.image | relative_url }}" alt="{{ page.image_alt }}" width="1448" height="1086">
@@ -24,5 +26,6 @@ layout: default
 
   <div class="prose prose-wide course-content">
     {{ content }}
+    {% if page.program %}<div class="course-program">{{ page.program | markdownify }}</div>{% endif %}
   </div>
 </article>
