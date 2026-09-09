@@ -2,6 +2,8 @@
 # Each record_key must be unique and remain stable once linked from a project.
 
 - year: 2026
+  date: "2025-10-27"
+  date_source: https://api.crossref.org/works/10.1002/mrm.70145
   category: peer_reviewed
   type: Journal article
   title: Versatile and Highly Efficient MRI Simulation of Arbitrary Motion in KomaMRI
@@ -13,6 +15,7 @@
 
 - record_key: cardiac-mri-chapter
   year: 2026
+  date_note: In press; an exact chapter publication date has not been confirmed. Do not substitute the book's scheduled release date.
   category: book
   type: Book chapter · In press
   title: "Cardiac MRI: Myocardial tissue characterization"
@@ -22,6 +25,8 @@
 
 - record_key: juliahealth
   year: 2026
+  date: "2026-03-07"
+  date_source: https://proceedings.juliacon.org/papers/10.21105/jcon.00194
   category: peer_reviewed
   type: Proceedings article
   title: "Bringing Julia to Health: A Concise Overview of JuliaHealth"
@@ -31,6 +36,8 @@
   order: 2
 
 - year: 2025
+  date: "2025-07-09"
+  date_source: https://api.crossref.org/works/10.1002/mrm.30622
   category: peer_reviewed
   type: Journal article
   title: "Simultaneous liver T1, T2, and ADC MR fingerprinting using optimized motion-compensated diffusion preparations: An initial validation on volunteers"
@@ -47,6 +54,8 @@
   category: peer_reviewed
   type: Journal article
   title: Highly efficient image navigator based 3D whole-heart cardiac MRA at 0.55T
+  date: "2024-10-16"
+  date_source: https://api.crossref.org/works/10.1002/mrm.30316
   short_title: Whole-heart cardiac MRA at 0.55T
   authors: Carlos Castillo-Passi, Karl P. Kunze, Michael G. Crabb, Camila Munoz, Anastasia Fotaki, Radhouene Neji, Pablo Irarrazaval, Claudia Prieto, and René M. Botnar
   venue: Magnetic Resonance in Medicine
@@ -68,6 +77,9 @@
 
 - record_key: despot2
   year: 2024
+  date: "2024-03-19"
+  date_source: https://europepmc.org/article/MED/38508291
+  date_note: Electronic publication date in the PubMed record mirrored by Europe PMC.
   category: peer_reviewed
   type: Journal article
   title: Fast and Accessible T2 Mapping Using Off-Resonance Corrected DESPOT2 With Application to 3D Prostate
@@ -77,6 +89,8 @@
   order: 5
 
 - year: 2023
+  date: "2023-03-06"
+  date_source: https://api.crossref.org/works/10.1002/mrm.29635
   category: peer_reviewed
   type: Journal article
   title: "KomaMRI.jl: An Open-Source Framework for General MRI Simulations with GPU Acceleration"
@@ -105,6 +119,9 @@
 
 - record_key: microbial-gene-expression
   year: 2022
+  date: "2022-10-15"
+  date_source: https://academic.oup.com/synbio/article/7/1/ysac020/6752804
+  date_note: Publisher's article-page publication date, used instead of the October 7 advance-access date printed on the PDF.
   category: peer_reviewed
   type: Journal article
   title: Accurate characterization of dynamic microbial gene expression and growth rate profiles
@@ -115,6 +132,8 @@
 
 - record_key: off-resonance-mrf
   year: 2021
+  date: "2021-07-26"
+  date_source: https://ieeexplore.ieee.org/document/9496622
   category: peer_reviewed
   type: Journal article
   title: A spatial off-resonance correction in spirals for Magnetic Resonance Fingerprinting
@@ -125,6 +144,8 @@
 
 - record_key: deepspio
   year: 2022
+  date: "2020-07-27"
+  date_source: https://ieeexplore.ieee.org/document/9149791
   category: peer_reviewed
   type: Journal article
   title: "DeepSPIO: Super Paramagnetic Iron Oxide Particle Quantification using Deep Learning in Magnetic Resonance Imaging"
@@ -135,6 +156,8 @@
 
 - record_key: mapl1
   year: 2020
+  date: "2020-04-09"
+  date_source: https://api.crossref.org/works/10.1002/mrm.28268
   category: peer_reviewed
   type: Journal article
   title: "MAPL1: q-space reconstruction using ℓ1-regularized mean apparent propagator"
@@ -147,6 +170,8 @@
   category: peer_reviewed
   type: Journal article
   title: Simultaneous 3D aortic lumen and vessel wall imaging at 0.55 T at either systole or diastole
+  date: "2025-06-23"
+  date_source: https://onlinelibrary.wiley.com/doi/10.1002/mrm.30611
   authors: Matias Paredes, Carlos Castillo-Passi, Karl P. Kunze, Anastasia Fotaki, Simon Littlewood, René M. Botnar, and Claudia Prieto
   venue: Magnetic Resonance in Medicine
   paper: https://doi.org/10.1002/mrm.30611

@@ -9,14 +9,17 @@ A small Jekyll site for GitHub Pages. **Edit YAML for records and Markdown for p
 | Name, biography, affiliation, email, portrait, profile links, favicon | `_data/profile.yml` |
 | Journal articles, proceedings papers, book chapters | `_data/publications.yml` |
 | Abstracts, conference talks, invited talks, seminars | `_data/presentations.yml` |
+| Research and open-source mentorships | `_data/mentorship.yml` |
 | Selected projects and their overview text | `_highlights/*.md` |
 | Courses, notes, schedules, and public materials | `teaching/<course-slug>/*.md` |
-| CV education, teaching, grants, awards, and mentoring | `_cv/cv.tex` |
+| CV education, teaching, grants, and awards | `_cv/cv.tex` |
 | Domain, website repository link, base path, language, and timezone | `_config.yml` |
 
 The two record files are the only sources for publication/presentation metadata. The archive, distinctions, project records, counts, and generated CV all read them. Do not copy a title, byline, paper URL, or award into another record just to display it elsewhere.
 
-The LaTeX CV remains a deliberate exception: its header and non-publication sections are edited there. Its publication/presentation/book lists and author emphasis are generated from YAML.
+The experimental research timeline on `/publications/` reads those same records. It opens on up to the latest eight calendar years in the records; scroll left within the timeline to see earlier work. Set `show_timeline: false` in `publications/index.html` to hide it and stop loading its CSS/JavaScript. Papers use publication dates; abstracts and talks use presentation dates, falling back to the conference's first day when only conference dates are known. All markers display a single date; entries without either date are omitted. Recognition markers refer to the work, not the date the award was received. Hover, focus, or tap an icon to explore that individual work. The tooltip has no controls and cannot be pinned or hovered: leaving the icon closes mouse-triggered details immediately. Keyboard details remain until focus leaves the icon or Escape is pressed; tap outside to dismiss on touch devices.
+
+The LaTeX CV remains a deliberate exception: its header, education, teaching, grants, and awards are edited there. Its publication/presentation/book and mentorship lists are generated from YAML.
 
 ## Update your profile
 
@@ -50,6 +53,15 @@ For a book chapter, use `category: book` and `type: Book chapter` (or `Book chap
 
 Optional fields: `code`, `note`, `abstract_key`, `recognitions`, image metadata, and `order`. `order` is an integer tie-breaker within a year; smaller values come first and records without it come last. No renumbering is needed when adding a new year.
 
+For timeline metadata, add the first online publication date and its source. Prefer the publisher's article page, PDF, or deposited Crossref record; use a bibliographic index such as PubMed when the publisher is unavailable:
+
+```yaml
+  date: "2026-11-18"
+  date_source: https://publisher.example/my-paper
+```
+
+Keep `year` as the citation/issue year, even if online publication was earlier. Dates are metadata only and do not change the website or CV display. Use quoted ISO dates (`YYYY-MM-DD`); omit `date` for an in-press work or an unconfirmed day. An optional `date_note` can explain a source discrepancy. Do not use acceptance, indexing, or scheduled release dates as actual publication dates.
+
 ## Add a presentation
 
 Append one record to `_data/presentations.yml`:
@@ -66,9 +78,27 @@ Append one record to `_data/presentations.yml`:
   abstract: https://conference.example/my-talk
 ```
 
-Use `category: abstract` for conference abstracts, `conference` for conference talks, or `invited` for invited talks and seminars. `kind` is the visible label, such as Oral presentation, Power pitch, or Invited educational talk.
+Use `category: abstract` for conference abstracts, `conference` for conference talks, or `invited` for invited talks and seminars. These categories organize the archive. Set `kind` to the presentation format, such as Traditional poster, Digital poster, Oral presentation, Power pitch, or Invited educational talk. The timeline uses circles for papers, squares for posters, triangles for other talks (including power pitches), and diamonds for `category: invited` talks and seminars; its hover details retain the specific format and invitation status. `abstract` remains the link to the written submission, not a timeline format.
 
 `location`, `abstract`, `slides`, `code`, `note`, and `publication_key` are optional. Use complete authors for abstracts and the speakers for talks. Omit unavailable links rather than inserting placeholders.
+
+Presentation dates are **metadata only**; the website and CV still display the year. Add an exact presentation day with its official program URL (or `Speaker confirmation`):
+
+```yaml
+  date: "2027-05-12"
+  date_source: https://conference.example/program/my-talk
+```
+
+If only the conference dates are confirmed, omit `date` and keep the conference dates as metadata. The timeline uses the first day without displaying a range:
+
+```yaml
+  event_start: "2027-05-10"
+  event_end: "2027-05-14"
+  date_source: https://conference.example/program
+  date_note: Conference dates only; exact presentation day not yet confirmed.
+```
+
+Always quote ISO dates (`YYYY-MM-DD`). Do not substitute a conference start date or an abstract's journal publication date for the presentation day. Optional `date_note`, `hosts` (a list of names), and `format` (`in_person` or `online`) are also metadata only. These fields do not change the display order, which remains newest year first, then `order` within each year.
 
 ## Connect related records
 
@@ -136,6 +166,33 @@ Add lecture notes below the course folder as Markdown with `layout: page` and a 
 
 For BIOS 214, edit the materials table in `teaching/bios-214/index.md`: one row per week, with Monday/Wednesday/Friday columns. The table uses HTML to merge the Thanksgiving break cells; each teaching cell has `markdown="span"`, so its contents and links remain editable in Markdown. Keep the `course-day-header` and `course-session` spans in place; they handle alignment. Mark room exceptions with `<sup>*</sup>` beside the date and explain them in the classroom note below the table. Replace the whole `<a role="link" aria-disabled="true">Coming soon</a>` placeholder with a Markdown link such as `[Notes](week-1/monday/)` or `[Lab](week-1/friday/)` once those materials exist.
 
+## Add a mentorship
+
+Append to `_data/mentorship.yml`; the Teaching & Mentorship page and generated CV both read this file. Use one entry per person, program, and year, not one entry per unique person:
+
+```yaml
+- name: Student Name
+  year: 2027
+  home_affiliation: Home University, Country
+  program: Google Summer of Code (GSoC)
+  organization: Julia
+  program_logo: /assets/icons/gsoc.svg
+  organization_logo: /assets/icons/julia.svg
+  project: Public project title
+  role: Co-mentor
+  links:
+    - label: Project
+      url: https://example.org/project
+    - label: Blog post
+      url: https://example.org/post
+```
+
+Only `name`, `year`, `program`, and `organization` are required. Omit unpublished project details, unconfirmed roles, and unavailable links. Each optional `links` item needs a `label` and an HTTP(S) `url`; use it for project pages, posts, code, or tutorials. Optional `location` appears in the CV only. The teaching page groups entries by `name`, with each person's programs newest year first. Use the same name spelling across programs. Optional integer `order` controls person order (their first entry) and entries within a year; the CV remains newest year first. Use `[]` to hide mentorship from the teaching page when there are no entries. Do not duplicate entries in `_cv/cv.tex`.
+
+Optional `program_logo` and `organization_logo` point to local assets and appear beside their text labels on the website only. Omit them for a text-only entry. Logo sources and attribution are recorded in `assets/icons/LOGO-SOURCES.md`.
+
+Optional `home_affiliation` records the mentee's university and its country during that mentorship, not the host organization or their nationality. It appears below their name on the website; identical affiliations across engagements appear only once. Omit it when unconfirmed.
+
 ## Check and preview
 
 ```sh
@@ -154,7 +211,9 @@ ruby scripts/test-cv.rb
 bundle exec jekyll build --safe
 ```
 
-Checks cover required fields, categories, integer years/order, complete bylines, duplicate IDs, broken paper/abstract/project references, image paths, and CV generation. They do not verify scientific claims or whether an external URL is still available.
+Checks cover required fields, categories, integer years/order, complete bylines, duplicate IDs, broken paper/abstract/project references, image paths, mentorship records, and CV generation. They do not verify scientific claims or whether an external URL is still available.
+
+To check the experimental timeline after building, run `node scripts/test-timeline.mjs _site` (Node.js is only needed for these optional tests, not the site build). It checks record coverage, single-date markers, conference-start fallback, categories, awards, passive tooltip markup, marker spacing, and the eight-year viewport. Run `node scripts/test-timeline-interactions.mjs` to check scrolling and resize behavior, direct icon hover, tooltip positioning, immediate dismissal, keyboard focus, and touch behavior.
 
 ## CV and continuous integration
 

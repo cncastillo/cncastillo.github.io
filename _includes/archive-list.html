@@ -5,7 +5,7 @@
     {% for item in year_items %}
       {% assign item_url = item.abstract | default: item.paper %}
       {% if include.collection == 'publication' %}{% assign item_url = item.paper %}{% endif %}
-      <article class="archive-item">
+      <article class="archive-item" id="record-{{ item.record_key | escape }}">
         <p class="archive-year">{{ item.year }}</p>
         <div>
           <p class="archive-type">{{ item.type | default: item.kind }}</p>

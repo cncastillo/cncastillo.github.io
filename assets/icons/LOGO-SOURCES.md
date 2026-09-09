@@ -1,0 +1,8 @@
+# Mentorship logo sources
+
+These marks identify the programs and institutions associated with the listed mentoring activities; they do not imply endorsement of this website. Source artwork is unchanged; mentorship logos are displayed in grayscale and scaled proportionally with CSS.
+
+- **Stanford** (`stanford.svg`): Stanford University's [official pinned-tab artwork](https://www-media.stanford.edu/assets/favicon/safari-pinned-tab.svg), reused from the site's existing Stanford profile icon. Stanford marks belong to Stanford University.
+- **NumFOCUS** (`numfocus.png`): [Official circle-and-brackets mark](https://numfocus.org/wp-content/uploads/2021/04/NF-circle-brackets.png), displayed on [numfocus.org](https://numfocus.org/). NumFOCUS marks belong to NumFOCUS.
+- **Julia** (`julia.svg`): [Julia dots](https://github.com/JuliaLang/julia-logo-graphics/blob/master/images/julia-dots.svg), copyright 2012–2022 Stefan Karpinski, used unchanged under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/). See the [upstream license](https://github.com/JuliaLang/julia-logo-graphics/blob/master/LICENSE.md).
+- **Google Summer of Code** (`gsoc.svg`): [Official sun mark](https://developers.google.com/static/open-source/gsoc/images/sun.svg), as used on the [GSoC brand guidelines page](https://developers.google.com/open-source/gsoc/resources/brand_guidelines). Google Summer of Code and the GSoC logo are trademarks of Google; used here to identify noncommercial participation in the program.

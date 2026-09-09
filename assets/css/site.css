@@ -555,6 +555,25 @@ main { min-height: 70vh; }
 
 .archive-item-links { margin-top: 0.7rem; }
 
+.teaching-page { max-width: 56rem; }
+.teaching-page > .prose { padding-top: 0; }
+
+.mentorship-person { grid-template-columns: minmax(8rem, 1fr) minmax(0, 3fr); }
+.mentorship-entry + .mentorship-entry { margin-top: 1.2rem; }
+
+.mentorship-logo {
+  display: inline-block;
+  width: 1.25rem;
+  height: 1.25rem;
+  object-fit: contain;
+  filter: grayscale(1);
+  vertical-align: middle;
+}
+
+@media (max-width: 40rem) {
+  .mentorship-person { grid-template-columns: 1fr; }
+}
+
 .course-list { padding-top: 2rem; }
 
 .course-card {

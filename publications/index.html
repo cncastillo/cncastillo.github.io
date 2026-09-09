@@ -3,6 +3,7 @@ layout: default
 title: Publications & presentations
 description: A selection of my peer-reviewed publications, book chapters, conference presentations, invited talks, and seminars.
 permalink: /publications/
+show_timeline: true
 ---
 <article class="content-page">
   <header class="page-header">
@@ -30,6 +31,8 @@ permalink: /publications/
     <a href="#abstracts">Conference presentations ({{ conference_items.size }})</a>
     <a href="#invited">Invited talks & seminars ({{ invited.size }})</a>
   </nav>
+
+  {% if page.show_timeline %}{% include research-timeline.html %}{% endif %}
 
   <section class="archive-section awarded-archive" id="awards">
     <div class="archive-heading">

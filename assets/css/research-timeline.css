@@ -1,0 +1,34 @@
+.research-timeline { position: relative; width: 100%; min-width: 0; max-width: 100%; contain: inline-size; padding: 1.5rem 0 1rem; border-bottom: 1px solid var(--line); }
+.research-timeline[hidden], .timeline-detail[hidden] { display: none; }
+.timeline-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+.timeline-heading h2 { margin: 0; font: 500 1.4rem/1.2 var(--serif); }
+.timeline-legend { display: flex; flex-wrap: wrap; gap: 0.6rem 1.2rem; margin: 0; font-size: 0.8rem; color: var(--muted); }
+.timeline-legend span { display: inline-flex; align-items: center; gap: 0.45rem; }
+.timeline-symbol { display: block; width: 0.65rem; height: 0.65rem; flex: 0 0 auto; background: currentColor; }
+.timeline-paper { border-radius: 50%; }
+.timeline-poster { border-radius: 1px; }
+.timeline-talk { clip-path: polygon(50% 0, 100% 100%, 0 100%); width: 0.75rem; height: 0.7rem; }
+.timeline-invited { transform: rotate(45deg); }
+.timeline-award-key, .timeline-awarded { color: var(--recognition); }
+.timeline-scroll { width: 100%; min-width: 0; contain: inline-size; overflow-x: auto; overscroll-behavior-x: contain; margin-top: 1.15rem; }
+.timeline-chart { position: relative; }
+.timeline-chart::before { content: ""; position: absolute; top: var(--axis-y); left: 24px; right: 24px; border-top: 1px solid var(--line); }
+.timeline-years { position: absolute; inset: 0; pointer-events: none; }
+.timeline-year { position: absolute; bottom: 26px; height: 6px; border-left: 1px solid var(--line); }
+.timeline-year span { position: absolute; top: 8px; transform: translateX(-50%); font-size: 0.75rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.timeline-stem { position: absolute; border-left: 1px solid var(--line); }
+.timeline-point { position: absolute; display: grid; place-items: center; width: 32px; height: 32px; padding: 0; border: 0; background: transparent; color: var(--accent-dark); cursor: pointer; transform: translate(-50%, -50%); }
+.timeline-point.timeline-awarded { color: var(--recognition); }
+.timeline-point[aria-expanded="true"] { background: #edf2f8; border-radius: 50%; }
+.timeline-point:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; border-radius: 50%; }
+.timeline-point.timeline-future { opacity: 0.65; }
+.timeline-hint { color: var(--muted); margin: 0.45rem 0 0; font-size: 0.75rem; }
+.timeline-detail { position: absolute; z-index: 5; pointer-events: none; transform: translateY(-100%); width: min(28rem, 100%); max-height: 65vh; overflow-y: auto; overscroll-behavior-y: contain; padding: 1.1rem 1.3rem; background: var(--paper); border: 1px solid var(--line); border-top: 2px solid var(--accent-dark); border-radius: 3px; box-shadow: 0 8px 28px rgba(20,33,61,0.13); }
+.timeline-detail.is-awarded { border-top-color: var(--recognition); }
+.timeline-detail-meta { color: var(--muted); font-size: 0.75rem; margin: 0 0 0.5rem; }
+.timeline-detail h3 { margin: 0 0 0.5rem; font: 500 1.2rem/1.25 var(--serif); }
+.timeline-detail-venue, .timeline-detail-note { color: var(--muted); font-size: 0.8rem; line-height: 1.5; margin: 0 0 0.5rem; }
+.timeline-detail-award { color: var(--recognition); font-size: 0.8rem; line-height: 1.4; margin: 0.6rem 0; }
+@media (pointer: coarse) {
+  .timeline-point { width: 44px; height: 44px; }
+}

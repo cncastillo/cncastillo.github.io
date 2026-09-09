@@ -27,6 +27,17 @@ check(CV.entry(talk, names).include?('[Conference talk]'), 'Talk classification 
 ordered = CV.records([fixture, fixture.merge('year' => 2028), fixture.merge('order' => 1000)])
 check(ordered.map { |r| [r['year'], r['order']] } == [[2028, nil], [2027, 1000], [2027, nil]], 'Date/tie-break ordering failed')
 
+mentorship = {'name' => 'Example Student', 'year' => 2027, 'program' => 'SURF', 'organization' => 'Example University'}
+check(CV.mentorship_entry(mentorship) == "\\cventry{2027}{Example Student}{SURF}{Example University}{}{}\n", 'Mentorship without optional details failed')
+mentorship.merge!('project' => 'MRI & computing', 'role' => 'Co-mentor', 'links' => [
+  {'label' => 'Project', 'url' => 'https://example.org/project_a'},
+  {'label' => 'Blog & tutorial', 'url' => 'https://example.org/post'}
+])
+mentorship_entry = CV.mentorship_entry(mentorship)
+check(mentorship_entry.include?('Example Student --- MRI \\& computing'), 'Mentorship title escaping failed')
+check(mentorship_entry.include?('Co-mentor \\href{https://example.org/project\\_a}{Project}'), 'Mentorship role/link missing')
+check(mentorship_entry.include?(' · \\href{https://example.org/post}{Blog \\& tutorial}'), 'Mentorship additional link/label escaping failed')
+
 CV.generate
 data = Content.load
 names = data['profile']['author_names']
@@ -41,5 +52,12 @@ groups.each do |name, records|
   records.each { |r| check(output.include?(CV.byline(r['authors'], names)), "Missing full author list: #{r['title']}") }
   check(!output.include?('et al.'), "Truncated authors: #{name}")
 end
+
+mentorship_output = File.read(File.join(CV::BUILD, 'mentorship.tex'))
+check(mentorship_output.scan(/\\cventry\{/).size == data['mentorship'].size, 'Mentorship count mismatch')
+data['mentorship'].each do |record|
+  check(mentorship_output.include?(CV.mentorship_entry(record)), "Missing mentorship: #{record['name']}")
+end
+check(File.read(File.join(CV::ROOT, '_cv/cv.tex')).include?('\\input{build/mentorship.tex}'), 'CV does not use generated mentorship entries')
 
 puts 'CV generation checks passed.'

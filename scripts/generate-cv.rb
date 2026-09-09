@@ -54,6 +54,17 @@ module CV
       File.write(File.join(BUILD, "#{name}.tex"), "% Generated from website records; do not edit.\n\n" + records.map { |record| entry(record, names) }.join("\n"))
       puts "#{name}: #{records.size} entries"
     end
+    mentorship = records(data['mentorship'])
+    File.write(File.join(BUILD, 'mentorship.tex'), "% Generated from website records; do not edit.\n\n" + mentorship.map { |record| mentorship_entry(record) }.join("\n"))
+    puts "mentorship: #{mentorship.size} entries"
+  end
+
+  def self.mentorship_entry(record)
+    title = [record.fetch('name'), record['project']].compact.join(' — ')
+    details = tex(record['role'])
+    links = record.fetch('links', []).map { |link| "\\href{#{tex(link['url'])}}{#{tex(link['label'])}}" }
+    details += " #{links.join(' · ')}" unless links.empty?
+    "\\cventry{#{record.fetch('year')}}{#{tex(title)}}{#{tex(record.fetch('program'))}}{#{tex(record.fetch('organization'))}}{#{tex(record['location'])}}{#{details.strip}}\n"
   end
 end
 

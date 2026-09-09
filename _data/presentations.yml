@@ -1,9 +1,13 @@
 # Edit these records directly. See README.md for copy-and-paste examples.
 # Each record_key must be unique and remain stable once linked from a project.
+# Dates are metadata only: date is the presentation day, not the publication day.
+# When that day is unconfirmed, use event_start/event_end instead. Quote ISO dates.
 
 - record_key: juliacon-2026-juliahealth
   category: conference
   year: 2026
+  date: "2026-08-12"
+  date_source: https://pretalx.com/juliacon-2026/talk/FYD7SD/
   kind: Conference talk
   title: State of JuliaHealth
   authors: Hetarth Shah, Carlos Castillo-Passi, and Jacob Zelko
@@ -21,6 +25,8 @@
   location: Mainz, Germany
   abstract: https://pretalx.com/juliacon-2026/talk/PZSLRD/
   record_key: juliacon-2026-spins
+  date: "2026-08-12"
+  date_source: https://pretalx.com/juliacon-2026/talk/PZSLRD/
   order: 1
 
 - category: abstract
@@ -32,6 +38,8 @@
   location: Cape Town, South Africa
   abstract: https://echo.ismrm.org/p/ISMRM2026/352-01-002
   record_key: magnus-ismrm-2026
+  date: "2026-05-11"
+  date_source: https://echo.ismrm.org/p/ISMRM2026/352-01-002
   image: /assets/images/magnus-methods-vs-rk.gif
   image_alt: Animated Bloch-sphere comparison of Magnus and Runge-Kutta integration methods advancing magnetization during RF excitation
   image_caption: Magnus and Runge-Kutta methods advancing magnetization over one simulation step
@@ -46,6 +54,8 @@
 - record_key: magnus-workshop-2026
   category: abstract
   year: 2026
+  date: "2026-01-13"
+  date_source: https://echo.ismrm.org/program/SEDONA26
   kind: Oral presentation
   title: Fast and accurate Bloch simulations using Magnus expansions
   authors: Carlos Castillo-Passi, Charles McGrath, Kareem Fareed, Jacob S. Blum, and Daniel B. Ennis
@@ -57,6 +67,8 @@
 - record_key: komamri-scmr-2025
   category: abstract
   year: 2025
+  date: "2025-01-30"
+  date_source: https://2025scmr.eventscribe.net/ajaxcalls/PresentationInfo.asp?PresentationID=1551758&efp=WFJVUkFXWU8yMzYzNg&rnd=0.79048
   kind: Oral presentation
   title: KomaMRI.jl Device-Agnostic, Highly Efficient, and Pulseq-compatible MRI Simulations
   authors: Carlos Castillo-Passi, Pablo Villacorta, Justino Rodriguez-Galvan, Carlos Alberola, Claudia Prieto, Pablo Irarrazaval, and René M. Botnar
@@ -75,6 +87,8 @@
   abstract: https://doi.org/10.58530/2024/0273
   publication_key: liver-mrf
   record_key: liver-mrf-ismrm
+  date: "2024-05-06"
+  date_source: https://www.ismrm.org/24/pf/O-03.htm
   image: /assets/images/award-liver-mrf.png
   image_alt: T1, T2, and ADC liver maps from the proposed MRF method compared with reference scans in three subjects
   image_caption: Liver T1, T2, and ADC maps from the proposed MRF method and reference scans
@@ -98,17 +112,21 @@
   location: Singapore
   abstract: https://doi.org/10.58530/2024/0577
   record_key: cardiac-mrf-055t-ismrm
+  date: "2024-05-07"
+  date_source: https://www.ismrm.org/24/pf/PP-03.htm
   order: 8
 
 - category: abstract
   year: 2024
-  kind: Abstract
+  kind: Traditional poster
   title: Magnetic Resonance Fingerprinting for Simultaneous T1, T2 and ADC Mapping at 0.55T using Convex-optimized Diffusion Prepared Waveforms
   authors: Carlos Castillo-Passi, Carlos Velasco, Donovan Tripp, Karl P. Kunze, Radhouene Neji, Pablo Irarrazaval, René M. Botnar, and Claudia Prieto
   event: ISMRM 2024
   location: Singapore
   abstract: https://doi.org/10.58530/2024/5097
   record_key: diffusion-mrf-055t-ismrm
+  date: "2024-05-09"
+  date_source: https://www.ismrm.org/24/pf/T-24.htm
   order: 9
 
 - category: abstract
@@ -120,6 +138,11 @@
   location: London, United Kingdom
   abstract: https://doi.org/10.1016/j.jocmr.2024.100175
   record_key: it2prep-boost-scmr
+  date: "2024-01-26"
+  event_start: "2024-01-24"
+  event_end: "2024-01-27"
+  date_source: https://cdn.ymaws.com/scmr.site-ym.com/resource/resmgr/2024/cmr2024/misc/cmr_2024_schedule_at_a_glanc.pdf
+  date_note: "Early Career Award Basic Science session, January 26, 10:50–11:50 a.m.; award category and title confirmed by https://www.multibriefs.com/briefs/SCMR/SCMR021524.php."
   image: /assets/images/scmr-it2prep-boost.jpg
   image_alt: Bright-blood and black-blood whole-heart images reconstructed with itSENSE and HD-PROST, alongside a Dixon fat reference
   image_caption: Bright- and black-blood results with and without HD-PROST denoising at 0.55T
@@ -136,18 +159,24 @@
 
 - category: abstract
   year: 2024
-  kind: Abstract
+  kind: Digital poster
   title: Cardiac Magnetic Resonance Fingerprinting for Simultaneous T1 and T2 Mapping at 0.55T
-  authors: Carlos Castillo-Passi, Carlos Velasco, Karl Kunze, Radhouene Neji, Pablo Irarrazaval, René Botnar, and Claudia Prieto
+  authors: Carlos Castillo-Passi, Carlos Velasco, Karl P. Kunze, Radhouene Neji, Pablo Irarrazaval, René M. Botnar, and Claudia Prieto
   event: SCMR 2024
   location: London, United Kingdom
   abstract: https://doi.org/10.1016/j.jocmr.2024.101016
   record_key: cardiac-mrf-055t-scmr
+  event_start: "2024-01-24"
+  event_end: "2024-01-27"
+  date_source: https://scmr.org/past-events/?event-type=scmr-events
+  date_note: Conference range retained for the digital poster presentation; no exact presentation day assigned.
   order: 11
 
 - record_key: juliacon-2023-komamri
   category: conference
   year: 2023
+  date: "2023-07-27"
+  date_source: https://pretalx.com/juliacon2023/talk/YEUNMW/
   kind: Conference talk
   title: "KomaMRI.jl: Framework for MRI Simulations with GPU Acceleration"
   authors: Carlos Castillo-Passi
@@ -166,6 +195,8 @@
   abstract: https://doi.org/10.58530/2023/0547
   publication_key: low-field-cmra
   record_key: low-field-cmra-ismrm
+  date: "2023-06-06"
+  date_source: https://www.ismrm.org/23/program-files/O-22.htm
   image: /assets/images/award-low-field-cmra.png
   image_alt: Whole-heart cardiac MRA reformats from three subjects scanned at 0.55T
   image_caption: Whole-heart cardiac MRA results in three representative healthy subjects
@@ -174,13 +205,17 @@
   image_source: https://archive.ismrm.org/2023/0547.html
   recognitions:
     - year: 2023
-      label: Summa Cum Laude Merit Award (Top 5%) and MRM fast-track initiative, ISMRM
+      label: Summa Cum Laude Merit Award (Top 5%), ISMRM
+    - year: 2023
+      label: MRM fast-track initiative
   order: 13
   cv_badge: summa-ribbon.png
 
 - record_key: cmra-scmr
   category: abstract
   year: 2023
+  date: "2023-01-27"
+  date_source: https://www.eventscribe.net/2023/SCMR/fsPopup.asp?Mode=presInfo&PresentationID=1171304
   kind: Oral presentation
   title: Whole-Heart Cardiovascular Magnetic Resonance Angiography with iNAV-based Non-Rigid Motion-Corrected Reconstruction at 0.55T
   authors: Carlos Castillo-Passi, Michael G. Crabb, Camila Munoz, Karl P. Kunze, Radhouene Neji, Pablo Irarrazaval, Claudia Prieto, and René M. Botnar
@@ -191,7 +226,7 @@
 
 - category: abstract
   year: 2022
-  kind: Abstract
+  kind: Digital poster
   title: "MRIsim.jl: A framework for end-to-end spin-level MRI simulations with GPU acceleration"
   authors: Carlos Castillo-Passi, Ronal Coronado, Sergio Uribe, and Pablo Irarrazaval
   event: ISMRM & SMRT Annual Meeting 2022
@@ -199,6 +234,8 @@
   abstract: https://archive.ismrm.org/2022/2815.html
   publication_key: komamri
   record_key: mrisim-ismrm-2022
+  date: "2022-05-12"
+  date_source: https://www.ismrm.org/22/program-files/D-76.htm
   order: 15
 
 - category: abstract
@@ -210,23 +247,29 @@
   location: Cape Town, South Africa
   abstract: https://echo.ismrm.org/p/ISMRM2026/551-01-013
   record_key: flow-pressure-ismrm-2026
+  date: "2026-05-13"
+  date_source: https://echo.ismrm.org/p/ISMRM2026/551-01-013
   note: Presented by Charles McGrath
   order: 3
 
 - record_key: ismrm-2026-reconstruction
   category: invited
   year: 2026
+  date: "2026-05-09"
+  date_source: https://echo.ismrm.org/program/ISMRM2026/at-a-glance/session/111
   kind: Invited educational talk
   title: Open-Source Frameworks for MRI Reconstruction II
   authors: Carlos Castillo-Passi
-  # Official program: https://echo.ismrm.org/program/ISMRM2026/at-a-glance/session/111
   event: "Demystifying MRI Reconstruction: Classical Foundations to AI Frontiers, ISMRM 2026"
   location: Cape Town, South Africa
-  order: 1
+  order: 2
 
 - record_key: mritogether-2025-flow
   category: invited
   year: 2025
+  date: "2025-12-11"
+  date_source: https://mritogether.esmrmb.org/25m/programbook
+  date_note: Day given in UTC in the official program.
   kind: Invited talk
   title: "Go with the Flow: Using Extensible and Shareable Motion Phantoms in KomaMRI"
   authors: Carlos Castillo-Passi
@@ -237,6 +280,8 @@
 - record_key: ismrm-2025-open-simulation
   category: invited
   year: 2025
+  date: "2025-05-12"
+  date_source: https://www.ismrm.org/25/program-files/MIS-01.htm
   kind: Invited educational talk
   title: Modern Open-Source MRI Simulations
   authors: Carlos Castillo-Passi
@@ -247,6 +292,8 @@
 - record_key: ismrm-visualizations
   category: invited
   year: 2024
+  date: "2024-05-07"
+  date_source: https://www.ismrm.org/24/pf/S-T-08.htm
   kind: Invited educational talk
   title: Interactive Visualizations
   authors: Carlos Castillo-Passi
@@ -257,26 +304,34 @@
 - record_key: ismrm-2023-pulseq
   category: invited
   year: 2023
+  date: "2023-11-17"
+  date_source: https://github.com/pulseq/ISMRM-Virtual-Meeting--November-15-17-2023
+  date_note: Day 3 of the November 15–17 meeting; program times are UTC.
   kind: Invited talk
   title: Using KomaMRI.jl for Comprehensive Quantitative MRI
   authors: Carlos Castillo-Passi
   event: "Vendor-Agnostic Pulse Sequence Programming with Pulseq: From Basics to Advanced Topics, ISMRM 2023"
   location: Virtual meeting
-  order: 6
+  order: 7
 
 - record_key: mritogether-2023-komamri
   category: invited
   year: 2023
+  date: "2023-12-07"
+  date_source: https://mritogether.esmrmb.org/23m/programbook
+  date_note: Day given in UTC in the official program.
   kind: Invited talk
   title: "KomaMRI.jl: Framework for MRI Simulations with GPU Acceleration"
   authors: Carlos Castillo-Passi
   event: MRITogether 2023
   location: Virtual meeting
-  order: 7
+  order: 6
 
 - record_key: juliacon-2025-komamri
   category: conference
   year: 2025
+  date: "2025-07-23"
+  date_source: https://pretalx.com/juliacon-2025/talk/FMF3V9/
   kind: Conference talk
   title: What's New with KomaMRI.jl
   authors: Carlos Castillo-Passi
@@ -289,6 +344,11 @@
 - record_key: mritogether-2026-phantoms
   category: invited
   year: 2026
+  date: "2026-12-01"
+  event_start: "2026-11-30"
+  event_end: "2026-12-04"
+  date_source: https://mritogether.esmrmb.org/26m/programbook
+  date_note: Scheduled for Day 2 (Reconstruction & Simulation) in the preliminary program; session time not yet listed.
   kind: Invited educational talk
   title: Introduction to numerical phantoms and MRI sequence simulation with KomaMRI
   authors: Carlos Castillo-Passi and Pablo Villacorta
@@ -305,5 +365,85 @@
   location: Cape Town, South Africa
   abstract: https://echo.ismrm.org/p/ISMRM2026/567-02-013
   record_key: rf-design-ismrm-2026
+  date: "2026-05-13"
+  date_source: https://echo.ismrm.org/p/ISMRM2026/567-02-013
   note: Presented by Kareem Fareed
+  order: 3
+
+- record_key: image-x-2026-differentiable-mri
+  category: invited
+  year: 2026
+  date: "2026-10-27"
+  date_source: Speaker confirmation
+  kind: Invited research-group talk
+  title: Differentiable Physics for MRI Pulse Sequence Optimization & MRI Reconstruction
+  authors: Carlos Castillo-Passi
+  event: Image X Institute weekly meeting, University of Sydney
+  location: Virtual meeting
+  format: online
+  hosts:
+    - Andrew Phair
+    - David Waddington
+  order: 1
+
+- record_key: royal-brompton-2026-differentiable-mri
+  category: invited
+  year: 2026
+  date: "2026-05-05"
+  date_source: Speaker confirmation
+  kind: Invited seminar
+  title: Using Differentiable Physics for MRI Pulse Sequences Optimization
+  authors: Carlos Castillo-Passi
+  event: Royal Brompton Hospital / Imperial College London seminar
+  location: London, United Kingdom
+  format: in_person
+  hosts:
+    - Sonia Nielles-Vallespin
+    - Andrew D. Scott
+  order: 3
+
+- record_key: miitt-2026-differentiable-mri
+  category: invited
+  year: 2026
+  date: "2026-03-18"
+  date_source: Speaker confirmation
+  kind: Invited research-group talk
+  title: Differentiable Physics for MRI Pulse Sequence Optimization
+  authors: Carlos Castillo-Passi
+  event: Michigan Institute for Imaging Technology and Translation (MIITT) weekly meeting, University of Michigan
+  location: Virtual meeting
+  format: online
+  hosts:
+    - Nicole Seiberlich
+  order: 4
+
+- record_key: ihealth-2026-differentiable-mri
+  category: invited
+  year: 2026
+  date: "2026-03-06"
+  date_source: Speaker confirmation
+  kind: Invited seminar
+  title: Differentiable Physics for MRI Pulse Sequence Optimization
+  authors: Carlos Castillo-Passi
+  event: iHEALTH seminar, Pontificia Universidad Católica de Chile
+  location: Santiago, Chile
+  format: in_person
+  hosts:
+    - Claudia Prieto
+    - René Botnar
+  order: 5
+
+- record_key: midas-2025-differentiable-mri
+  category: invited
+  year: 2025
+  date: "2025-08-05"
+  date_source: Speaker confirmation
+  kind: Invited seminar
+  title: Differentiable Physics for MRI Pulse Sequence Optimization & MRI Reconstruction
+  authors: Carlos Castillo-Passi
+  event: MIDAS.lab seminar, University Hospital Tübingen
+  location: Tübingen, Germany
+  format: in_person
+  hosts:
+    - Thomas Küstner
   order: 3

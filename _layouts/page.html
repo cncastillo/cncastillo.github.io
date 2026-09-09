@@ -1,7 +1,7 @@
 ---
 layout: default
 ---
-<article class="content-page">
+<article class="content-page{% if page.page_class %} {{ page.page_class | escape }}{% endif %}">
   <header class="page-header">
     {% if page.kicker %}<p class="eyebrow">{{ page.kicker }}</p>{% endif %}
     <h1>{{ page.title }}</h1>

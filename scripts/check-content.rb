@@ -1,4 +1,5 @@
 require 'yaml'
+require 'date'
 
 module Content
   ROOT = File.expand_path('..', __dir__)
@@ -10,7 +11,7 @@ module Content
   end
 
   def self.load(root = ROOT)
-    data = %w[profile publications presentations].to_h { |name| [name, yaml(File.join(root, '_data', "#{name}.yml"))] }
+    data = %w[profile publications presentations mentorship].to_h { |name| [name, yaml(File.join(root, '_data', "#{name}.yml"))] }
     data['projects'] = Dir[File.join(root, '_highlights', '*.md')].to_h do |path|
       [path, YAML.safe_load(File.read(path).split(/^---\s*$\n/, 3).fetch(1))]
     end
@@ -39,6 +40,24 @@ module Content
     end
     %w[photo favicon].each { |key| asset(profile[key], root, '_data/profile.yml') }
 
+    mentorship = data.fetch('mentorship')
+    check(mentorship.is_a?(Array), '_data/mentorship.yml', 'expected a list; use [] for an empty list')
+    mentorship.each_with_index do |record, i|
+      where = "_data/mentorship.yml entry #{i + 1}"
+      fields(record, %w[name program organization], where)
+      check(record['year'].is_a?(Integer), where, 'year must be an integer')
+      check(!record.key?('order') || record['order'].is_a?(Integer), where, 'order must be an integer or omitted')
+      %w[project location role home_affiliation].each { |key| fields(record, [key], where) if record.key?(key) }
+      %w[program_logo organization_logo].each { |key| asset(record[key], root, where) if record.key?(key) }
+      if record.key?('links')
+        check(record['links'].is_a?(Array), where, 'links must be a list')
+        record['links'].each do |link|
+          fields(link, %w[label url], where)
+          check(link['url'].match?(/\Ahttps?:\/\/\S+\z/), where, 'url must be an HTTP(S) link')
+        end
+      end
+    end
+
     ids = {}
     %w[publications presentations].each do |collection|
       records = data.fetch(collection)
@@ -52,6 +71,27 @@ module Content
         fields(record, collection == 'publications' ? %w[type venue] : %w[kind event], where)
         check(record['year'].is_a?(Integer), where, 'year must be an integer')
         check(!record.key?('order') || record['order'].is_a?(Integer), where, 'order must be an integer or omitted')
+        dates = %w[date event_start event_end].to_h do |key|
+          next [key, nil] unless record.key?(key)
+          value = record[key]
+          valid = value.is_a?(String) && value.match?(/\A\d{4}-\d{2}-\d{2}\z/) && Date.valid_date?(*value.split('-').map(&:to_i))
+          check(valid, where, "#{key} must be a quoted ISO date (YYYY-MM-DD)")
+          [key, Date.iso8601(value)]
+        end
+        if dates.values.any?
+          fields(record, %w[date_source], where)
+          date_year = (dates['date'] || dates['event_start'] || dates['event_end']).year
+          if collection == 'publications'
+            check(date_year <= record['year'], where, 'publication date must not follow citation year')
+          else
+            check(date_year == record['year'], where, 'date year must match year')
+          end
+          check(dates['event_start'].nil? == dates['event_end'].nil?, where, 'event_start and event_end must be supplied together')
+          if dates['event_start']
+            check(dates['event_start'] <= dates['event_end'], where, 'event_end must not precede event_start')
+            check(!dates['date'] || (dates['event_start']..dates['event_end']).cover?(dates['date']), where, 'date must fall within the event range')
+          end
+        end
         check(!record['authors'].match?(/\bet al\.?/i), where, 'include the complete author list, not et al.')
         check(!ids.key?(record['record_key']), where, 'duplicate record_key')
         ids[record['record_key']] = collection
@@ -100,7 +140,7 @@ end
 if $PROGRAM_NAME == __FILE__
   begin
     data = Content.validate!(Content.load)
-    puts "Content valid: #{data['publications'].size} publications/book chapters, #{data['presentations'].size} presentations, #{data['projects'].size} projects."
+    puts "Content valid: #{data['publications'].size} publications/book chapters, #{data['presentations'].size} presentations, #{data['projects'].size} projects, #{data['mentorship'].size} mentorship entries."
   rescue ArgumentError, KeyError => error
     abort error.message
   end

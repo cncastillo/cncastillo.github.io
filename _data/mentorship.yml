@@ -1,0 +1,106 @@
+# Shared by the Teaching & Mentorship page and the generated CV.
+# Newest year first; order controls entries within a year.
+# Omit unpublished project details and unconfirmed roles or links.
+
+- name: Kosuri Indu
+  year: 2026
+  home_affiliation: BVRIT Hyderabad, India
+  program: NumFOCUS Small Development Grant
+  program_logo: /assets/icons/numfocus.png
+  organization: Julia
+  organization_logo: /assets/icons/julia.svg
+  project: Improving JuliaHealth Documentation Accessibility for Community Onboarding
+  links:
+    - label: Grant proposal
+      url: https://github.com/numfocus/small-development-grant-proposals/issues/59
+    - label: Blog post
+      url: https://juliahealth.org/JuliaHealthBlog/posts/indu-juliahealth-audit/juliahealth-audit.html
+  location: USA
+  order: 1
+
+- name: Alya Kurt
+  year: 2026
+  home_affiliation: Caltech, USA
+  program: Summer Undergraduate Research Fellowship (SURF)
+  organization: Stanford University
+  organization_logo: /assets/icons/stanford.svg
+  project: GPU-Accelerated Multicoil Bloch Simulations for Nonlinear Inversion in MRI Reconstruction and Quantitative Mapping
+  links:
+    - label: Multicoil tutorial
+      url: https://juliahealth.org/KomaMRI.jl/stable/tutorial/gen-11-MultiCoil
+  location: USA
+  order: 2
+
+- name: Anvika Singhal
+  year: 2026
+  home_affiliation: Caltech, USA
+  program: Google Summer of Code (GSoC)
+  program_logo: /assets/icons/gsoc.svg
+  organization: Julia
+  organization_logo: /assets/icons/julia.svg
+  project: komamripy Python Wrapper for KomaMRI.jl
+  links:
+    - label: GSoC project
+      url: https://summerofcode.withgoogle.com/programs/2026/projects/WCXj4K8n
+    - label: Blog post
+      url: https://juliahealth.org/JuliaHealthBlog/posts/asinghal-gsoc-2026/asinghal-gsoc-2026.html
+    - label: Code
+      url: https://github.com/JuliaHealth/komamripy
+  location: USA
+  order: 3
+
+- name: Kareem Fareed
+  year: 2026
+  program: Google Summer of Code (GSoC)
+  # Home institution during mentorship: https://www.wayup.com/profile/Kareem-Fareed-7bba3e6047/
+  home_affiliation: Stanford University, USA
+  program_logo: /assets/icons/gsoc.svg
+  organization: Julia
+  organization_logo: /assets/icons/julia.svg
+  project: Differentiable GPU-accelerated MRI Simulations
+  links:
+    - label: GSoC project
+      url: https://summerofcode.withgoogle.com/programs/2026/projects/fT22brOX
+    - label: Code
+      url: https://github.com/JuliaHealth/KomaMRI.jl/pull/926
+  location: USA
+  order: 4
+
+- name: Kareem Fareed
+  year: 2026
+  program: Research Experience for Undergraduates (REU)
+  home_affiliation: Stanford University, USA
+  organization: Stanford University
+  organization_logo: /assets/icons/stanford.svg
+  project: Enabling Fast, Arbitrary, MRI RF Pulse Design
+  location: USA
+  order: 5
+
+- name: Kareem Fareed
+  year: 2025
+  program: Research Experience for Undergraduates (REU)
+  home_affiliation: Stanford University, USA
+  organization: Stanford University
+  organization_logo: /assets/icons/stanford.svg
+  project: Compiler-Level Reverse-Mode Automatic Differentiation (AD) of GPU-Accelerated MRI Simulations
+  links:
+    - label: ISMRM 2026 abstract
+      url: https://echo.ismrm.org/p/ISMRM2026/567-02-013
+  location: USA
+  order: 6
+
+- name: Ryan Kierulf
+  year: 2024
+  program: Google Summer of Code (GSoC)
+  # Confirmed in Ryan's dated GSoC blog post linked below.
+  home_affiliation: University of Wisconsin–Madison, USA
+  program_logo: /assets/icons/gsoc.svg
+  organization: Julia
+  organization_logo: /assets/icons/julia.svg
+  project: Enhancements to KomaMRI.jl GPU Support
+  links:
+    - label: GSoC project
+      url: https://summerofcode.withgoogle.com/archive/2024/projects/Rw71hevm
+    - label: Blog post
+      url: https://juliahealth.org/JuliaHealthBlog/posts/ryan-gsoc/Ryan_GSOC.html
+  order: 7
