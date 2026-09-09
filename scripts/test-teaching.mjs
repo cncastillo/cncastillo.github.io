@@ -9,7 +9,16 @@ assert.ok(html.includes('class="content-page teaching-page"'), 'Teaching must ha
 assert.match(css, /\.teaching-page\s*\{\s*max-width: 56rem;/, 'Teaching header and body must share one width constraint');
 assert.match(css, /\.prose-wide\s*\{\s*max-width: 56rem;/, 'Teaching container must match the existing body width');
 assert.match(css, /\.teaching-page > \.prose\s*\{\s*padding-top: 0;/, 'Teaching menu must sit directly below the header divider');
-assert.match(css, /\.mentorship-logo\s*\{[^}]*filter: grayscale\(1\);/, 'Mentorship logos must be displayed in grayscale');
+const logoStyle = css.match(/\.mentorship-logo\s*\{([^}]+)\}/)[1];
+assert.match(logoStyle, /background-color: currentColor;/, 'Mentorship logos must inherit the text color');
+assert.match(logoStyle, /mask: var\(--mentorship-logo\) center \/ contain no-repeat;/, 'Mentorship logos must use proportionally sized masks');
+assert.ok(!logoStyle.includes('filter:'), 'Do not approximate the text color with a grayscale filter');
+const logos = [...html.matchAll(/<span class="mentorship-logo" style="--mentorship-logo: url\('([^']+)'\);" aria-hidden="true"><\/span>/g)];
+assert.ok(logos.length > 0, 'Mentorship logos must render as decorative masks');
+assert.ok(!html.includes('<img class="mentorship-logo"'), 'Mentorship logos must not render as colored images');
+for (const [, path] of logos) assert.ok(readFileSync(resolve(site, path.slice(1))).length > 0, `Missing logo mask: ${path}`);
+assert.ok(logos.some(([, path]) => path.endsWith('/stanford-mono.svg')), 'Use the Stanford mask with transparent details');
+assert.ok(logos.some(([, path]) => path.endsWith('/gsoc-mono.svg')), 'Use the GSoC mask with transparent code glyphs');
 assert.match(html, /<\/header>\s*<div class="prose prose-wide">\s*<nav class="section-nav"/, 'Menu must be the first element below the Teaching header');
 const menu = html.match(/<nav class="section-nav"[^>]*>([\s\S]*?)<\/nav>/)[1];
 assert.deepEqual([...menu.matchAll(/href="#([^"]+)"/g)].map(match => match[1]), ['courses', 'mentorship']);

@@ -1,6 +1,6 @@
 # Mentorship logo sources
 
-These marks identify the programs and institutions associated with the listed mentoring activities; they do not imply endorsement of this website. Source artwork is unchanged; mentorship logos are displayed in grayscale and scaled proportionally with CSS.
+These marks identify the programs and institutions associated with the listed mentoring activities; they do not imply endorsement of this website. Original assets are retained. Mentorship logos are scaled proportionally and rendered as alpha masks using the surrounding text color. The companion `stanford-mono.svg` and `gsoc-mono.svg` masks preserve the source geometry with transparent white areas; the GSoC mask also merges the two colored fills into one tone.
 
 - **Stanford** (`stanford.svg`): Stanford University's [official pinned-tab artwork](https://www-media.stanford.edu/assets/favicon/safari-pinned-tab.svg), reused from the site's existing Stanford profile icon. Stanford marks belong to Stanford University.
 - **NumFOCUS** (`numfocus.png`): [Official circle-and-brackets mark](https://numfocus.org/wp-content/uploads/2021/04/NF-circle-brackets.png), displayed on [numfocus.org](https://numfocus.org/). NumFOCUS marks belong to NumFOCUS.

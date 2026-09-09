@@ -23,7 +23,7 @@
   home_affiliation: Caltech, USA
   program: Summer Undergraduate Research Fellowship (SURF)
   organization: Stanford University
-  organization_logo: /assets/icons/stanford.svg
+  organization_logo: /assets/icons/stanford-mono.svg
   project: GPU-Accelerated Multicoil Bloch Simulations for Nonlinear Inversion in MRI Reconstruction and Quantitative Mapping
   links:
     - label: Multicoil tutorial
@@ -35,7 +35,7 @@
   year: 2026
   home_affiliation: Caltech, USA
   program: Google Summer of Code (GSoC)
-  program_logo: /assets/icons/gsoc.svg
+  program_logo: /assets/icons/gsoc-mono.svg
   organization: Julia
   organization_logo: /assets/icons/julia.svg
   project: komamripy Python Wrapper for KomaMRI.jl
@@ -54,7 +54,7 @@
   program: Google Summer of Code (GSoC)
   # Home institution during mentorship: https://www.wayup.com/profile/Kareem-Fareed-7bba3e6047/
   home_affiliation: Stanford University, USA
-  program_logo: /assets/icons/gsoc.svg
+  program_logo: /assets/icons/gsoc-mono.svg
   organization: Julia
   organization_logo: /assets/icons/julia.svg
   project: Differentiable GPU-accelerated MRI Simulations
@@ -71,7 +71,7 @@
   program: Research Experience for Undergraduates (REU)
   home_affiliation: Stanford University, USA
   organization: Stanford University
-  organization_logo: /assets/icons/stanford.svg
+  organization_logo: /assets/icons/stanford-mono.svg
   project: Enabling Fast, Arbitrary, MRI RF Pulse Design
   location: USA
   order: 5
@@ -81,7 +81,7 @@
   program: Research Experience for Undergraduates (REU)
   home_affiliation: Stanford University, USA
   organization: Stanford University
-  organization_logo: /assets/icons/stanford.svg
+  organization_logo: /assets/icons/stanford-mono.svg
   project: Compiler-Level Reverse-Mode Automatic Differentiation (AD) of GPU-Accelerated MRI Simulations
   links:
     - label: ISMRM 2026 abstract
@@ -94,7 +94,7 @@
   program: Google Summer of Code (GSoC)
   # Confirmed in Ryan's dated GSoC blog post linked below.
   home_affiliation: University of Wisconsin–Madison, USA
-  program_logo: /assets/icons/gsoc.svg
+  program_logo: /assets/icons/gsoc-mono.svg
   organization: Julia
   organization_logo: /assets/icons/julia.svg
   project: Enhancements to KomaMRI.jl GPU Support

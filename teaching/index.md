@@ -52,9 +52,9 @@ permalink: /teaching/
               <div class="mentorship-entry">
                 <p class="archive-type">
                   {{ entry.year }} ·
-                  {% if entry.program_logo %}<img class="mentorship-logo" src="{{ entry.program_logo | relative_url }}" alt="" width="20" height="20" loading="lazy">{% endif %}
+                  {% if entry.program_logo %}<span class="mentorship-logo" style="--mentorship-logo: url('{{ entry.program_logo | relative_url | escape }}');" aria-hidden="true"></span>{% endif %}
                   {{ entry.program | escape }} ·
-                  {% if entry.organization_logo %}<img class="mentorship-logo" src="{{ entry.organization_logo | relative_url }}" alt="" width="20" height="20" loading="lazy">{% endif %}
+                  {% if entry.organization_logo %}<span class="mentorship-logo" style="--mentorship-logo: url('{{ entry.organization_logo | relative_url | escape }}');" aria-hidden="true"></span>{% endif %}
                   {{ entry.organization | escape }}
                 </p>
                 {% if entry.project %}<p class="venue">{{ entry.project | escape }}</p>{% endif %}

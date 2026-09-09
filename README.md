@@ -176,7 +176,7 @@ Append to `_data/mentorship.yml`; the Teaching & Mentorship page and generated C
   home_affiliation: Home University, Country
   program: Google Summer of Code (GSoC)
   organization: Julia
-  program_logo: /assets/icons/gsoc.svg
+  program_logo: /assets/icons/gsoc-mono.svg
   organization_logo: /assets/icons/julia.svg
   project: Public project title
   role: Co-mentor
@@ -189,7 +189,7 @@ Append to `_data/mentorship.yml`; the Teaching & Mentorship page and generated C
 
 Only `name`, `year`, `program`, and `organization` are required. Omit unpublished project details, unconfirmed roles, and unavailable links. Each optional `links` item needs a `label` and an HTTP(S) `url`; use it for project pages, posts, code, or tutorials. Optional `location` appears in the CV only. The teaching page groups entries by `name`, with each person's programs newest year first. Use the same name spelling across programs. Optional integer `order` controls person order (their first entry) and entries within a year; the CV remains newest year first. Use `[]` to hide mentorship from the teaching page when there are no entries. Do not duplicate entries in `_cv/cv.tex`.
 
-Optional `program_logo` and `organization_logo` point to local assets and appear beside their text labels on the website only. Omit them for a text-only entry. Logo sources and attribution are recorded in `assets/icons/LOGO-SOURCES.md`.
+Optional `program_logo` and `organization_logo` point to local assets and appear beside their text labels on the website only. They are rendered as alpha masks in the text color; use transparent backgrounds and cutouts. Omit them for a text-only entry. Logo sources and attribution are recorded in `assets/icons/LOGO-SOURCES.md`.
 
 Optional `home_affiliation` records the mentee's university and its country during that mentorship, not the host organization or their nationality. It appears below their name on the website; identical affiliations across engagements appear only once. Omit it when unconfirmed.
 

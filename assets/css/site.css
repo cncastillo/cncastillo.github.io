@@ -565,8 +565,9 @@ main { min-height: 70vh; }
   display: inline-block;
   width: 1.25rem;
   height: 1.25rem;
-  object-fit: contain;
-  filter: grayscale(1);
+  background-color: currentColor;
+  -webkit-mask: var(--mentorship-logo) center / contain no-repeat;
+  mask: var(--mentorship-logo) center / contain no-repeat;
   vertical-align: middle;
 }
 
