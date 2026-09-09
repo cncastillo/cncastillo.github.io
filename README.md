@@ -24,6 +24,8 @@ Edit `_data/profile.yml`. `name` updates the home heading, navigation, footer, b
 
 `bio` is a list of paragraphs and supports Markdown links and emphasis. Change `photo` and `photo_alt` to use your own portrait. The favicon is a 128×128 PNG.
 
+`description` is the short plain-text summary used for search and link previews. It is separate from the homepage biography. A page's Markdown front matter can set its own `description`.
+
 Profile links need `label` and `url`; `icon` is optional. Remove `blog_url` to hide Blog. The archive's ORCID link uses the profile link labeled `ORCID` and is hidden if that link is removed.
 
 ## Add a paper or book chapter
