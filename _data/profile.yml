@@ -18,6 +18,9 @@ links:
   - label: ORCID
     url: https://orcid.org/0000-0001-6227-0477
     icon: /assets/icons/orcid.svg
+  - label: Google Scholar
+    url: https://scholar.google.com/citations?user=WzleS8YAAAAJ&hl=en
+    icon: /assets/icons/google-scholar.svg
   - label: GitHub
     url: https://github.com/cncastillo
     icon: /assets/icons/github.svg

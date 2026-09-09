@@ -95,6 +95,7 @@ nav a[aria-current="page"] {
   text-decoration: underline;
   text-decoration-color: var(--accent);
   text-decoration-thickness: 2px;
+  text-decoration-skip-ink: none;
 }
 
 main { min-height: 70vh; }
