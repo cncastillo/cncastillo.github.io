@@ -158,7 +158,7 @@ Do not change IDs or remove records without updating references. Validation repo
 
 Copy `_templates/course.md` to `teaching/my-course/index.md` and edit its front matter and Markdown. It appears on the teaching index automatically; no HTML edit is needed.
 
-Use the optional `program` field for the official program/department description at the end of the course page, with Markdown links if useful. The `sections` list controls the course menu. Its anchors must match the page headings (`## Materials` → `#materials`).
+Use the optional `program` field for a small program/department footnote beneath the course content, separate from the site footer, with Markdown links if useful. The `sections` list controls the course menu. Its anchors must match the page headings (`## Materials` → `#materials`).
 
 Optional `institution_logo` points to a local transparent logo mask, displayed beside `institution` in the text color on the course card and course header.
 

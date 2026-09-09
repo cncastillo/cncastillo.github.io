@@ -23,6 +23,12 @@ const institutionStyle = css.match(/\.course-institution-logo\s*\{([^}]+)\}/)[1]
 assert.match(institutionStyle, /background-color: currentColor;/, 'Course institution icons must inherit the text color');
 assert.match(institutionStyle, /mask: var\(--institution-logo\) center \/ contain no-repeat;/, 'Course institution icons must use proportionally sized masks');
 const courseHtml = readFileSync(resolve(site, 'teaching/bios-214/index.html'), 'utf8');
+const courseNote = courseHtml.match(/<aside class="course-program" role="note" aria-label="Course affiliation">([\s\S]*?)<\/aside>/)?.[1];
+assert.ok(courseNote, 'The course must have a separate affiliation footnote');
+assert.match(courseNote, /A Stanford School of Medicine mini-course[\s\S]*<a href="https:\/\/oge\.stanford\.edu\/academics\/mini-courses-overview\/">Office of Graduate Education<\/a>/, 'Preserve the linked program description in the footnote');
+assert.equal((courseHtml.match(/class="course-program"/g) || []).length, 1, 'Show the program description once');
+assert.match(courseHtml, /<\/div>\s*<aside class="course-program"[^>]*>[\s\S]*?<\/aside>\s*<\/article>/, 'Place the footnote after the course content, inside the course article');
+assert.equal(courseHtml.match(/<footer class="site-footer">[\s\S]*?<\/footer>/)?.[0], html.match(/<footer class="site-footer">[\s\S]*?<\/footer>/)?.[0], 'Keep the standard site footer unchanged');
 for (const content of [html, courseHtml]) {
   assert.match(content, /<span class="course-institution-logo" style="--institution-logo: url\('\/assets\/icons\/stanford-som-mono\.svg'\);" aria-hidden="true"><\/span> Stanford School of Medicine/, 'Show the School of Medicine shield, not the university block-S, on the course card and header');
 }

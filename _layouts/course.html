@@ -26,6 +26,8 @@ layout: default
 
   <div class="prose prose-wide course-content">
     {{ content }}
-    {% if page.program %}<div class="course-program">{{ page.program | markdownify }}</div>{% endif %}
   </div>
+  {% if page.program %}
+    <aside class="course-program" role="note" aria-label="Course affiliation">{{ page.program | markdownify }}</aside>
+  {% endif %}
 </article>
