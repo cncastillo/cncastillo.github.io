@@ -15,6 +15,9 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-24.04
+    env:
+      # Keep Ruby 3.3 from restarting with the macOS lockfile's Bundler 1.x.
+      BUNDLER_VERSION: '2.5.23'
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
         with:
@@ -22,7 +25,7 @@ jobs:
       - uses: ruby/setup-ruby@95ef2b042f9d7a56d8268cba8559e2842e2ad01b # v1
         with:
           ruby-version: '3.3'
-          bundler: '2.5.23'
+          bundler: ${{ env.BUNDLER_VERSION }}
           bundler-cache: true
       - name: Validate content and generate CV records
         run: |
