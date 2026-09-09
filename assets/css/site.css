@@ -577,6 +577,16 @@ main { min-height: 70vh; }
 
 .course-list { padding-top: 2rem; }
 
+.course-institution-logo {
+  display: inline-block;
+  width: 1.25rem;
+  height: 1.25rem;
+  background-color: currentColor;
+  -webkit-mask: var(--institution-logo) center / contain no-repeat;
+  mask: var(--institution-logo) center / contain no-repeat;
+  vertical-align: middle;
+}
+
 .course-card {
   max-width: 46rem;
   padding: 1.8rem 0 2rem;

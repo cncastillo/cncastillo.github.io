@@ -4,7 +4,7 @@ layout: default
 <article class="content-page course-page">
   <header class="page-header course-header{% if page.image %} course-header-with-image{% endif %}">
     <div class="course-heading-copy">
-      <p class="eyebrow">{{ page.code }} · {{ page.term }}{% if page.institution %} · {{ page.institution }}{% endif %}</p>
+      <p class="eyebrow">{{ page.code }} · {{ page.term }}{% if page.institution %} · {% if page.institution_logo %}<span class="course-institution-logo" style="--institution-logo: url('{{ page.institution_logo | relative_url | escape }}');" aria-hidden="true"></span> {% endif %}{{ page.institution }}{% endif %}</p>
       <h1>{{ page.title }}</h1>
       {% if page.instructors %}
         <div class="course-instructors">{{ page.instructors | prepend: 'Taught by ' | markdownify }}</div>

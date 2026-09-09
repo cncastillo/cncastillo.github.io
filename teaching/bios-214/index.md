@@ -4,6 +4,7 @@ title: "Open-Source MRI Sequence Development: Simulation to Scanner"
 code: BIOS 214
 term: Autumn 2026
 institution: Stanford School of Medicine
+institution_logo: /assets/icons/stanford-som-mono.svg
 instructors: "**Carlos Castillo-Passi** and Daniel Ennis"
 program: >-
   A Stanford School of Medicine mini-course for the Biosciences community,

@@ -160,6 +160,8 @@ Copy `_templates/course.md` to `teaching/my-course/index.md` and edit its front 
 
 Use the optional `program` field for the official program/department description at the end of the course page, with Markdown links if useful. The `sections` list controls the course menu. Its anchors must match the page headings (`## Materials` → `#materials`).
 
+Optional `institution_logo` points to a local transparent logo mask, displayed beside `institution` in the text color on the course card and course header.
+
 The optional `instructors` field appears as a byline below the course title and supports Markdown, for example `instructors: "**Your Name** and Co-instructor"`.
 
 Add lecture notes below the course folder as Markdown with `layout: page` and a `title`, then link them from the course page. Link slides, notebooks, and downloads the same way. Keep submissions, grades, and private student material in Canvas or another course system.

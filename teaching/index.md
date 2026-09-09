@@ -23,7 +23,7 @@ permalink: /teaching/
         </a>
       {% endif %}
       <div class="course-card-copy">
-        <p class="archive-type">{{ course.code }} · {{ course.term }}{% if course.institution %} · {{ course.institution }}{% endif %}</p>
+        <p class="archive-type">{{ course.code }} · {{ course.term }}{% if course.institution %} · {% if course.institution_logo %}<span class="course-institution-logo" style="--institution-logo: url('{{ course.institution_logo | relative_url | escape }}');" aria-hidden="true"></span> {% endif %}{{ course.institution }}{% endif %}</p>
         <h2><a href="{{ course.url | relative_url }}">{{ course.title }}</a></h2>
         <p>{{ course.description }}</p>
         <a class="text-link" href="{{ course.url | relative_url }}">Course page →</a>
