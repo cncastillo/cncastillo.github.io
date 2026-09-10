@@ -348,7 +348,7 @@
   event_start: "2026-11-30"
   event_end: "2026-12-04"
   date_source: https://mritogether.esmrmb.org/26m/programbook
-  date_note: Scheduled for Day 2 (Reconstruction & Simulation) in the preliminary program; session time not yet listed.
+  date_note: Scheduled for Day 2 (Reconstruction & Simulation); date confirmed by presenter.
   kind: Invited educational talk
   title: Introduction to numerical phantoms and MRI sequence simulation with KomaMRI
   authors: Carlos Castillo-Passi and Pablo Villacorta

@@ -130,8 +130,10 @@ detail.emit('pointerenter');
 assert.equal(detail.hidden, true, 'Moving from the icon onto the tooltip must not keep it open');
 
 hover(marker);
-marker.emit('click');
-assert.equal(detail.hidden, false, 'Clicking a hovered icon may keep its current tooltip visible');
+let navigationCanceled = false;
+marker.emit('click', {preventDefault() { navigationCanceled = true; }});
+assert.equal(navigationCanceled, false, 'Clicks must preserve native fragment-link navigation');
+assert.equal(detail.hidden, true, 'Clicking an icon must close its tooltip before navigating to the entry');
 marker.emit('pointerleave');
 assert.equal(detail.hidden, true, 'Clicking must not pin the tooltip after leaving the icon');
 hover(marker);
@@ -159,10 +161,11 @@ assert.equal(detail.hidden, true, 'Old mouse focus must not keep hover details o
 hover(marker, 110, 'touch');
 assert.equal(detail.hidden, true, 'Touch scrolling must not open hover details');
 marker.emit('click');
-assert.equal(detail.hidden, false, 'Tapping a marker must still open details');
+assert.equal(detail.hidden, true, 'Tapping a marker must navigate without leaving a tooltip open');
+hover(marker);
 document.emit('pointerdown', {target: chart});
 assert.equal(detail.hidden, true, 'Tapping empty chart space must close touch details');
-marker.emit('click');
+hover(marker);
 scroller.emit('scroll');
 assert.equal(detail.hidden, true, 'Horizontal scrolling must dismiss a displaced popup');
 

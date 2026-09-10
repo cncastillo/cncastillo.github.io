@@ -17,7 +17,7 @@ assert.match(siteCss, /\.research-header \+ \.section-nav\s*\{\s*border-top: 1px
 for (const page of ['index.html', 'teaching/index.html', 'teaching/bios-214/index.html', 'cv/index.html']) {
   assert.ok(!readFileSync(resolve(process.argv[2], page), 'utf8').includes('research-header'), `Research divider scope must not affect ${page}`);
 }
-const buttons = [...html.matchAll(/<button\b[^>]*class="timeline-point[^>]*>[\s\S]*?<\/button>/g)].map(match => match[0]);
+const buttons = [...html.matchAll(/<a\b[^>]*class="timeline-point[^>]*>[\s\S]*?<\/a>/g)].map(match => match[0]);
 const attribute = (html, name) => html.match(new RegExp(` ${name}="([^"]*)"`))?.[1];
 const items = buttons.map(button => ({
   start: attribute(button, 'data-date'), kind: attribute(button, 'data-kind'),
@@ -55,7 +55,8 @@ for (const item of items) {
   const expected = record.funder ? 'grant' : ['peer_reviewed', 'book'].includes(record.category) ? 'paper' : record.category === 'invited' ? 'invited' : /poster/i.test(record.kind) ? 'poster' : 'talk';
   assert.equal(item.kind, expected);
   const button = buttons[items.indexOf(item)];
-  assert.ok(!button.includes('<a '), 'Tooltip content must not contain a View entry link');
+  assert.equal(attribute(button, 'href'), `#record-${item.key}`, 'Every timeline marker must link to its own archive entry');
+  assert.ok(!button.match(/<template>([\s\S]*?)<\/template>/)[1].includes('<a '), 'Tooltip content must not contain a View entry link');
   assert.equal(attribute(button, 'data-end'), undefined, 'Every output must be a single-date marker');
   assert.equal(attribute(button, 'class').includes('timeline-awarded'), Boolean(record.funder || record.recognitions?.length));
   if (record.kind === 'Power pitch') assert.ok(button.includes('Power pitch (talk + poster)'), 'Power pitches must explain the combined format');

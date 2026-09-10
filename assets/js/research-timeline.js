@@ -118,7 +118,7 @@ export function initializeTimeline(root) {
     button.addEventListener('blur', () => {
       if (active === button) hide();
     });
-    button.addEventListener('click', () => show(button));
+    button.addEventListener('click', hide);
   });
   root.addEventListener('keydown', event => {
     if (event.key === 'Escape') hide();

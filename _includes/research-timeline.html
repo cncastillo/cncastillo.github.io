@@ -34,7 +34,7 @@
           {% if presentation_kind == 'power pitch' %}
             {% assign timeline_label = 'Power pitch (talk + poster)' %}
           {% endif %}
-          <button type="button" class="timeline-point{% if timeline_kind == 'grant' or item.recognitions.size > 0 %} timeline-awarded{% endif %}"
+          <a href="#record-{{ item.record_key | escape }}" class="timeline-point{% if timeline_kind == 'grant' or item.recognitions.size > 0 %} timeline-awarded{% endif %}"
             data-kind="{{ timeline_kind }}" data-date="{{ timeline_date }}" data-record-key="{{ item.record_key | escape }}"
             aria-label="{{ timeline_label | escape }}, {{ item.title | escape }}, {{ timeline_date | date: '%B %-d, %Y' }}{% if timeline_kind == 'grant' or item.recognitions.size > 0 %}, awarded{% endif %}"
             aria-expanded="false" aria-controls="timeline-detail" aria-describedby="timeline-detail">
@@ -51,12 +51,12 @@
               {% if item.date_note contains 'preliminary' %}<p class="timeline-detail-note">Preliminary program; date may change.</p>{% endif %}
               {% for award in item.recognitions %}<p class="timeline-detail-award">{{ award.label | escape }}{% if award.year %} · {{ award.year }}{% endif %}</p>{% endfor %}
             </template>
-          </button>
+          </a>
         {% endif %}
       {% endfor %}
     </div>
   </div>
-  <p class="timeline-hint">Hover, focus, or tap an icon to explore. <span class="timeline-history-hint" hidden>Scroll left for earlier years.</span></p>
+  <p class="timeline-hint">Hover or focus to preview. Click or tap an icon to go to its entry. <span class="timeline-history-hint" hidden>Scroll left for earlier years.</span></p>
   <div class="timeline-detail" id="timeline-detail" role="tooltip" hidden>
     <div class="timeline-detail-content"></div>
   </div>
