@@ -8,13 +8,15 @@ permalink: /teaching/
 ---
 
 {% assign courses = site.pages | where: "layout", "course" | sort: "order" %}
+{% assign people = site.data.mentorship | sort: "order" | group_by: "name" %}
 
 <nav class="section-nav" aria-label="Page sections">
-  <a href="#courses">Courses</a>
-  {% if site.data.mentorship.size > 0 %}<a href="#mentorship">Mentorship</a>{% endif %}
+  <a href="#courses">Courses&nbsp;<sup class="section-count">{{ courses.size }}</sup></a>
+  {% if site.data.mentorship.size > 0 %}<a href="#mentorship">Mentees&nbsp;<sup class="section-count">{{ people.size }}</sup></a>{% endif %}
 </nav>
 
-<div class="course-list" id="courses">
+<h2 id="courses">Courses</h2>
+<div class="course-list">
   {% for course in courses %}
     <article class="course-card{% if course.image %} course-card-with-image{% endif %}">
       {% if course.image %}
@@ -24,7 +26,7 @@ permalink: /teaching/
       {% endif %}
       <div class="course-card-copy">
         <p class="archive-type">{{ course.code }} · {{ course.term }}{% if course.institution %} · {% if course.institution_logo %}<span class="course-institution-logo" style="--institution-logo: url('{{ course.institution_logo | relative_url | escape }}');" aria-hidden="true"></span> {% endif %}{{ course.institution }}{% endif %}</p>
-        <h2><a href="{{ course.url | relative_url }}">{{ course.title }}</a></h2>
+        <h3><a href="{{ course.url | relative_url }}">{{ course.title }}</a></h3>
         <p>{{ course.description }}</p>
         <a class="text-link" href="{{ course.url | relative_url }}">Course page →</a>
       </div>
@@ -34,9 +36,8 @@ permalink: /teaching/
 
 {% if site.data.mentorship.size > 0 %}
 <section id="mentorship" aria-labelledby="mentorship-heading">
-  <h2 id="mentorship-heading">Mentorship</h2>
+  <h2 id="mentorship-heading">Mentees</h2>
   <div class="archive-list">
-    {% assign people = site.data.mentorship | sort: "order" | group_by: "name" %}
     {% for person in people %}
       <article class="archive-item mentorship-person">
         <div>

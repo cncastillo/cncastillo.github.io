@@ -35,7 +35,7 @@ if (grants.length) {
   assert.ok(home.indexOf('id="projects"') < home.indexOf('id="awards"') && home.indexOf('id="awards"') < home.indexOf('id="funding"'), 'Place projects first, awards second, and funding last');
   const homeMenu = home.match(/<nav class="section-nav" aria-label="Home page sections">([\s\S]*?)<\/nav>/)[1];
   assert.deepEqual([...homeMenu.matchAll(/href="#([^"]+)"/g)].map(match => match[1]), ['projects', 'awards', 'funding'], 'Homepage menu must match section order');
-  assert.ok(home.includes(`Research funding (${grants.length})`), 'Homepage funding count must follow the data');
+  assert.ok(homeMenu.includes(`Research funding&nbsp;<sup class="section-count">${grants.length}</sup>`), 'Homepage funding count must follow the data');
   for (const grant of grants) {
     assert.ok(funding.includes(`href="/publications/#record-${grant.record_key}"`), 'Funding summary must link to its full Research entry');
     for (const key of ['funder', 'program', 'year', 'amount', 'role']) {

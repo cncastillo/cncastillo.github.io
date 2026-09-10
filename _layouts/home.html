@@ -40,9 +40,9 @@ layout: default
 {% endfor %}
 
 <nav class="section-nav" aria-label="Home page sections">
-  <a href="#projects">Selected projects ({{ projects.size }})</a>
-  <a href="#awards">Awarded papers &amp; abstracts ({{ award_count }})</a>
-  {% if site.data.grants.size > 0 %}<a href="#funding">Research funding ({{ site.data.grants.size }})</a>{% endif %}
+  <a href="#projects">Selected projects&nbsp;<sup class="section-count">{{ projects.size }}</sup></a>
+  <a href="#awards">Awarded papers &amp; abstracts&nbsp;<sup class="section-count">{{ award_count }}</sup></a>
+  {% if site.data.grants.size > 0 %}<a href="#funding">Research funding&nbsp;<sup class="section-count">{{ site.data.grants.size }}</sup></a>{% endif %}
 </nav>
 
 <section class="selected" id="projects" aria-labelledby="selected-title">

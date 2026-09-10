@@ -496,6 +496,13 @@ main { min-height: 70vh; }
   font-weight: 650;
 }
 
+.section-count {
+  color: var(--muted);
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 0;
+}
+
 .research-header { border-bottom: 0; }
 .research-header + .section-nav { border-top: 1px solid var(--line); }
 
@@ -587,7 +594,7 @@ main { min-height: 70vh; }
   .mentorship-person { grid-template-columns: 1fr; }
 }
 
-.course-list { padding-top: 2rem; }
+.course-list { border-top: 1px solid var(--ink); }
 
 .course-institution-logo {
   display: inline-block;
@@ -628,14 +635,14 @@ main { min-height: 70vh; }
   object-fit: cover;
 }
 
-.course-card .course-card-copy h2 {
+.course-card .course-card-copy h3 {
   margin: 0.35rem 0 0;
   font-family: var(--serif);
   font-size: 1.8rem;
   font-weight: 500;
 }
 
-.course-card h2 a {
+.course-card h3 a {
   color: var(--ink);
   text-decoration: none;
 }

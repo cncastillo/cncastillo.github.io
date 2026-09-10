@@ -38,6 +38,12 @@ assert.ok(readFileSync(resolve(site, 'assets/icons/stanford-som-mono.svg')).leng
 assert.match(html, /<\/header>\s*<div class="prose prose-wide">\s*<nav class="section-nav"/, 'Menu must be the first element below the Teaching header');
 const menu = html.match(/<nav class="section-nav"[^>]*>([\s\S]*?)<\/nav>/)[1];
 assert.deepEqual([...menu.matchAll(/href="#([^"]+)"/g)].map(match => match[1]), ['courses', 'mentorship']);
+const courseCount = [...html.matchAll(/<article class="course-card(?: |")/g)].length;
+const menteeCount = [...html.matchAll(/<article class="archive-item mentorship-person"/g)].length;
+assert.ok(menu.includes(`Courses&nbsp;<sup class="section-count">${courseCount}</sup>`), 'Course count must match rendered courses');
+assert.ok(menu.includes(`Mentees&nbsp;<sup class="section-count">${menteeCount}</sup>`), 'Mentee count must count each person once');
+assert.ok(html.includes('<h2 id="mentorship-heading">Mentees</h2>'), 'Section heading must match the Mentees menu label');
+assert.match(html, /<h2 id="courses">Courses<\/h2>\s*<div class="course-list">/, 'Courses must have a matching section heading above the cards');
 for (const id of ['courses', 'mentorship']) assert.ok(html.includes(`id="${id}"`), `Missing menu target: ${id}`);
 for (const page of ['publications', 'cv', 'teaching/bios-214']) {
   const other = readFileSync(resolve(site, page, 'index.html'), 'utf8');

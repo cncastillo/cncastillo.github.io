@@ -25,12 +25,12 @@ show_timeline: true
   {% endfor %}
 
   <nav class="section-nav" aria-label="Page sections">
-    <a href="#awards">Awarded ({{ award_count }})</a>
-    <a href="#publications">Peer-reviewed publications ({{ publications.size }})</a>
-    <a href="#books">Book chapters ({{ books.size }})</a>
-    <a href="#abstracts">Conference presentations ({{ conference_items.size }})</a>
-    <a href="#invited">Invited talks & seminars ({{ invited.size }})</a>
-    {% if site.data.grants.size > 0 %}<a href="#grants">Grants & funding ({{ site.data.grants.size }})</a>{% endif %}
+    <a href="#awards">Awarded&nbsp;<sup class="section-count">{{ award_count }}</sup></a>
+    <a href="#publications">Peer-reviewed publications&nbsp;<sup class="section-count">{{ publications.size }}</sup></a>
+    <a href="#books">Book chapters&nbsp;<sup class="section-count">{{ books.size }}</sup></a>
+    <a href="#abstracts">Conference presentations&nbsp;<sup class="section-count">{{ conference_items.size }}</sup></a>
+    <a href="#invited">Invited talks & seminars&nbsp;<sup class="section-count">{{ invited.size }}</sup></a>
+    {% if site.data.grants.size > 0 %}<a href="#grants">Grants & funding&nbsp;<sup class="section-count">{{ site.data.grants.size }}</sup></a>{% endif %}
   </nav>
 
   {% if page.show_timeline %}{% include research-timeline.html %}{% endif %}
