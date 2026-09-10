@@ -27,10 +27,10 @@ show_timeline: true
   <nav class="section-nav" aria-label="Page sections">
     <a href="#awards">Awarded&nbsp;<sup class="section-count">{{ award_count }}</sup></a>
     <a href="#publications">Peer-reviewed publications&nbsp;<sup class="section-count">{{ publications.size }}</sup></a>
-    <a href="#books">Book chapters&nbsp;<sup class="section-count">{{ books.size }}</sup></a>
-    <a href="#abstracts">Conference presentations&nbsp;<sup class="section-count">{{ conference_items.size }}</sup></a>
-    <a href="#invited">Invited talks & seminars&nbsp;<sup class="section-count">{{ invited.size }}</sup></a>
     {% if site.data.grants.size > 0 %}<a href="#grants">Grants & funding&nbsp;<sup class="section-count">{{ site.data.grants.size }}</sup></a>{% endif %}
+    <a href="#invited">Invited talks & seminars&nbsp;<sup class="section-count">{{ invited.size }}</sup></a>
+    <a href="#abstracts">Conference presentations&nbsp;<sup class="section-count">{{ conference_items.size }}</sup></a>
+    <a href="#books">Book chapters&nbsp;<sup class="section-count">{{ books.size }}</sup></a>
   </nav>
 
   {% if page.show_timeline %}{% include research-timeline.html %}{% endif %}
@@ -51,30 +51,6 @@ show_timeline: true
       {% if orcid %}<p class="item-links"><a href="{{ orcid.url }}">Complete publication list on ORCID</a></p>{% endif %}
     </div>
     {% include archive-list.html items=publications collection='publication' %}
-  </section>
-
-  <section class="archive-section" id="books">
-    <div class="archive-heading">
-      <p class="eyebrow">Other scholarly work</p>
-      <h2>Book chapters</h2>
-    </div>
-    {% include archive-list.html items=books collection='publication' %}
-  </section>
-
-  <section class="archive-section" id="abstracts">
-    <div class="archive-heading">
-      <p class="eyebrow">International meetings</p>
-      <h2>Conference presentations</h2>
-    </div>
-    {% include archive-list.html items=conference_items %}
-  </section>
-
-  <section class="archive-section" id="invited">
-    <div class="archive-heading">
-      <p class="eyebrow">By invitation</p>
-      <h2>Invited talks & seminars</h2>
-    </div>
-    {% include archive-list.html items=invited %}
   </section>
 
   {% if site.data.grants.size > 0 %}
@@ -102,4 +78,28 @@ show_timeline: true
     </div>
   </section>
   {% endif %}
+
+  <section class="archive-section" id="invited">
+    <div class="archive-heading">
+      <p class="eyebrow">By invitation</p>
+      <h2>Invited talks & seminars</h2>
+    </div>
+    {% include archive-list.html items=invited %}
+  </section>
+
+  <section class="archive-section" id="abstracts">
+    <div class="archive-heading">
+      <p class="eyebrow">International meetings</p>
+      <h2>Conference presentations</h2>
+    </div>
+    {% include archive-list.html items=conference_items %}
+  </section>
+
+  <section class="archive-section" id="books">
+    <div class="archive-heading">
+      <p class="eyebrow">Other scholarly work</p>
+      <h2>Book chapters</h2>
+    </div>
+    {% include archive-list.html items=books collection='publication' %}
+  </section>
 </article>

@@ -71,7 +71,7 @@ Append one record to `_data/presentations.yml`:
 - record_key: my-talk-2027
   category: conference
   year: 2027
-  kind: Conference talk
+  kind: Oral presentation
   title: "My talk title"
   authors: Your Full Name
   event: Conference name 2027

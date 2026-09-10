@@ -8,7 +8,7 @@
   year: 2026
   date: "2026-08-12"
   date_source: https://pretalx.com/juliacon-2026/talk/FYD7SD/
-  kind: Conference talk
+  kind: Oral presentation
   title: State of JuliaHealth
   authors: Hetarth Shah, Carlos Castillo-Passi, and Jacob Zelko
   event: Health Mini Symposium, JuliaCon 2026
@@ -18,7 +18,7 @@
 
 - category: conference
   year: 2026
-  kind: Conference talk
+  kind: Oral presentation
   title: How I Drew the Julia Logo Using Spins in an MRI Machine
   authors: Carlos Castillo-Passi
   event: Health Mini Symposium, JuliaCon 2026
@@ -177,7 +177,7 @@
   year: 2023
   date: "2023-07-27"
   date_source: https://pretalx.com/juliacon2023/talk/YEUNMW/
-  kind: Conference talk
+  kind: Oral presentation
   title: "KomaMRI.jl: Framework for MRI Simulations with GPU Acceleration"
   authors: Carlos Castillo-Passi
   event: JuliaCon 2023
@@ -332,7 +332,7 @@
   year: 2025
   date: "2025-07-23"
   date_source: https://pretalx.com/juliacon-2025/talk/FMF3V9/
-  kind: Conference talk
+  kind: Oral presentation
   title: What's New with KomaMRI.jl
   authors: Carlos Castillo-Passi
   event: JuliaHealth Minisymposium, JuliaCon 2025

@@ -8,6 +8,7 @@ const root = fileURLToPath(new URL('../', import.meta.url));
 const source = readFileSync(resolve(root, 'assets/js/research-timeline.js'), 'utf8');
 const {timelineLayout} = await import(`data:text/javascript;base64,${Buffer.from(source).toString('base64')}`);
 const html = readFileSync(resolve(process.argv[2], 'publications/index.html'), 'utf8');
+assert.ok(!html.includes('Conference talk'), 'Use Oral presentation consistently in archive entries and timeline tooltips');
 const siteCss = readFileSync(resolve(root, 'assets/css/site.css'), 'utf8');
 assert.ok(!html.includes('publications-page') && !siteCss.includes('.publications-page'), 'Timeline must not override the Publications page layout');
 assert.match(siteCss, /\.page-header\s*\{\s*max-width:\s*58rem;/, 'Preserve the original shared header width');
@@ -29,6 +30,10 @@ const records = JSON.parse(execFileSync('ruby', ['-ryaml', '-rjson', '-e',
 const dated = records.filter(record => record.date || record.event_start);
 const home = readFileSync(resolve(process.argv[2], 'index.html'), 'utf8');
 const grants = records.filter(record => record.funder);
+const researchOrder = ['awards', 'publications', ...(grants.length ? ['grants'] : []), 'invited', 'abstracts', 'books'];
+const researchMenu = html.match(/<nav class="section-nav" aria-label="Page sections">([\s\S]*?)<\/nav>/)[1];
+assert.deepEqual([...researchMenu.matchAll(/href="#([^"]+)"/g)].map(match => match[1]), researchOrder, 'Research menu must follow the selected section order');
+assert.deepEqual([...html.matchAll(/<section class="archive-section[^"]*" id="([^"]+)"/g)].map(match => match[1]), researchOrder, 'Research sections must match the menu order');
 if (grants.length) {
   const funding = home.match(/<section class="funding-showcase" id="funding"[^>]*>([\s\S]*?)<\/section>/)?.[1];
   assert.ok(funding, 'Homepage must show a compact funding section');
