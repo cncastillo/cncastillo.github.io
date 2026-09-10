@@ -10,16 +10,17 @@ A small Jekyll site for GitHub Pages. **Edit YAML for records and Markdown for p
 | Journal articles, proceedings papers, book chapters | `_data/publications.yml` |
 | Abstracts, conference talks, invited talks, seminars | `_data/presentations.yml` |
 | Research and open-source mentorships | `_data/mentorship.yml` |
+| Grants and research funding | `_data/grants.yml` |
 | Selected projects and their overview text | `_highlights/*.md` |
 | Courses, notes, schedules, and public materials | `teaching/<course-slug>/*.md` |
-| CV education, teaching, grants, and awards | `_cv/cv.tex` |
+| CV education, teaching, and awards | `_cv/cv.tex` |
 | Domain, website repository link, base path, language, and timezone | `_config.yml` |
 
 The two record files are the only sources for publication/presentation metadata. The archive, distinctions, project records, counts, and generated CV all read them. Do not copy a title, byline, paper URL, or award into another record just to display it elsewhere.
 
-The experimental research timeline on `/publications/` reads those same records. It opens on up to the latest eight calendar years in the records; scroll left within the timeline to see earlier work. Set `show_timeline: false` in `publications/index.html` to hide it and stop loading its CSS/JavaScript. Papers use publication dates; abstracts and talks use presentation dates, falling back to the conference's first day when only conference dates are known. All markers display a single date; entries without either date are omitted. Recognition markers refer to the work, not the date the award was received. Hover, focus, or tap an icon to explore that individual work. The tooltip has no controls and cannot be pinned or hovered: leaving the icon closes mouse-triggered details immediately. Keyboard details remain until focus leaves the icon or Escape is pressed; tap outside to dismiss on touch devices.
+The experimental research timeline on `/publications/` reads those same records plus `_data/grants.yml`. It opens on up to the latest eight calendar years in the records; scroll left within the timeline to see earlier work. Set `show_timeline: false` in `publications/index.html` to hide it and stop loading its CSS/JavaScript. Papers use publication dates; abstracts and talks use presentation dates, falling back to the conference's first day when only conference dates are known. Grants use funding decision dates and a gold hexagon marker; gold denotes awards and funding. All markers display a single date; undated entries are omitted. Recognition markers refer to the work, not the date the award was received. Hover, focus, or tap an icon to explore that individual record. The tooltip has no controls and cannot be pinned or hovered: leaving the icon closes mouse-triggered details immediately. Keyboard details remain until focus leaves the icon or Escape is pressed; tap outside to dismiss on touch devices.
 
-The LaTeX CV remains a deliberate exception: its header, education, teaching, grants, and awards are edited there. Its publication/presentation/book and mentorship lists are generated from YAML.
+The LaTeX CV remains a deliberate exception: its header, education, teaching, and awards are edited there. Its publication/presentation/book, mentorship, and grant lists are generated from YAML.
 
 ## Update your profile
 
@@ -102,11 +103,29 @@ Always quote ISO dates (`YYYY-MM-DD`). Do not substitute a conference start date
 
 ## Connect related records
 
-Every record needs a unique, stable `record_key` across both YAML files. Titles can change without changing this ID.
+Every publication, presentation, and grant needs a unique, stable `record_key` across those YAML files. Titles can change without changing this ID.
 
 To connect a paper and an abstract, add `abstract_key: my-abstract-2027` to the paper and `publication_key: my-paper-2027` to the abstract. This supplies their links everywhere and lets the abstract inherit the paper's code URL. Each URL is stored only on its own record.
 
 If a paper has several abstracts, keep each abstract as its own record with `publication_key`. The paper's optional `abstract_key` chooses one primary Abstract link; a project can list all the related outputs.
+
+## Add a grant
+
+Append to `_data/grants.yml`; the Research page, compact homepage funding section, and CV all read this file. Homepage summaries link to the full Research entries, and the homepage menu count updates automatically:
+
+```yaml
+- record_key: my-grant-2027
+  year: 2027
+  funder: Funding organization
+  program: Grant program
+  organization: Supported project or institution
+  title: Funded project title
+  amount: USD 10,000
+  role: Your confirmed role
+  url: https://example.org/funded-project
+```
+
+`amount`, `role`, and `url` are optional. An optional `blog` URL adds a Blog post link on the website and CV. State the currency with the amount and use the total project funding, not a personal award amount. Use the funding decision year in `year`. Add an optional quoted ISO `date` with its `date_source` and, if needed, `date_note`; dated grants appear on the timeline with their exact funding dates in hover details, while the archive and CV display the year. Optional integer `order` breaks ties within a year. Entries appear newest first; `[]` hides the website section and menu item. Grants do not contribute to paper/abstract award counts. Related mentorships may remain under Teaching & Mentorship with their own activity years.
 
 ## Add recognition or an image
 
@@ -213,7 +232,7 @@ ruby scripts/test-cv.rb
 bundle exec jekyll build --safe
 ```
 
-Checks cover required fields, categories, integer years/order, complete bylines, duplicate IDs, broken paper/abstract/project references, image paths, mentorship records, and CV generation. They do not verify scientific claims or whether an external URL is still available.
+Checks cover required fields, categories, integer years/order, complete bylines, duplicate IDs, broken paper/abstract/project references, image paths, mentorship and grant records, and CV generation. They do not verify scientific claims or whether an external URL is still available.
 
 To check the experimental timeline after building, run `node scripts/test-timeline.mjs _site` (Node.js is only needed for these optional tests, not the site build). It checks record coverage, single-date markers, conference-start fallback, categories, awards, passive tooltip markup, marker spacing, and the eight-year viewport. Run `node scripts/test-timeline-interactions.mjs` to check scrolling and resize behavior, direct icon hover, tooltip positioning, immediate dismissal, keyboard focus, and touch behavior.
 

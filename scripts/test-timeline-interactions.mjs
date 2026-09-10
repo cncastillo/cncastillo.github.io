@@ -40,6 +40,7 @@ const markers = ['2015-01-01', '2023-03-06', '2023-03-06', '2023-03-07', '2025-1
   return marker;
 });
 const marker = markers[1];
+markers[4].dataset.kind = 'grant';
 marker.bounds = {left: 500, top: 384, bottom: 416, width: 32};
 markers[0].bounds = {left: 200, top: 16, bottom: 48, width: 32};
 markers[4].bounds = {left: 900, top: 764, bottom: 796, width: 32};

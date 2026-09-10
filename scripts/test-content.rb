@@ -24,8 +24,27 @@ sample['profile']['author_names'] = ['Alex Researcher']
 sample['publications'] = [fixture]
 sample['presentations'] = []
 sample['mentorship'] = []
+sample['grants'] = []
 sample['projects'] = {}
 Content.validate!(sample)
+
+grant = Marshal.load(Marshal.dump(sample))
+grant['grants'] = [{'record_key' => 'example-grant', 'year' => 2027, 'title' => 'Example project', 'funder' => 'Example Foundation', 'program' => 'Development Grant', 'organization' => 'Example Project'}]
+Content.validate!(grant)
+rejects(grant, 'record_key must be nonempty text') { |d| d['grants'][0].delete('record_key') }
+rejects(grant, 'duplicate record_key') { |d| d['grants'] *= 2 }
+rejects(grant, 'duplicate record_key') { |d| d['grants'][0]['record_key'] = 'example' }
+rejects(grant, 'expected a list') { |d| d['grants'] = {} }
+rejects(grant, 'title must be nonempty text') { |d| d['grants'][0].delete('title') }
+rejects(grant, 'year must be an integer') { |d| d['grants'][0]['year'] = '2027' }
+rejects(grant, 'amount must be nonempty text') { |d| d['grants'][0]['amount'] = 10000 }
+rejects(grant, 'url must be an HTTP(S) link') { |d| d['grants'][0]['url'] = 'javascript:alert(1)' }
+rejects(grant, 'blog must be an HTTP(S) link') { |d| d['grants'][0]['blog'] = 'javascript:alert(1)' }
+grant['grants'][0].merge!('date' => '2027-05-12', 'date_source' => 'https://example.org/announcement')
+Content.validate!(grant)
+rejects(grant, 'quoted ISO date') { |d| d['grants'][0]['date'] = '2027-02-29' }
+rejects(grant, 'date year must match year') { |d| d['grants'][0]['date'] = '2026-05-12' }
+rejects(grant, 'date_source must be nonempty text') { |d| d['grants'][0].delete('date_source') }
 
 mentorship = Marshal.load(Marshal.dump(sample))
 mentorship['mentorship'] = [{'name' => 'Example Student', 'year' => 2027, 'program' => 'SURF', 'organization' => 'Example University'}]

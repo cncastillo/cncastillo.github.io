@@ -7,19 +7,22 @@
       <span><i class="timeline-symbol timeline-poster" aria-hidden="true"></i> Posters</span>
       <span><i class="timeline-symbol timeline-talk" aria-hidden="true"></i> Talks</span>
       <span><i class="timeline-symbol timeline-invited" aria-hidden="true"></i> Invited talks</span>
-      <span class="timeline-award-key"><i class="timeline-symbol timeline-paper" aria-hidden="true"></i> Awarded</span>
+      <span><i class="timeline-symbol timeline-grant" aria-hidden="true"></i> Grants</span>
+      <span class="timeline-award-key"><i class="timeline-symbol timeline-paper" aria-hidden="true"></i> Awards &amp; funding</span>
     </p>
   </div>
   <div class="timeline-scroll">
-    <div class="timeline-chart" aria-label="Research outputs by publication or presentation date">
+    <div class="timeline-chart" aria-label="Research by publication, presentation, or funding date">
       <div class="timeline-years" aria-hidden="true"></div>
-      {% assign timeline_items = site.data.publications | concat: site.data.presentations %}
+      {% assign timeline_items = site.data.publications | concat: site.data.presentations | concat: site.data.grants %}
       {% for item in timeline_items %}
         {% assign timeline_date = item.date | default: item.event_start %}
         {% if timeline_date %}
           {% assign timeline_kind = 'talk' %}
           {% assign presentation_kind = item.kind | downcase %}
-          {% if item.category == 'peer_reviewed' or item.category == 'book' %}
+          {% if item.funder %}
+            {% assign timeline_kind = 'grant' %}
+          {% elsif item.category == 'peer_reviewed' or item.category == 'book' %}
             {% assign timeline_kind = 'paper' %}
           {% elsif item.category == 'invited' %}
             {% assign timeline_kind = 'invited' %}
@@ -27,18 +30,24 @@
             {% assign timeline_kind = 'poster' %}
           {% endif %}
           {% assign timeline_label = item.type | default: item.kind %}
+          {% if timeline_kind == 'grant' %}{% assign timeline_label = 'Grant' %}{% endif %}
           {% if presentation_kind == 'power pitch' %}
             {% assign timeline_label = 'Power pitch (talk + poster)' %}
           {% endif %}
-          <button type="button" class="timeline-point{% if item.recognitions.size > 0 %} timeline-awarded{% endif %}"
+          <button type="button" class="timeline-point{% if timeline_kind == 'grant' or item.recognitions.size > 0 %} timeline-awarded{% endif %}"
             data-kind="{{ timeline_kind }}" data-date="{{ timeline_date }}" data-record-key="{{ item.record_key | escape }}"
-            aria-label="{{ timeline_label | escape }}, {{ item.title | escape }}, {{ timeline_date | date: '%B %-d, %Y' }}{% if item.recognitions.size > 0 %}, awarded{% endif %}"
+            aria-label="{{ timeline_label | escape }}, {{ item.title | escape }}, {{ timeline_date | date: '%B %-d, %Y' }}{% if timeline_kind == 'grant' or item.recognitions.size > 0 %}, awarded{% endif %}"
             aria-expanded="false" aria-controls="timeline-detail" aria-describedby="timeline-detail">
             <span class="timeline-symbol timeline-{{ timeline_kind }}" aria-hidden="true"></span>
             <template>
               <p class="timeline-detail-meta">{{ timeline_label | escape }} · {{ timeline_date | date: '%b %-d, %Y' }}<span class="timeline-scheduled"></span></p>
               <h3>{{ item.title | escape }}</h3>
-              <p class="timeline-detail-venue">{{ item.venue | default: item.event | escape }}</p>
+              {% if timeline_kind == 'grant' %}
+                <p class="timeline-detail-venue">{{ item.funder | escape }} · {{ item.program | escape }}</p>
+                <p class="timeline-detail-note">{{ item.organization | escape }}{% if item.amount %} · {{ item.amount | escape }}{% endif %}{% if item.role %} · {{ item.role | escape }}{% endif %}</p>
+              {% else %}
+                <p class="timeline-detail-venue">{{ item.venue | default: item.event | escape }}</p>
+              {% endif %}
               {% if item.date_note contains 'preliminary' %}<p class="timeline-detail-note">Preliminary program; date may change.</p>{% endif %}
               {% for award in item.recognitions %}<p class="timeline-detail-award">{{ award.label | escape }}{% if award.year %} · {{ award.year }}{% endif %}</p>{% endfor %}
             </template>

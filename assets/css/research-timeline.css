@@ -9,6 +9,7 @@
 .timeline-poster { border-radius: 1px; }
 .timeline-talk { clip-path: polygon(50% 0, 100% 100%, 0 100%); width: 0.75rem; height: 0.7rem; }
 .timeline-invited { transform: rotate(45deg); }
+.timeline-grant { clip-path: polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%); width: 0.8rem; height: 0.7rem; }
 .timeline-award-key, .timeline-awarded { color: var(--recognition); }
 .timeline-scroll { width: 100%; min-width: 0; contain: inline-size; overflow-x: auto; overscroll-behavior-x: contain; margin-top: 1.15rem; }
 .timeline-chart { position: relative; }

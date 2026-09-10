@@ -1,0 +1,13 @@
+- record_key: numfocus-juliahealth-2025
+  year: 2025
+  date: "2025-12-06"
+  date_source: https://github.com/numfocus/small-development-grant-proposals/issues/59#issuecomment-3621302054
+  date_note: Funding selection announced and funded label applied on this date; not a payment date.
+  funder: NumFOCUS
+  program: Small Development Grant
+  organization: The Julia Language (JuliaHealth)
+  title: Improving JuliaHealth Documentation Accessibility for Community Onboarding
+  amount: USD 10,000
+  role: Project lead
+  url: https://github.com/numfocus/small-development-grant-proposals/issues/59
+  blog: https://juliahealth.org/JuliaHealthBlog/posts/indu-juliahealth-audit/juliahealth-audit.html

@@ -38,6 +38,16 @@ check(mentorship_entry.include?('Example Student --- MRI \\& computing'), 'Mento
 check(mentorship_entry.include?('Co-mentor \\href{https://example.org/project\\_a}{Project}'), 'Mentorship role/link missing')
 check(mentorship_entry.include?(' · \\href{https://example.org/post}{Blog \\& tutorial}'), 'Mentorship additional link/label escaping failed')
 
+grant = {'year' => 2027, 'title' => 'MRI & computing', 'program' => 'Development Grant', 'funder' => 'Example Foundation', 'organization' => 'Example Project'}
+check(CV.grant_entry(grant).include?('{MRI \\& computing. Example Project.}'), 'Grant escaping or optional fields failed')
+grant.merge!('amount' => 'USD 10,000', 'role' => 'Co-project lead', 'url' => 'https://example.org/grant_1')
+grant_entry = CV.grant_entry(grant)
+check(grant_entry.include?('{USD 10,000}'), 'Grant amount missing')
+check(grant_entry.include?('\\href{https://example.org/grant\\_1}{MRI \\& computing}'), 'Grant link escaping failed')
+check(grant_entry.include?('Example Project · Co-project lead.'), 'Grant role missing')
+grant['blog'] = 'https://example.org/blog_post'
+check(CV.grant_entry(grant).include?('\\href{https://example.org/blog\\_post}{Blog post}'), 'Grant blog link missing or unescaped')
+
 CV.generate
 data = Content.load
 names = data['profile']['author_names']
@@ -66,5 +76,12 @@ data['mentorship'].each do |record|
   check(mentorship_output.include?(CV.mentorship_entry(record)), "Missing mentorship: #{record['name']}")
 end
 check(File.read(File.join(CV::ROOT, '_cv/cv.tex')).include?('\\input{build/mentorship.tex}'), 'CV does not use generated mentorship entries')
+
+grants_output = File.read(File.join(CV::BUILD, 'grants.tex'))
+check(grants_output.scan(/\\cventry\{/).size == data['grants'].size, 'Grant count mismatch')
+data['grants'].each do |record|
+  check(grants_output.include?(CV.grant_entry(record)), "Missing grant: #{record['title']}")
+end
+check(File.read(File.join(CV::ROOT, '_cv/cv.tex')).include?('\\input{build/grants}'), 'CV does not use generated grant entries')
 
 puts 'CV generation checks passed.'

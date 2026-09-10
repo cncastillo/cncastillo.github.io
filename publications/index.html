@@ -1,12 +1,12 @@
 ---
 layout: default
-title: Publications & presentations
-description: A selection of my peer-reviewed publications, book chapters, conference presentations, invited talks, and seminars.
+title: Research
+description: Selected publications, presentations, invited talks, and research funding.
 permalink: /publications/
 show_timeline: true
 ---
 <article class="content-page">
-  <header class="page-header">
+  <header class="page-header research-header">
     <p class="eyebrow">Research record</p>
     <h1>{{ page.title }}</h1>
     <p>{{ page.description }}</p>
@@ -30,6 +30,7 @@ show_timeline: true
     <a href="#books">Book chapters ({{ books.size }})</a>
     <a href="#abstracts">Conference presentations ({{ conference_items.size }})</a>
     <a href="#invited">Invited talks & seminars ({{ invited.size }})</a>
+    {% if site.data.grants.size > 0 %}<a href="#grants">Grants & funding ({{ site.data.grants.size }})</a>{% endif %}
   </nav>
 
   {% if page.show_timeline %}{% include research-timeline.html %}{% endif %}
@@ -75,4 +76,30 @@ show_timeline: true
     </div>
     {% include archive-list.html items=invited %}
   </section>
+
+  {% if site.data.grants.size > 0 %}
+  <section class="archive-section" id="grants">
+    <div class="archive-heading">
+      <p class="eyebrow">Research support</p>
+      <h2>Grants & funding</h2>
+    </div>
+    <div class="archive-list">
+      {% assign grant_years = site.data.grants | group_by: 'year' | sort: 'name' | reverse %}
+      {% for year_group in grant_years %}
+        {% assign grants = year_group.items | sort: 'order' %}
+        {% for grant in grants %}
+        <article class="archive-item" id="record-{{ grant.record_key | escape }}">
+          <p class="archive-year">{{ grant.year }}</p>
+          <div>
+            <p class="archive-type">{{ grant.funder | escape }} · {{ grant.program | escape }}</p>
+            <h3>{% if grant.url %}<a href="{{ grant.url | escape }}">{{ grant.title | escape }}</a>{% else %}{{ grant.title | escape }}{% endif %}</h3>
+            <p class="venue">{{ grant.organization | escape }}{% if grant.amount %} · {{ grant.amount | escape }}{% endif %}{% if grant.role %} · {{ grant.role | escape }}{% endif %}</p>
+            {% if grant.blog %}<p class="item-links archive-item-links"><a href="{{ grant.blog | escape }}">Blog post</a></p>{% endif %}
+          </div>
+        </article>
+        {% endfor %}
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
 </article>

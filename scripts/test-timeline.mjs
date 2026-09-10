@@ -11,6 +11,12 @@ const html = readFileSync(resolve(process.argv[2], 'publications/index.html'), '
 const siteCss = readFileSync(resolve(root, 'assets/css/site.css'), 'utf8');
 assert.ok(!html.includes('publications-page') && !siteCss.includes('.publications-page'), 'Timeline must not override the Publications page layout');
 assert.match(siteCss, /\.page-header\s*\{\s*max-width:\s*58rem;/, 'Preserve the original shared header width');
+assert.match(html, /<header class="page-header research-header">[\s\S]*?<\/header>\s*<nav class="section-nav"/, 'Research menu must directly follow its scoped header');
+assert.match(siteCss, /\.research-header\s*\{\s*border-bottom: 0;\s*\}/, 'Remove only the Research header divider, not its text width');
+assert.match(siteCss, /\.research-header \+ \.section-nav\s*\{\s*border-top: 1px solid var\(--line\);\s*\}/, 'Research menu must own both full-width rules');
+for (const page of ['index.html', 'teaching/index.html', 'teaching/bios-214/index.html', 'cv/index.html']) {
+  assert.ok(!readFileSync(resolve(process.argv[2], page), 'utf8').includes('research-header'), `Research divider scope must not affect ${page}`);
+}
 const buttons = [...html.matchAll(/<button\b[^>]*class="timeline-point[^>]*>[\s\S]*?<\/button>/g)].map(match => match[0]);
 const attribute = (html, name) => html.match(new RegExp(` ${name}="([^"]*)"`))?.[1];
 const items = buttons.map(button => ({
@@ -19,8 +25,25 @@ const items = buttons.map(button => ({
 }));
 const records = JSON.parse(execFileSync('ruby', ['-ryaml', '-rjson', '-e',
   'puts ARGV.flat_map { |path| YAML.safe_load(File.read(path)) }.to_json',
-  resolve(root, '_data/publications.yml'), resolve(root, '_data/presentations.yml')], {encoding: 'utf8'}));
+  resolve(root, '_data/publications.yml'), resolve(root, '_data/presentations.yml'), resolve(root, '_data/grants.yml')], {encoding: 'utf8'}));
 const dated = records.filter(record => record.date || record.event_start);
+const home = readFileSync(resolve(process.argv[2], 'index.html'), 'utf8');
+const grants = records.filter(record => record.funder);
+if (grants.length) {
+  const funding = home.match(/<section class="funding-showcase" id="funding"[^>]*>([\s\S]*?)<\/section>/)?.[1];
+  assert.ok(funding, 'Homepage must show a compact funding section');
+  assert.ok(home.indexOf('id="projects"') < home.indexOf('id="awards"') && home.indexOf('id="awards"') < home.indexOf('id="funding"'), 'Place projects first, awards second, and funding last');
+  const homeMenu = home.match(/<nav class="section-nav" aria-label="Home page sections">([\s\S]*?)<\/nav>/)[1];
+  assert.deepEqual([...homeMenu.matchAll(/href="#([^"]+)"/g)].map(match => match[1]), ['projects', 'awards', 'funding'], 'Homepage menu must match section order');
+  assert.ok(home.includes(`Research funding (${grants.length})`), 'Homepage funding count must follow the data');
+  for (const grant of grants) {
+    assert.ok(funding.includes(`href="/publications/#record-${grant.record_key}"`), 'Funding summary must link to its full Research entry');
+    for (const key of ['funder', 'program', 'year', 'amount', 'role']) {
+      if (grant[key]) assert.ok(funding.includes(String(grant[key])), `Homepage funding summary missing ${key}`);
+    }
+    assert.ok(!funding.includes(grant.title) && !funding.includes('Blog post'), 'Keep full project descriptions and blog links on Research');
+  }
+}
 assert.equal(items.length, dated.length, 'Every record with a date or conference start must appear exactly once');
 assert.equal(new Set(items.map(item => item.key)).size, items.length, 'No duplicate timeline entries');
 for (const item of items) {
@@ -29,16 +52,23 @@ for (const item of items) {
   assert.notEqual(record.kind, 'Abstract', `Presentation format is unspecified for ${item.key}`);
   assert.equal(item.start, record.date || record.event_start);
   assert.ok(html.includes(`id="record-${item.key}"`), `Missing archive target: ${item.key}`);
-  const expected = ['peer_reviewed', 'book'].includes(record.category) ? 'paper' : record.category === 'invited' ? 'invited' : /poster/i.test(record.kind) ? 'poster' : 'talk';
+  const expected = record.funder ? 'grant' : ['peer_reviewed', 'book'].includes(record.category) ? 'paper' : record.category === 'invited' ? 'invited' : /poster/i.test(record.kind) ? 'poster' : 'talk';
   assert.equal(item.kind, expected);
   const button = buttons[items.indexOf(item)];
   assert.ok(!button.includes('<a '), 'Tooltip content must not contain a View entry link');
   assert.equal(attribute(button, 'data-end'), undefined, 'Every output must be a single-date marker');
-  assert.equal(attribute(button, 'class').includes('timeline-awarded'), Boolean(record.recognitions?.length));
+  assert.equal(attribute(button, 'class').includes('timeline-awarded'), Boolean(record.funder || record.recognitions?.length));
   if (record.kind === 'Power pitch') assert.ok(button.includes('Power pitch (talk + poster)'), 'Power pitches must explain the combined format');
+  if (record.funder) {
+    assert.ok(button.includes('Grant ·'), 'Funding must be identified as a grant');
+    for (const key of ['funder', 'program', 'organization', 'amount', 'role']) {
+      if (record[key]) assert.ok(button.includes(record[key]), `Grant tooltip missing ${key}`);
+    }
+  }
 }
 assert.ok(!html.includes('timeline-abstract'), 'Abstract must not be a timeline presentation format');
-for (const [kind, label] of [['paper', 'Papers'], ['poster', 'Posters'], ['talk', 'Talks'], ['invited', 'Invited talks']]) {
+assert.ok(html.includes('Awards &amp; funding</span>'), 'Gold legend must cover awards and funding');
+for (const [kind, label] of [['paper', 'Papers'], ['poster', 'Posters'], ['talk', 'Talks'], ['invited', 'Invited talks'], ['grant', 'Grants']]) {
   assert.ok(html.includes(`timeline-${kind}" aria-hidden="true"></i> ${label}`), `Missing ${label} legend`);
 }
 for (const [key, expected] of [
@@ -71,6 +101,7 @@ const timelineStyles = css.match(/\.research-timeline\s*\{([^}]+)\}/)[1];
 assert.ok(timelineStyles.includes('width: 100%') && timelineStyles.includes('max-width: 100%') && timelineStyles.includes('min-width: 0') && timelineStyles.includes('contain: inline-size'), 'Timeline must fill its parent without contributing intrinsic width to the page');
 assert.doesNotMatch(css, /\.(?:page-shell|page-header|section-nav|content-page|prose)\b/, 'Timeline styles must not change shared page containers or rules');
 assert.match(css, /\.timeline-invited\s*\{\s*transform: rotate\(45deg\);/, 'Invited talks must use a distinct diamond symbol');
+assert.match(css, /\.timeline-grant\s*\{\s*clip-path: polygon\(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%\)/, 'Grants must use a distinct hexagon symbol');
 assert.ok(!html.includes('timeline-close') && !html.includes('timeline-record-link'), 'Tooltip must not contain close or navigation controls');
 assert.ok(html.includes('id="timeline-detail" role="tooltip"'), 'Passive details must use tooltip semantics');
 assert.ok(css.match(/\.timeline-detail\s*\{([^}]+)\}/)[1].includes('pointer-events: none'), 'Tooltip must not capture pointer hover');

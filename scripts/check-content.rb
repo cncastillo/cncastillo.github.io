@@ -11,7 +11,7 @@ module Content
   end
 
   def self.load(root = ROOT)
-    data = %w[profile publications presentations mentorship].to_h { |name| [name, yaml(File.join(root, '_data', "#{name}.yml"))] }
+    data = %w[profile publications presentations mentorship grants].to_h { |name| [name, yaml(File.join(root, '_data', "#{name}.yml"))] }
     data['projects'] = Dir[File.join(root, '_highlights', '*.md')].to_h do |path|
       [path, YAML.safe_load(File.read(path).split(/^---\s*$\n/, 3).fetch(1))]
     end
@@ -59,6 +59,28 @@ module Content
     end
 
     ids = {}
+    grants = data.fetch('grants')
+    check(grants.is_a?(Array), '_data/grants.yml', 'expected a list; use [] for an empty list')
+    grants.each_with_index do |record, i|
+      where = "_data/grants.yml entry #{i + 1}"
+      fields(record, %w[record_key title funder program organization], where)
+      check(!ids.key?(record['record_key']), where, 'duplicate record_key')
+      ids[record['record_key']] = 'grants'
+      check(record['year'].is_a?(Integer), where, 'year must be an integer')
+      check(!record.key?('order') || record['order'].is_a?(Integer), where, 'order must be an integer or omitted')
+      %w[amount role url blog].each { |key| fields(record, [key], where) if record.key?(key) }
+      %w[url blog].each do |key|
+        check(!record[key] || record[key].match?(/\Ahttps?:\/\/\S+\z/), where, "#{key} must be an HTTP(S) link")
+      end
+      if record.key?('date')
+        date = record['date']
+        valid = date.is_a?(String) && date.match?(/\A\d{4}-\d{2}-\d{2}\z/) && Date.valid_date?(*date.split('-').map(&:to_i))
+        check(valid, where, 'date must be a quoted ISO date (YYYY-MM-DD)')
+        check(Date.iso8601(date).year == record['year'], where, 'date year must match year')
+        fields(record, %w[date_source], where)
+      end
+    end
+
     %w[publications presentations].each do |collection|
       records = data.fetch(collection)
       check(records.is_a?(Array), "_data/#{collection}.yml", 'expected a list; use [] for an empty list')
@@ -140,7 +162,7 @@ end
 if $PROGRAM_NAME == __FILE__
   begin
     data = Content.validate!(Content.load)
-    puts "Content valid: #{data['publications'].size} publications/book chapters, #{data['presentations'].size} presentations, #{data['projects'].size} projects, #{data['mentorship'].size} mentorship entries."
+    puts "Content valid: #{data['publications'].size} publications/book chapters, #{data['presentations'].size} presentations, #{data['projects'].size} projects, #{data['mentorship'].size} mentorship entries, #{data['grants'].size} grants."
   rescue ArgumentError, KeyError => error
     abort error.message
   end

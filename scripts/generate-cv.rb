@@ -57,6 +57,9 @@ module CV
     mentorship = records(data['mentorship'])
     File.write(File.join(BUILD, 'mentorship.tex'), "% Generated from website records; do not edit.\n\n" + mentorship.map { |record| mentorship_entry(record) }.join("\n"))
     puts "mentorship: #{mentorship.size} entries"
+    grants = records(data['grants'])
+    File.write(File.join(BUILD, 'grants.tex'), "% Generated from website records; do not edit.\n\n" + grants.map { |record| grant_entry(record) }.join("\n"))
+    puts "grants: #{grants.size} entries"
   end
 
   def self.mentorship_entry(record)
@@ -65,6 +68,14 @@ module CV
     links = record.fetch('links', []).map { |link| "\\href{#{tex(link['url'])}}{#{tex(link['label'])}}" }
     details += " #{links.join(' · ')}" unless links.empty?
     "\\cventry{#{record.fetch('year')}}{#{tex(title)}}{#{tex(record.fetch('program'))}}{#{tex(record.fetch('organization'))}}{#{tex(record['location'])}}{#{details.strip}}\n"
+  end
+
+  def self.grant_entry(record)
+    title = tex(record.fetch('title'))
+    title = "\\href{#{tex(record['url'])}}{#{title}}" if record['url']
+    details = [record.fetch('organization'), record['role']].compact.map { |value| tex(value) }.join(' · ')
+    details += ". \\href{#{tex(record['blog'])}}{Blog post}" if record['blog']
+    "\\cventry{#{record.fetch('year')}}{#{tex(record.fetch('program'))}}{#{tex(record.fetch('funder'))}}{}{#{tex(record['amount'])}}{#{title}. #{details}.}\n"
   end
 end
 

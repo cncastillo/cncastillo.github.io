@@ -42,6 +42,7 @@ layout: default
 <nav class="section-nav" aria-label="Home page sections">
   <a href="#projects">Selected projects ({{ projects.size }})</a>
   <a href="#awards">Awarded papers &amp; abstracts ({{ award_count }})</a>
+  {% if site.data.grants.size > 0 %}<a href="#funding">Research funding ({{ site.data.grants.size }})</a>{% endif %}
 </nav>
 
 <section class="selected" id="projects" aria-labelledby="selected-title">
@@ -79,3 +80,24 @@ layout: default
     <p class="awards-showcase-footer"><a href="{{ '/publications/#awards' | relative_url }}">Awards and full publication record →</a></p>
   </div>
 </section>
+
+{% if site.data.grants.size > 0 %}
+<section class="funding-showcase" id="funding" aria-labelledby="funding-title">
+  <div class="section-heading">
+    <p class="eyebrow">Support</p>
+    <h2 id="funding-title">Research funding</h2>
+  </div>
+  <div class="archive-list">
+    {% assign grant_years = site.data.grants | group_by: 'year' | sort: 'name' | reverse %}
+    {% for year_group in grant_years %}
+      {% assign grants = year_group.items | sort: 'order' %}
+      {% for grant in grants %}
+      <article class="archive-item funding-item">
+        <h3><a href="{{ '/publications/#record-' | append: grant.record_key | relative_url }}">{{ grant.funder | escape }} {{ grant.program | escape }}</a></h3>
+        <p class="venue">{{ grant.year }}{% if grant.amount %} · {{ grant.amount | escape }}{% endif %}{% if grant.role %} · {{ grant.role | escape }}{% endif %}</p>
+      </article>
+      {% endfor %}
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
