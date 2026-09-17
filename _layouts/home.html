@@ -9,6 +9,17 @@ layout: default
   </div>
   <aside class="intro-profile">
     <img src="{{ profile.photo | relative_url }}" alt="{{ profile.photo_alt }}" width="1892" height="1920">
+    <dl class="profile-education" aria-label="Academic background and mentors">
+      {% for entry in profile.academic_background %}
+        <div>
+          <dt>{{ entry.degree }}</dt>
+          <dd>{{ entry.institution }}</dd>
+          <dd class="profile-supervision"><span class="profile-mentor">{{ entry.supervision }}</span>, {{ entry.supervision_label | downcase }}</dd>
+          {% if entry.co_supervision %}<dd><span class="profile-mentor">{{ entry.co_supervision }}</span>, co-supervisor</dd>{% endif %}
+          {% if entry.mentorship %}<dd><span class="profile-mentor">{{ entry.mentorship }}</span>, mentor</dd>{% endif %}
+        </div>
+      {% endfor %}
+    </dl>
   </aside>
   <div class="intro-main">
     <div class="intro-copy">

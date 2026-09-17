@@ -7,6 +7,17 @@ description: >-
   Postdoctoral scholar at Stanford and creator of KomaMRI. I turn MRI physics into fast, open-source tools for simulation, sequence design, and reconstruction.
 role: Postdoctoral Scholar
 institution: Stanford University
+academic_background:
+  - degree: Postdoctoral Scholar
+    institution: Stanford University
+    supervision_label: Advisor
+    supervision: Daniel Ennis
+  - degree: Joint PhD
+    institution: UC Chile & King’s College London
+    supervision_label: Supervisor
+    supervision: Pablo Irarrázaval
+    co_supervision: René Botnar
+    mentorship: Claudia Prieto
 bio:
   - >-
     I am a postdoctoral scholar at Stanford working at the intersection of mathematics, physics, computing, and medical imaging. I develop high-performance, open-source methods that turn first-principles MRI models into practical tools for simulation, sequence design, and image reconstruction. My current research uses compiler technology and AI to build efficient, physically consistent methods for medical imaging.

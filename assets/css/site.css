@@ -106,6 +106,7 @@ main { min-height: 70vh; }
   grid-template-areas:
     "heading profile"
     "main profile";
+  grid-template-rows: auto 1fr;
   column-gap: 4rem;
   align-items: start;
   padding: clamp(4rem, 9vw, 7.5rem) 0 clamp(4rem, 8vw, 6.5rem);
@@ -182,6 +183,18 @@ main { min-height: 70vh; }
   border: 1px solid var(--line);
   border-radius: 3px;
 }
+
+.profile-education {
+  margin: 1.25rem 0 0;
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+.profile-education > div + div { margin-top: 1rem; }
+.profile-education dt { font-weight: 600; }
+.profile-education dd { margin: 0; color: var(--muted); }
+.profile-education .profile-supervision { margin-top: 0.35rem; }
+.profile-mentor { display: inline-block; color: var(--ink); }
 
 .profile-links {
   display: flex;
@@ -829,16 +842,24 @@ main { min-height: 70vh; }
       "heading"
       "profile"
       "main";
+    grid-template-rows: auto;
     padding-top: 4rem;
   }
 
   .intro h1 { font-size: clamp(2.8rem, 15vw, 4.4rem); }
 
   .intro-profile {
+    display: grid;
+    grid-template-columns: clamp(6rem, 26vw, 11rem) minmax(0, 1fr);
+    align-items: start;
+    gap: 1rem;
     justify-self: start;
-    width: 11rem;
+    width: 100%;
     margin: 2rem 0;
   }
+
+  .intro-profile img { width: 100%; }
+  .intro-profile .profile-education { margin: 0; }
 
   .intro-main { margin-top: 0; }
 
