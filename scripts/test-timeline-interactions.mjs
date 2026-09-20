@@ -55,7 +55,8 @@ root.append(chart, detail, scroller);
 globalThis.document = new Element();
 document.activeElement = null;
 document.createElement = () => new Element();
-globalThis.window = {innerHeight: 800, matchMedia: () => ({matches: false})};
+let coarsePointer = false;
+globalThis.window = {innerHeight: 800, matchMedia: () => ({matches: coarsePointer})};
 let resize, observed;
 globalThis.ResizeObserver = class {
   constructor(callback) { resize = callback; }
@@ -79,6 +80,18 @@ scroller.scrollLeft = maxScroll();
 scroller.clientWidth = 1152;
 resize();
 assert.ok(Math.abs(scroller.scrollLeft - maxScroll()) < 1e-8, 'Resizing at the newest end must keep the latest years visible');
+coarsePointer = true;
+scroller.clientWidth = 358;
+resize();
+assert.ok(Math.abs(scroller.scrollLeft - maxScroll()) < 1e-8, 'Mobile touch layout must open at the latest dates');
+assert.equal(historyHint.hidden, false, 'Mobile must explain how to reach older dates');
+scroller.scrollLeft = maxScroll() * 0.5;
+scroller.clientWidth = 398;
+resize();
+assert.ok(Math.abs(scroller.scrollLeft - maxScroll() * 0.5) < 1e-8, 'Mobile resizing must preserve the historical position');
+coarsePointer = false;
+scroller.clientWidth = 1152;
+resize();
 const expanded = () => markers.filter(button => button.attrs['aria-expanded'] === 'true');
 const hover = (button, y = 400, pointerType = 'mouse') => button.emit('pointerenter', {
   pointerType, clientX: chart.bounds.left + parseFloat(button.style.left), clientY: y

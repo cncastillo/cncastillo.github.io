@@ -5,9 +5,12 @@ export function timelineLayout(items, viewportWidth, gap = 32) {
   const start = Date.UTC(firstYear, 0, 1);
   const end = Date.UTC(lastYear + 1, 0, 1);
   const visibleStart = Date.UTC(Math.max(firstYear, lastYear - 7), 0, 1);
-  const scale = (viewportWidth - 48) / (end - visibleStart);
-  const scrollLeft = (visibleStart - start) * scale;
-  const width = viewportWidth + scrollLeft;
+  // On phones, scroll within the chart instead of stacking tightly packed years.
+  const visibleYears = Math.min(8, lastYear - firstYear + 1);
+  const visibleWidth = viewportWidth < 768 ? Math.max(viewportWidth, visibleYears * 140 + 48) : viewportWidth;
+  const scale = (visibleWidth - 48) / (end - visibleStart);
+  const width = visibleWidth + (visibleStart - start) * scale;
+  const scrollLeft = width - viewportWidth;
   const x = date => 24 + (Date.parse(date) - start) * scale;
   const positions = new Map();
   const levels = [];

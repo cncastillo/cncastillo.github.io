@@ -121,14 +121,20 @@ assert.ok(!css.includes('[data-end]') && !css.includes('--range-width'), 'Remove
 const scrollStyles = css.match(/\.timeline-scroll\s*\{([^}]+)\}/)[1];
 assert.ok(scrollStyles.includes('width: 100%') && scrollStyles.includes('min-width: 0') && scrollStyles.includes('contain: inline-size') && scrollStyles.includes('overflow-x: auto'), 'Wide chart must be constrained to its own scroll container');
 assert.ok(!css.includes('min-width: 48rem'), 'Timeline must not impose a fixed minimum width on the page');
-for (const viewportWidth of [320, 768, 896, 928, 1152]) {
+for (const viewportWidth of [288, 320, 358, 398, 480, 736, 768, 896, 928, 1152]) {
   for (const gap of [32, 44]) {
     const {positions, height, width, scrollLeft, years} = timelineLayout(items, viewportWidth, gap);
     assert.equal(positions.size, items.length, 'Scrolling must retain all older outputs');
     assert.ok(Math.abs(width - scrollLeft - viewportWidth) < 1e-8, 'Initial view must align to the newest end');
     const visibleYears = years.filter(({x}) => x - scrollLeft >= 24 - 1e-8).map(({year}) => year);
-    assert.deepEqual(visibleYears, [2020, 2021, 2022, 2023, 2024, 2025, 2026], 'All current records must fit within the eight-year window');
-    assert.equal(scrollLeft, 0, 'Current history must not require horizontal scrolling');
+    if (viewportWidth < 768) {
+      assert.ok(scrollLeft > 0, 'Phones must scroll the chart rather than squeeze every year into the viewport');
+      assert.ok(height <= 400, 'The mobile chart must remain compact, including with 44px touch targets');
+      assert.equal(visibleYears.at(-1), 2026, 'Phones must open at the latest year');
+    } else {
+      assert.deepEqual(visibleYears, [2020, 2021, 2022, 2023, 2024, 2025, 2026], 'All current records must fit within the desktop eight-year window');
+      assert.equal(scrollLeft, 0, 'Current history must not require horizontal scrolling on desktop');
+    }
     for (const [item, point] of positions) {
       assert.ok(point.x >= 24 && point.x <= width - 24 && point.y >= gap / 2 && point.y <= height - gap / 2);
       assert.ok(Number.isFinite(point.x) && Number.isFinite(point.y));
@@ -143,10 +149,13 @@ for (const shortHistory of [
   [{start: '2026-05-12'}],
   [{start: '2019-01-01'}, {start: '2026-12-31'}]
 ]) {
-  const layout = timelineLayout(shortHistory, 320);
-  assert.equal(layout.width, 320, 'Eight years or fewer must fit without overflow');
+  const layout = timelineLayout(shortHistory, 768);
+  assert.equal(layout.width, 768, 'Eight years or fewer must fit without overflow on desktop');
   assert.equal(layout.scrollLeft, 0, 'Short histories must not have an older-history scroll offset');
 }
+const singleYearMobile = timelineLayout([{start: '2026-05-12'}], 320, 44);
+assert.equal(singleYearMobile.width, 320, 'A single year must not create unnecessary mobile scrolling');
+assert.equal(singleYearMobile.scrollLeft, 0);
 const longHistory = timelineLayout([{start: '2015-01-01'}, {start: '2026-12-31'}], 768);
 assert.deepEqual(longHistory.years.filter(({x}) => x - longHistory.scrollLeft >= 24 - 1e-8).map(({year}) => year),
   [2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026], 'Longer histories must open on exactly eight years');
