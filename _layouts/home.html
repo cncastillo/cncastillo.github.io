@@ -27,11 +27,7 @@ layout: default
         {{ paragraph | markdownify }}
       {% endfor %}
     </div>
-    <div class="profile-links" aria-label="Contact and profiles">
-      <a href="mailto:{{ profile.email }}">
-        <img class="profile-link-icon" src="{{ '/assets/icons/email.svg' | relative_url }}" alt="">
-        <span>Email</span>
-      </a>
+    <div class="profile-links" aria-label="Profiles">
       {% for link in profile.links %}
         <a href="{{ link.url }}">
           {% if link.icon %}<img class="profile-link-icon" src="{{ link.icon | relative_url }}" alt="">{% endif %}
