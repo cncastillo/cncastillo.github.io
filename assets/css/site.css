@@ -679,7 +679,12 @@ main { min-height: 70vh; }
 
 .course-program p { margin: 0; }
 
-.course-header { padding-bottom: 1.25rem; }
+.course-header { padding-bottom: 1.25rem; scroll-margin-top: 1.5rem; }
+
+.course-header h1 {
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  line-height: 1.08;
+}
 
 .course-header-with-image {
   display: grid;
@@ -717,8 +722,24 @@ main { min-height: 70vh; }
 }
 
 .course-content { padding-top: 0.5rem; }
+.course-page .course-content { max-width: none; }
 
 .course-content h2 { scroll-margin-top: 1rem; }
+
+.course-intro-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 3rem;
+}
+
+.course-intro-grid [aria-labelledby="learning-goals"] ol {
+  padding-inline-start: 1.5rem;
+  font-size: 0.85rem;
+}
+
+.course-schedule-scroll { max-width: 100%; overflow-x: auto; }
+.course-schedule-scroll table { min-width: 48rem; }
+.course-schedule-hint { display: none; }
 
 .course-content table {
   width: 100%;
@@ -736,6 +757,13 @@ main { min-height: 70vh; }
   overflow-wrap: anywhere;
 }
 
+.course-content th:not(:first-child),
+.course-content td:not(:first-child) {
+  padding-inline: clamp(0.75rem, 5vw, 4rem);
+}
+
+.course-content th:first-child { width: clamp(6rem, 8vw, 7rem); }
+
 .course-content .course-break { text-align: center; }
 
 .course-day-header,
@@ -746,6 +774,8 @@ main { min-height: 70vh; }
   flex-wrap: wrap;
   gap: 0.25rem 0.5rem;
 }
+
+.course-session { padding-inline-end: clamp(0.45rem, 0.8vw, 0.7rem); }
 
 .course-session > a {
   margin-left: auto;
@@ -866,12 +896,18 @@ main { min-height: 70vh; }
   .highlight-media { width: min(100%, 24rem); }
 
   .course-card-with-image,
-  .course-header-with-image {
+  .course-header-with-image,
+  .course-intro-grid {
     grid-template-columns: 1fr;
   }
 
   .course-card-media,
   .course-header-image { width: min(100%, 24rem); }
+
+  .course-content th:not(:first-child),
+  .course-content td:not(:first-child) { padding-inline: 0.75rem; }
+
+  .course-schedule-hint { display: block; font-size: 0.8rem; }
 
   .site-footer { flex-direction: column; }
 }

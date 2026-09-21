@@ -27,15 +27,15 @@ sections:
     href: "#canvas"
 ---
 
+<div class="course-intro-grid" markdown="1">
+<section aria-labelledby="overview" markdown="1">
+
 ## Overview
 
 This interdisciplinary mini-course introduces an end-to-end workflow for rapid MRI sequence development and image reconstruction using open-source tools. Students will design pulse sequences in Pulseq, simulate and validate them with KomaMRI, and reconstruct simulated or acquired MRI data using BART and MRIReco. Students will also learn how Pulseq sequences and reconstruction workflows can be integrated directly on MRI scanners through Pulseq interpreters and OpenRecon.
 
-The course combines short lectures with hands-on coding and lab sessions focused on rapid prototyping, simulation, acquisition, and reconstruction. It emphasizes research rigor, reproducibility, and transparency through open-source tools and reproducible workflows.
-
-Intended for students with basic programming experience and an interest in MRI and computational methods.
-
-**Grading:** MED S/NC (Satisfactory/No Credit).
+</section>
+<section aria-labelledby="learning-goals" markdown="1">
 
 ## Learning goals
 
@@ -48,7 +48,13 @@ By the end of this mini-course, students will be able to:
 5. Implement and iterate on sequence designs using a rapid prototyping workflow.
 6. Evaluate sequence performance through simulation and scanner experiments.
 
+</section>
+</div>
+
 ## Schedule & materials {#schedule}
+
+<p class="course-schedule-hint">Scroll sideways to see all days.</p>
+<div class="course-schedule-scroll" role="region" aria-labelledby="schedule" tabindex="0" markdown="1">
 
 <table>
   <thead>
@@ -79,6 +85,8 @@ By the end of this mini-course, students will be able to:
     </tr>
   </tbody>
 </table>
+
+</div>
 
 **Classroom:** ![][room-icon]{: .course-icon} [CCSR4107][ccsr4107]. \*November 9 and 13: ![][room-icon]{: .course-icon} [M218/218A][m218].
 
