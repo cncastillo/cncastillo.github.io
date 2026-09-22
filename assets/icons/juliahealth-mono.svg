@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 325 300">
+<defs><mask id="mark" maskUnits="userSpaceOnUse" x="0" y="0" width="325" height="300">
+
+ <g>
+  <title>Layer 1</title>
+  <g id="surface91">
+   <path id="svg_1" fill-rule="nonzero" fill="white" d="m150.89844,225c0,41.42188 -33.57813,75 -75,75c-41.42188,0 -75,-33.57812 -75,-75c0,-41.42187 33.57812,-75 75,-75c41.42187,0 75,33.57813 75,75"/>
+   <path id="svg_2" fill-rule="nonzero" fill="white" d="m237.5,75c0,41.42188 -33.57812,75 -75,75c-41.42187,0 -75,-33.57812 -75,-75c0,-41.42187 33.57813,-75 75,-75c41.42188,0 75,33.57813 75,75"/>
+   <path id="svg_3" fill-rule="nonzero" fill="white" d="m324.10156,225c0,41.42188 -33.57812,75 -75,75c-41.42187,0 -75,-33.57812 -75,-75c0,-41.42187 33.57813,-75 75,-75c41.42188,0 75,33.57813 75,75"/>
+  </g>
+  <text font-weight="bold" stroke="black" transform="matrix(5.973950660758871,0,0,5.973950660758871,-974.6775376106751,-245.81888692300535) " xml:space="preserve" text-anchor="start" font-family="sans-serif" font-size="24" id="svg_6" y="62.16521" x="183" opacity="undefined" fill-opacity="null" stroke-opacity="null" stroke-dasharray="null" stroke-width="0" fill="black">⚕</text>
+  <text font-weight="bold" stroke="black" transform="matrix(5.973950660758871,0,0,5.973950660758871,-974.6775376106751,-245.81888692300535) " xml:space="preserve" text-anchor="start" font-family="sans-serif" font-size="24" id="svg_7" y="87.44162" x="168.26938" opacity="undefined" fill-opacity="null" stroke-opacity="null" stroke-dasharray="null" stroke-width="0" fill="black">⚕</text>
+  <text font-weight="bold" stroke="black" transform="matrix(5.973950660758871,0,0,5.973950660758871,-974.6775376106751,-245.81888692300535) " xml:space="preserve" text-anchor="start" font-family="sans-serif" font-size="24" id="svg_9" y="87.44162" x="197.56323" opacity="undefined" fill-opacity="null" stroke-opacity="null" stroke-dasharray="null" stroke-width="0" fill="black">⚕</text>
+ </g>
+</mask></defs>
+<rect width="325" height="300" fill="black" mask="url(#mark)"/>
+</svg>

@@ -20,6 +20,17 @@
 
 - name: Alya Kurt
   year: 2026
+  program: Bounty Program
+  organization: JuliaHealth
+  organization_logo: /assets/icons/juliahealth-mono.svg
+  project: Simulating Realistic MRI Gradient Systems
+  links:
+    - label: Bounty project
+      url: https://github.com/JuliaHealth/JuliaHealth2026BountyProgram/issues/1
+  order: 2
+
+- name: Alya Kurt
+  year: 2026
   home_affiliation: Caltech, USA
   program: Summer Undergraduate Research Fellowship (SURF)
   organization: Stanford University
@@ -48,6 +59,17 @@
       url: https://github.com/JuliaHealth/komamripy
   location: USA
   order: 3
+
+- name: Kareem Fareed
+  year: 2026
+  program: Bounty Program
+  organization: JuliaHealth
+  organization_logo: /assets/icons/juliahealth-mono.svg
+  project: First-class Enzyme and Reactant support
+  links:
+    - label: Bounty project
+      url: https://github.com/JuliaHealth/JuliaHealth2026BountyProgram/issues/7
+  order: 4
 
 - name: Kareem Fareed
   year: 2026
