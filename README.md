@@ -81,7 +81,9 @@ Append one record to `_data/presentations.yml`:
 
 Use `category: abstract` for conference abstracts, `conference` for conference talks, or `invited` for invited talks and seminars. These categories organize the archive. Set `kind` to the presentation format, such as Traditional poster, Digital poster, Oral presentation, Power pitch, or Invited educational talk. The timeline uses circles for papers, squares for posters, triangles for other talks (including power pitches), and diamonds for `category: invited` talks and seminars; its hover details retain the specific format and invitation status. `abstract` remains the link to the written submission, not a timeline format.
 
-`location`, `abstract`, `slides`, `code`, `note`, and `publication_key` are optional. Use complete authors for abstracts and the speakers for talks. Omit unavailable links rather than inserting placeholders.
+`location`, `abstract`, `proceedings`, `slides`, `code`, `note`, and `publication_key` are optional. Use complete authors for abstracts and the speakers for talks. Omit unavailable links rather than inserting placeholders.
+
+An optional `proceedings` URL links directly to a verified full-text proceedings entry, alongside the existing `abstract` DOI or summary link. It appears as **Proceedings** on the website and in the generated CV. Follow the official archive's full-abstract link and verify the title and authors; do not infer protected filenames or add an unverified URL.
 
 Presentation dates are **metadata only**; the website and CV still display the year. Add an exact presentation day with its official program URL (or `Speaker confirmation`):
 

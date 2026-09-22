@@ -95,6 +95,10 @@ talk['presentations'] = [{'record_key' => 'example-talk', 'year' => 2027, 'categ
                           'kind' => 'Conference talk', 'title' => 'Example talk', 'authors' => 'Alex Researcher',
                           'event' => 'Example Conference 2027', 'date' => '2027-05-12', 'date_source' => 'Speaker confirmation'}]
 Content.validate!(talk)
+talk['presentations'][0]['proceedings'] = 'https://conference.example/proceedings/full_abstract.html'
+Content.validate!(talk)
+rejects(talk, 'proceedings must be nonempty text') { |d| d['presentations'][0]['proceedings'] = '' }
+rejects(talk, 'proceedings must be an HTTP(S) link') { |d| d['presentations'][0]['proceedings'] = 'javascript:alert(1)' }
 rejects(talk, 'date year must match year') { |d| d['presentations'][0]['date'] = '2026-05-12' }
 rejects(sample, 'unresolved abstract_key') { |d| d['publications'][0]['abstract_key'] = 'missing' }
 rejects(sample, 'recognitions must be a list') { |d| d['publications'][0]['recognitions'] = 'An award' }

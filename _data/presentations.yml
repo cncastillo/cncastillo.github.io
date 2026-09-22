@@ -85,6 +85,7 @@
   event: ISMRM 2024
   location: Singapore
   abstract: https://doi.org/10.58530/2024/0273
+  proceedings: https://cds.ismrm.org/protected/24MProceedings/PDFfiles/0273_DNB1wPPpd.html
   publication_key: liver-mrf
   record_key: liver-mrf-ismrm
   date: "2024-05-06"
@@ -111,6 +112,7 @@
   event: ISMRM 2024
   location: Singapore
   abstract: https://doi.org/10.58530/2024/0577
+  proceedings: https://cds.ismrm.org/protected/24MProceedings/PDFfiles/0577_2Eg9KLQXB.html
   record_key: cardiac-mrf-055t-ismrm
   date: "2024-05-07"
   date_source: https://www.ismrm.org/24/pf/PP-03.htm
@@ -124,6 +126,7 @@
   event: ISMRM 2024
   location: Singapore
   abstract: https://doi.org/10.58530/2024/5097
+  proceedings: https://cds.ismrm.org/protected/24MProceedings/PDFfiles/5097_UBDI5bQXA.html
   record_key: diffusion-mrf-055t-ismrm
   date: "2024-05-09"
   date_source: https://www.ismrm.org/24/pf/T-24.htm
@@ -193,6 +196,7 @@
   event: ISMRM 2023
   location: Toronto, Canada
   abstract: https://doi.org/10.58530/2023/0547
+  proceedings: https://cds.ismrm.org/protected/23MProceedings/PDFfiles/0547_5dVZiNQXk.html
   publication_key: low-field-cmra
   record_key: low-field-cmra-ismrm
   date: "2023-06-06"
@@ -232,6 +236,7 @@
   event: ISMRM & SMRT Annual Meeting 2022
   location: London, United Kingdom
   abstract: https://archive.ismrm.org/2022/2815.html
+  proceedings: https://cds.ismrm.org/protected/22MProceedings/PDFfiles/2815.html
   publication_key: komamri
   record_key: mrisim-ismrm-2022
   date: "2022-05-12"

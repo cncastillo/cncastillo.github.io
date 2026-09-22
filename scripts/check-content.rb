@@ -117,7 +117,8 @@ module Content
         check(!record['authors'].match?(/\bet al\.?/i), where, 'include the complete author list, not et al.')
         check(!ids.key?(record['record_key']), where, 'duplicate record_key')
         ids[record['record_key']] = collection
-        %w[paper abstract code slides].each { |key| fields(record, [key], where) if record.key?(key) }
+        %w[paper abstract proceedings code slides].each { |key| fields(record, [key], where) if record.key?(key) }
+        check(!record['proceedings'] || record['proceedings'].match?(/\Ahttps?:\/\/\S+\z/), where, 'proceedings must be an HTTP(S) link')
         if record.key?('image')
           fields(record, %w[image image_alt], where)
           asset(record['image'], root, where)

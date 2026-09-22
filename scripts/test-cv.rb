@@ -4,6 +4,8 @@ def check(condition, message)
   raise message unless condition
 end
 
+check(File.read(File.join(CV::ROOT, '_cv/cv.tex')).include?('\\AtEndPreamble{\\hypersetup{colorlinks=true, allcolors=color1}}'), 'CV links must use the theme accent after ModernCV loads hyperref')
+
 check(CV.tex('A&B_50% #1 $ {x} ~ ^ \input{bad}') == 'A\&B\_50\% \#1 \$ \{x\} \textasciitilde{} \textasciicircum{} \textbackslash{}input\{bad\}', 'TeX escaping failed')
 check(CV.tex('ℓ1‐regularized – test') == '\ensuremath{\ell_1}-regularized -- test', 'Unicode conversion failed')
 names = ['Alex Researcher', 'A. Researcher']
@@ -24,6 +26,11 @@ book = fixture.merge('category' => 'book', 'type' => 'Book chapter · In press')
 check(CV.entry(book, names).include?('Book chapter · In press'), 'Book status missing')
 talk = fixture.reject { |key, _| %w[venue paper type].include?(key) }.merge('category' => 'conference', 'kind' => 'Conference talk', 'event' => 'Example Conference')
 check(CV.entry(talk, names).include?('[Conference talk]'), 'Talk classification changed')
+talk.merge!('abstract' => 'https://conference.example/abstract', 'proceedings' => 'https://conference.example/full_abstract.html')
+talk_entry = CV.entry(talk, names)
+check(talk_entry.include?('\\href{https://conference.example/abstract}{Abstract}'), 'Proceedings must not replace the existing abstract link')
+check(talk_entry.include?('\\href{https://conference.example/full\\_abstract.html}{Proceedings}'), 'Proceedings link missing or unescaped')
+check(!CV.entry(fixture, names).include?('{Proceedings}'), 'Proceedings link added without a source URL')
 ordered = CV.records([fixture, fixture.merge('year' => 2028), fixture.merge('order' => 1000)])
 check(ordered.map { |r| [r['year'], r['order']] } == [[2028, nil], [2027, 1000], [2027, nil]], 'Date/tie-break ordering failed')
 

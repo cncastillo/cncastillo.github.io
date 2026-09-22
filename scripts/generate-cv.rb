@@ -34,6 +34,7 @@ module CV
     details += " #{byline(record['note'], names)}" if record['note']
     url = record['paper'] || record['abstract']
     details += " \\href{#{tex(url)}}{#{presentation ? 'Abstract' : 'Paper'}}." if url
+    details += " \\href{#{tex(record['proceedings'])}}{Proceedings}." if record['proceedings']
     year = record.fetch('year').to_s
     badge = record['cv_badge']
     year += "\\\\\\vspace{5bp}\\includegraphics[width=0.75cm]{#{badge}}" if badge
