@@ -20,7 +20,7 @@ academic_background:
     mentorship: Claudia Prieto
 bio:
   - >-
-    I am a postdoctoral scholar at Stanford working at the intersection of mathematics, physics, computing, and medical imaging. I develop high-performance, open-source methods that turn first-principles MRI models into practical tools for simulation, sequence design, and image reconstruction. My current research uses compiler technology and AI to build efficient, physically consistent methods for medical imaging.
+    I am a postdoctoral scholar at Stanford working at the intersection of mathematics, physics, computing, and medical imaging. My goal is to automate MRI discovery for better patient care. I envision AI systems learning through simulation and scanner validation. My current research combines differentiable physics and compilers for fast, accurate, open-source MRI simulation on ML accelerators, supporting sequence design and reconstruction.
 email: cacp@stanford.edu
 blog_url: https://cncastillo.github.io/BlochHole/
 photo: /assets/images/carlos-castillo-passi.jpg
