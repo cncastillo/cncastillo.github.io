@@ -1,5 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 325 300">
-<defs><mask id="mark" maskUnits="userSpaceOnUse" x="0" y="0" width="325" height="300">
+<defs>
+<path id="medical-symbol" d="M340 1188Q408 1158 387 1201Q351 1212 340 1188ZM600 80V14Q588 -15 561 -15Q526 -15 523 49V97Q341 131 342 196Q349 278 506 303L507 256Q443 232 442 210Q439 162 602 130.5Q765 99 763 -20H748Q720 45 600 80ZM523 484Q243 521 237 632Q235 732 507 779V711Q336 673 336 622Q336 576 614 531.5Q892 487 895 390Q891 309 616 262L615 315Q802 350 797 401Q795 437 600 471V139L523 158ZM600 927V544L523 560V933Q129 952 125 1090Q138 1234 351 1239Q420 1243 476 1170L364 1140L459 1115Q383 1097 284 1136Q235 1149 224 1085Q220 1034 597.5 1010.5Q975 987 981 870Q974 732 612 716V777Q886 809 884 870Q897 905 600 927ZM600 1015 523 1022 518 1323Q497 1334 485 1357Q473 1380 473 1404Q473 1429 485 1452Q497 1475 518 1487Q539 1499 561 1499Q584 1499 605 1487Q626 1475 638 1452Q650 1429 650 1404Q650 1380 638.5 1357Q627 1334 606 1323Z"/>
+<mask id="mark" maskUnits="userSpaceOnUse" x="0" y="0" width="325" height="300">
 
  <g>
   <title>Layer 1</title>
@@ -8,9 +10,9 @@
    <path id="svg_2" fill-rule="nonzero" fill="white" d="m237.5,75c0,41.42188 -33.57812,75 -75,75c-41.42187,0 -75,-33.57812 -75,-75c0,-41.42187 33.57813,-75 75,-75c41.42188,0 75,33.57813 75,75"/>
    <path id="svg_3" fill-rule="nonzero" fill="white" d="m324.10156,225c0,41.42188 -33.57812,75 -75,75c-41.42187,0 -75,-33.57812 -75,-75c0,-41.42187 33.57813,-75 75,-75c41.42188,0 75,33.57813 75,75"/>
   </g>
-  <text font-weight="bold" stroke="black" transform="matrix(5.973950660758871,0,0,5.973950660758871,-974.6775376106751,-245.81888692300535) " xml:space="preserve" text-anchor="start" font-family="sans-serif" font-size="24" id="svg_6" y="62.16521" x="183" opacity="undefined" fill-opacity="null" stroke-opacity="null" stroke-dasharray="null" stroke-width="0" fill="black">⚕</text>
-  <text font-weight="bold" stroke="black" transform="matrix(5.973950660758871,0,0,5.973950660758871,-974.6775376106751,-245.81888692300535) " xml:space="preserve" text-anchor="start" font-family="sans-serif" font-size="24" id="svg_7" y="87.44162" x="168.26938" opacity="undefined" fill-opacity="null" stroke-opacity="null" stroke-dasharray="null" stroke-width="0" fill="black">⚕</text>
-  <text font-weight="bold" stroke="black" transform="matrix(5.973950660758871,0,0,5.973950660758871,-974.6775376106751,-245.81888692300535) " xml:space="preserve" text-anchor="start" font-family="sans-serif" font-size="24" id="svg_9" y="87.44162" x="197.56323" opacity="undefined" fill-opacity="null" stroke-opacity="null" stroke-dasharray="null" stroke-width="0" fill="black">⚕</text>
+  <use href="#medical-symbol" transform="translate(118.55543 125.55301) scale(0.07000723 -0.07000723)" fill="black"/>
+  <use href="#medical-symbol" transform="translate(30.55544 276.55304) scale(0.07000723 -0.07000723)" fill="black"/>
+  <use href="#medical-symbol" transform="translate(205.55545 276.55304) scale(0.07000723 -0.07000723)" fill="black"/>
  </g>
 </mask></defs>
 <rect width="325" height="300" fill="black" mask="url(#mark)"/>
