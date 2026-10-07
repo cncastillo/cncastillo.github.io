@@ -43,10 +43,16 @@ if (grants.length) {
   assert.ok(homeMenu.includes(`Research funding&nbsp;<sup class="section-count">${grants.length}</sup>`), 'Homepage funding count must follow the data');
   for (const grant of grants) {
     assert.ok(funding.includes(`href="/publications/#record-${grant.record_key}"`), 'Funding summary must link to its full Research entry');
-    for (const key of ['funder', 'program', 'year', 'amount', 'role']) {
+    for (const key of ['funder', 'program', 'year', 'organization', 'description', 'amount', 'role']) {
       if (grant[key]) assert.ok(funding.includes(String(grant[key])), `Homepage funding summary missing ${key}`);
     }
-    assert.ok(!funding.includes(grant.title) && !funding.includes('Blog post'), 'Keep full project descriptions and blog links on Research');
+    if (grant.title !== `${grant.funder} ${grant.program}`) assert.ok(!funding.includes(grant.title), 'Keep full project titles on Research');
+    assert.ok(!funding.includes('Blog post'), 'Keep blog links on Research');
+    const archive = html.match(new RegExp(`<article class="archive-item" id="record-${grant.record_key}">([\\s\\S]*?)<\\/article>`))?.[1];
+    assert.ok(archive?.includes(grant.title), 'Every grant must appear in the Research archive');
+    if (grant.description) assert.ok(archive.includes(grant.description), 'Research grant description missing');
+    assert.ok(!archive.includes('<p class="venue"></p>'), 'Omitted grant metadata must not leave empty paragraphs');
+    if (!grant.date) assert.ok(!items.some(item => item.key === grant.record_key), 'Year-only grants must not receive invented timeline dates');
   }
 }
 assert.equal(items.length, dated.length, 'Every record with a date or conference start must appear exactly once');

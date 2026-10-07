@@ -101,7 +101,8 @@ layout: default
       {% for grant in grants %}
       <article class="archive-item funding-item">
         <h3><a href="{{ '/publications/#record-' | append: grant.record_key | relative_url }}">{{ grant.funder | escape }} {{ grant.program | escape }}</a></h3>
-        <p class="venue">{{ grant.year }} · {{ grant.organization | escape }}{% if grant.amount %} · {{ grant.amount | escape }}{% endif %}{% if grant.role %} · {{ grant.role | escape }}{% endif %}</p>
+        <p class="venue">{{ grant.year }}{% if grant.organization %} · {{ grant.organization | escape }}{% endif %}{% if grant.amount %} · {{ grant.amount | escape }}{% endif %}{% if grant.role %} · {{ grant.role | escape }}{% endif %}</p>
+        {% if grant.description %}<p class="venue">{{ grant.description | escape }}</p>{% endif %}
       </article>
       {% endfor %}
     {% endfor %}

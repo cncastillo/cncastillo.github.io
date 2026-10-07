@@ -69,7 +69,8 @@ show_timeline: true
           <div>
             <p class="archive-type">{{ grant.funder | escape }} · {{ grant.program | escape }}</p>
             <h3>{% if grant.url %}<a href="{{ grant.url | escape }}">{{ grant.title | escape }}</a>{% else %}{{ grant.title | escape }}{% endif %}</h3>
-            <p class="venue">{{ grant.organization | escape }}{% if grant.amount %} · {{ grant.amount | escape }}{% endif %}{% if grant.role %} · {{ grant.role | escape }}{% endif %}</p>
+            {% if grant.organization or grant.amount or grant.role %}<p class="venue">{{ grant.organization | escape }}{% if grant.amount %}{% if grant.organization %} · {% endif %}{{ grant.amount | escape }}{% endif %}{% if grant.role %}{% if grant.organization or grant.amount %} · {% endif %}{{ grant.role | escape }}{% endif %}</p>{% endif %}
+            {% if grant.description %}<p class="venue">{{ grant.description | escape }}</p>{% endif %}
             {% if grant.blog %}<p class="item-links archive-item-links"><a href="{{ grant.blog | escape }}">Blog post</a></p>{% endif %}
           </div>
         </article>

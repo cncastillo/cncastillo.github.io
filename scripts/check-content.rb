@@ -63,12 +63,12 @@ module Content
     check(grants.is_a?(Array), '_data/grants.yml', 'expected a list; use [] for an empty list')
     grants.each_with_index do |record, i|
       where = "_data/grants.yml entry #{i + 1}"
-      fields(record, %w[record_key title funder program organization], where)
+      fields(record, %w[record_key title funder program], where)
       check(!ids.key?(record['record_key']), where, 'duplicate record_key')
       ids[record['record_key']] = 'grants'
       check(record['year'].is_a?(Integer), where, 'year must be an integer')
       check(!record.key?('order') || record['order'].is_a?(Integer), where, 'order must be an integer or omitted')
-      %w[amount role url blog].each { |key| fields(record, [key], where) if record.key?(key) }
+      %w[organization description amount role url blog].each { |key| fields(record, [key], where) if record.key?(key) }
       %w[url blog].each do |key|
         check(!record[key] || record[key].match?(/\Ahttps?:\/\/\S+\z/), where, "#{key} must be an HTTP(S) link")
       end

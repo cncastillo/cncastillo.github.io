@@ -54,6 +54,8 @@ check(grant_entry.include?('\\href{https://example.org/grant\\_1}{MRI \\& comput
 check(grant_entry.include?('Example Project · Co-project lead.'), 'Grant role missing')
 grant['blog'] = 'https://example.org/blog_post'
 check(CV.grant_entry(grant).include?('\\href{https://example.org/blog\\_post}{Blog post}'), 'Grant blog link missing or unescaped')
+in_kind_grant = {'year' => 2026, 'title' => 'Example Foundation Computing Grant', 'program' => 'Computing Grant', 'funder' => 'Example Foundation', 'description' => 'Six-month in-kind support for MRI & optimization.'}
+check(CV.grant_entry(in_kind_grant) == "\\cventry{2026}{Computing Grant}{Example Foundation}{}{}{Six-month in-kind support for MRI \\& optimization.}\n", 'In-kind grant must preserve its description without inventing metadata or repeating the heading')
 
 CV.generate
 data = Content.load

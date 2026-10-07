@@ -31,6 +31,12 @@ Content.validate!(sample)
 grant = Marshal.load(Marshal.dump(sample))
 grant['grants'] = [{'record_key' => 'example-grant', 'year' => 2027, 'title' => 'Example project', 'funder' => 'Example Foundation', 'program' => 'Development Grant', 'organization' => 'Example Project'}]
 Content.validate!(grant)
+in_kind_grant = Marshal.load(Marshal.dump(grant))
+in_kind_grant['grants'][0].delete('organization')
+in_kind_grant['grants'][0]['description'] = 'Six-month in-kind computing grant.'
+Content.validate!(in_kind_grant)
+rejects(in_kind_grant, 'description must be nonempty text') { |d| d['grants'][0]['description'] = '' }
+rejects(in_kind_grant, 'organization must be nonempty text') { |d| d['grants'][0]['organization'] = '' }
 rejects(grant, 'record_key must be nonempty text') { |d| d['grants'][0].delete('record_key') }
 rejects(grant, 'duplicate record_key') { |d| d['grants'] *= 2 }
 rejects(grant, 'duplicate record_key') { |d| d['grants'][0]['record_key'] = 'example' }

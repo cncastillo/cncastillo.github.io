@@ -74,9 +74,13 @@ module CV
   def self.grant_entry(record)
     title = tex(record.fetch('title'))
     title = "\\href{#{tex(record['url'])}}{#{title}}" if record['url']
-    details = [record.fetch('organization'), record['role']].compact.map { |value| tex(value) }.join(' · ')
+    details = [record['organization'], record['role']].compact.map { |value| tex(value) }.join(' · ')
     details += ". \\href{#{tex(record['blog'])}}{Blog post}" if record['blog']
-    "\\cventry{#{record.fetch('year')}}{#{tex(record.fetch('program'))}}{#{tex(record.fetch('funder'))}}{}{#{tex(record['amount'])}}{#{title}. #{details}.}\n"
+    body = []
+    body << "#{title}." unless record['title'] == "#{record['funder']} #{record['program']}"
+    body << "#{details}." unless details.empty?
+    body << tex(record['description']) if record['description']
+    "\\cventry{#{record.fetch('year')}}{#{tex(record.fetch('program'))}}{#{tex(record.fetch('funder'))}}{}{#{tex(record['amount'])}}{#{body.join(' ')}}\n"
   end
 end
 
