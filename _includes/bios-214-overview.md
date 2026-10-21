@@ -1,0 +1,3 @@
+This interdisciplinary mini-course introduces an end-to-end workflow for MRI sequence development using open-source tools. Students will design pulse sequences in Pulseq, simulate and validate them with KomaMRI, and reconstruct simulated or acquired data using BART and MRIReco. Hands-on laboratory sessions connect simulation to scanner experiments through Pulseq interpreters and OpenRecon, with an emphasis on reproducible workflows and scientific interpretation.
+
+There will be an emphasis on research rigor, reproducibility and transparency, by using open-source tools and the creation of reproducible pipelines. Intended for students with basic programming experience and an interest in MRI and computational methods.

@@ -1,0 +1,27 @@
+{% assign course = site.data[page.course_data] %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ course.code }}: {{ course.title }} | Syllabus</title>
+  <link rel="stylesheet" href="../../../assets/css/syllabus.css">
+</head>
+<body>
+  <nav class="syllabus-actions" aria-label="Syllabus actions">
+    <a href="../">Course website</a>
+    <a href="../../../assets/teaching/bios-214-syllabus.pdf">Download PDF</a>
+  </nav>
+  <main class="syllabus">
+    <header>
+      <div class="syllabus-masthead">
+        <p class="institution"><img src="{{ course.institution_logo | relative_url }}" alt="" width="20" height="23"> {{ course.institution }}</p>
+        <p class="course-code">{{ course.term }}</p>
+      </div>
+      <p class="document-type">Syllabus</p>
+      <h1>{{ course.code }}: {{ course.title }}<span>{{ course.subtitle }}</span></h1>
+    </header>
+    {{ content }}
+  </main>
+</body>
+</html>

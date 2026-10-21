@@ -1,0 +1,24 @@
+<p class="course-schedule-hint">Scroll sideways to see all days.</p>
+<div class="course-schedule-scroll" role="region" aria-labelledby="schedule" tabindex="0" markdown="1">
+
+<table>
+  <thead>
+    <tr><th>Week</th><th>Monday</th><th>Wednesday</th><th>Friday</th></tr>
+  </thead>
+  <tbody>
+    {% for week in course.weeks %}
+    <tr>
+      <td markdown="span">**Week {{ week.number }}**</td>
+      {% if week.break %}
+      <td colspan="3" class="course-break"><img class="course-icon" src="{{ '/assets/icons/turkey.svg' | relative_url }}" alt="" width="24" height="24"> {{ week.dates }} · {{ week.break }}</td>
+      {% else %}
+      {% for day in week.days %}
+      <td markdown="span">{% include bios-214-schedule-day.md day=day materials=true %}</td>
+      {% endfor %}
+      {% endif %}
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+</div>

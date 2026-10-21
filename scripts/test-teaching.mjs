@@ -37,11 +37,11 @@ assert.match(css, /\.course-intro-grid \[aria-labelledby="learning-goals"\] ol\s
 assert.match(courseHtml, /<\/section>\s*<\/div>\s*<h2 id="schedule">/, 'The schedule must remain below both columns');
 assert.match(courseHtml, /<div class="course-schedule-scroll" role="region" aria-labelledby="schedule" tabindex="0">\s*<table>/, 'The schedule must have a labelled, keyboard-accessible scroll region');
 assert.match(css, /\.course-schedule-scroll\s*\{\s*max-width: 100%;\s*overflow-x: auto;/, 'Keep schedule overflow inside the table region, not the page');
-assert.match(css, /\.course-schedule-scroll table\s*\{\s*min-width: 48rem;/, 'Retain readable day columns on phones');
+assert.match(css, /\.course-schedule-scroll table\s*\{\s*min-width: 52rem;/, 'Give day columns more room in the scrollable schedule on narrow screens');
 assert.ok(courseHtml.includes('Scroll sideways to see all days.'), 'Explain the mobile schedule scrolling');
 assert.match(css, /\.course-session\s*\{\s*padding-inline-end: clamp\(0\.45rem, 0\.8vw, 0\.7rem\);/, 'Tighten label-to-link spacing without moving day columns');
 assert.match(css, /\.course-content th:first-child\s*\{\s*width: clamp\(6rem, 8vw, 7rem\);/, 'Keep the week column compact but wide enough for unbroken week labels');
-assert.match(css, /\.course-content th:not\(:first-child\),\s*\.course-content td:not\(:first-child\)\s*\{\s*padding-inline: clamp\(0\.75rem, 5vw, 4rem\);/, 'Use the space recovered from the week column for wider gaps between days');
+assert.match(css, /\.course-content th:not\(:first-child\),\s*\.course-content td:not\(:first-child\)\s*\{\s*padding-inline: clamp\(0\.75rem, 4vw, 3rem\);/, 'Give day content more horizontal room with moderate padding');
 assert.match(css, /@media \(max-width: 48rem\)[\s\S]*?\.course-content td:not\(:first-child\)\s*\{\s*padding-inline: 0\.75rem;/, 'Keep mobile day padding compact');
 assert.match(css, /\.course-intro-grid\s*\{\s*display: grid;\s*grid-template-columns: repeat\(2, minmax\(0, 1fr\)\);/, 'Use two equal columns on wider screens');
 assert.match(css, /@media \(max-width: 48rem\)[\s\S]*?\.course-intro-grid\s*\{\s*grid-template-columns: 1fr;/, 'Stack the introductory sections on mobile');
@@ -82,11 +82,7 @@ for (const {hash = '', scrollY = 0, type = 'navigate', persisted = false, should
   onShow({persisted});
   assert.equal(scrolled, shouldScroll, `Course landing behavior: ${JSON.stringify({hash, scrollY, type, persisted})}`);
 }
-const courseNote = courseHtml.match(/<aside class="course-program" role="note" aria-label="Course affiliation">([\s\S]*?)<\/aside>/)?.[1];
-assert.ok(courseNote, 'The course must have a separate affiliation footnote');
-assert.match(courseNote, /A Stanford School of Medicine mini-course[\s\S]*<a href="https:\/\/oge\.stanford\.edu\/academics\/mini-courses-overview\/">Office of Graduate Education<\/a>/, 'Preserve the linked program description in the footnote');
-assert.equal((courseHtml.match(/class="course-program"/g) || []).length, 1, 'Show the program description once');
-assert.match(courseHtml, /<\/div>\s*<aside class="course-program"[^>]*>[\s\S]*?<\/aside>\s*<\/article>/, 'Place the footnote after the course content, inside the course article');
+assert.ok(!courseHtml.includes('class="course-program"'), 'Omit the BIOS 214 affiliation footnote');
 assert.equal(courseHtml.match(/<footer class="site-footer">[\s\S]*?<\/footer>/)?.[0], html.match(/<footer class="site-footer">[\s\S]*?<\/footer>/)?.[0], 'Keep the standard site footer unchanged');
 for (const content of [html, courseHtml]) {
   assert.match(content, /<span class="course-institution-logo" style="--institution-logo: url\('\/assets\/icons\/stanford-som-mono\.svg'\);" aria-hidden="true"><\/span> Stanford School of Medicine/, 'Show the School of Medicine shield, not the university block-S, on the course card and header');

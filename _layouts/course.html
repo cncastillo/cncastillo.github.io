@@ -1,15 +1,18 @@
 ---
 layout: default
 ---
+{% assign course = site.data[page.course_data] | default: page %}
 <article class="content-page course-page">
   <header class="page-header course-header{% if page.image %} course-header-with-image{% endif %}">
     <div class="course-heading-copy">
-      <p class="eyebrow">{{ page.code }} · {{ page.term }}{% if page.institution %} · {% if page.institution_logo %}<span class="course-institution-logo" style="--institution-logo: url('{{ page.institution_logo | relative_url | escape }}');" aria-hidden="true"></span> {% endif %}{{ page.institution }}{% endif %}</p>
-      <h1>{{ page.title }}</h1>
-      {% if page.instructors %}
+      <p class="eyebrow">{{ course.code }} · {{ course.term }}{% if course.institution %} · {% if course.institution_logo %}<span class="course-institution-logo" style="--institution-logo: url('{{ course.institution_logo | relative_url | escape }}');" aria-hidden="true"></span> {% endif %}{{ course.institution }}{% endif %}</p>
+      <h1>{{ course.title }}{% if course.subtitle %}: {{ course.subtitle }}{% endif %}</h1>
+      {% if page.course_data %}
+        <div class="course-instructors"><p>Taught by {% for instructor in course.instructors %}{% unless forloop.first %} and {% endunless %}{% if forloop.first %}<strong>{{ instructor.name }}</strong>{% else %}{{ instructor.name }}{% endif %}{% endfor %}</p></div>
+      {% elsif page.instructors %}
         <div class="course-instructors">{{ page.instructors | prepend: 'Taught by ' | markdownify }}</div>
       {% endif %}
-      <p class="course-description">{{ page.description }}</p>
+      <p class="course-description">{{ course.description }}</p>
     </div>
     {% if page.image %}
       <img class="course-header-image" src="{{ page.image | relative_url }}" alt="{{ page.image_alt }}" width="1448" height="1086">
@@ -19,7 +22,7 @@ layout: default
   {% if page.sections %}
     <nav class="course-nav" aria-label="Course sections">
       {% for section in page.sections %}
-        <a href="{{ section.href }}">{{ section.label }}</a>
+        <a href="{{ section.href }}"{% if section.download %} download="{{ section.download }}"{% endif %}>{{ section.label }}</a>
       {% endfor %}
     </nav>
   {% endif %}
@@ -27,8 +30,8 @@ layout: default
   <div class="prose prose-wide course-content">
     {{ content }}
   </div>
-  {% if page.program %}
-    <aside class="course-program" role="note" aria-label="Course affiliation">{{ page.program | markdownify }}</aside>
+  {% if course.program %}
+    <aside class="course-program" role="note" aria-label="Course affiliation">{{ course.program | markdownify }}</aside>
   {% endif %}
 </article>
 <script src="{{ '/assets/js/course-start.js' | relative_url }}" defer></script>

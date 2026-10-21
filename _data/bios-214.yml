@@ -1,0 +1,104 @@
+title: Open-Source MRI Sequence Development
+subtitle: Simulation to Scanner
+code: BIOS 214
+term: Autumn 2026
+last_updated: October 21, 2026
+institution: Stanford School of Medicine
+institution_logo: /assets/icons/stanford-som-mono.svg
+description: Hands-on MRI sequence design, simulation, acquisition, and reconstruction with open-source tools.
+website: https://cncastillo.github.io/teaching/bios-214/
+canvas: https://canvas.stanford.edu/courses/233500
+dates: November 9-December 4, 2026
+weekdays: Mondays, Wednesdays, and Fridays
+lecture_time: 9:30-10:20 a.m.
+lab_time: 10:30-11:50 a.m.
+classroom:
+  name: CCSR4107
+  url: https://25live.collegenet.com/pro/stanfordsom#!/home/location/1431
+alternate_classroom:
+  name: M218/218A
+  url: https://25live.collegenet.com/pro/stanfordsom#!/home/location/1454
+  days: 1 and 3
+scanner: Cima.X (3T3)
+scanner_location: Lucas Center
+instructors:
+  - name: Carlos Castillo-Passi
+    url: https://profiles.stanford.edu/carlos-castillo-passi
+    position: Postdoctoral Scholar in Radiology, Stanford University.
+  - name: Daniel Ennis
+    url: https://profiles.stanford.edu/daniel-ennis
+    position: Professor of Radiology and Bioengineering (by courtesy), Stanford University.
+ta:
+  name: Charles McGrath
+  url: https://profiles.stanford.edu/charles-mcgrath
+  position: Postdoctoral Scholar in Radiology, Stanford University.
+weeks:
+  - number: 1
+    topic: RF excitation
+    days:
+      - number: 1
+        date: Nov 9
+        lecture: Open source, AI agents, and MRI simulations
+        lecture_url:
+        lab: Run and interpret a first Bloch simulation
+        lab_url:
+      - number: 2
+        date: Nov 11
+        lecture: RF excitation and selective pulses
+        lecture_url:
+        lab: Simulate the 2D RF excitation sequence
+        lab_url:
+      - number: 3
+        date: Nov 13
+        lecture: RF pulse validation
+        lecture_url:
+        lab: Test your chosen 2D RF pattern; compare with simulations
+        lab_url:
+        scanner: true
+  - number: 2
+    topic: Spatial encoding
+    days:
+      - number: 4
+        date: Nov 16
+        lecture: Gradients and Cartesian k-space
+        lecture_url:
+        lab: Simulate gradient moments and EPI artifacts
+        lab_url:
+      - number: 5
+        date: Nov 18
+        lecture: Radial and spiral trajectories
+        lecture_url:
+        lab: Compare undersampling, delays, and off-resonance
+        lab_url:
+      - number: 6
+        date: Nov 20
+        lecture: Trajectories and hardware limits
+        lecture_url:
+        lab: Acquire and reconstruct radial data
+        lab_url:
+        scanner: true
+  - number: 3
+    break: Thanksgiving break
+    dates: November 23-27
+  - number: 4
+    topic: Sequences and reconstruction
+    days:
+      - number: 7
+        date: Nov 30
+        lecture: Gradient echo, spin echo, and steady states
+        lecture_url:
+        lab: Simulate spoiling, banding, and relaxation
+        lab_url:
+      - number: 8
+        date: Dec 2
+        lecture: Coil sensitivities, parallel imaging, and compressed sensing
+        lecture_url:
+        lab: Reconstruct data using BART and MRIReco
+        lab_url:
+      - number: 9
+        date: Dec 4
+        lecture: Pulseq and OpenRecon
+        lecture_url:
+        lab: Evaluate an acquisition and reconstruction pipeline
+        lab_url:
+        scanner: true

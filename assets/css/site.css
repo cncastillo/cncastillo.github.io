@@ -738,8 +738,14 @@ main { min-height: 70vh; }
 }
 
 .course-schedule-scroll { max-width: 100%; overflow-x: auto; }
-.course-schedule-scroll table { min-width: 48rem; }
+.course-schedule-scroll table { min-width: 52rem; }
 .course-schedule-hint { display: none; }
+
+.course-content .schedule-updated {
+  color: var(--muted);
+  font-size: 0.8rem;
+  margin-top: -0.75rem;
+}
 
 .course-content table {
   width: 100%;
@@ -759,7 +765,7 @@ main { min-height: 70vh; }
 
 .course-content th:not(:first-child),
 .course-content td:not(:first-child) {
-  padding-inline: clamp(0.75rem, 5vw, 4rem);
+  padding-inline: clamp(0.75rem, 4vw, 3rem);
 }
 
 .course-content th:first-child { width: clamp(6rem, 8vw, 7rem); }
@@ -777,6 +783,8 @@ main { min-height: 70vh; }
 
 .course-session { padding-inline-end: clamp(0.45rem, 0.8vw, 0.7rem); }
 
+.course-content .course-session > span { font-size: 0.9em; }
+
 .course-session > a {
   margin-left: auto;
   text-align: right;
@@ -788,6 +796,15 @@ main { min-height: 70vh; }
   margin-right: 0.2em;
   vertical-align: -0.12em;
 }
+
+p:has(> .setup-legend) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em 1em;
+  align-items: baseline;
+}
+
+.setup-legend { margin-left: auto; text-align: right; }
 
 .course-content a[aria-disabled="true"] {
   color: var(--muted);

@@ -18,6 +18,7 @@ permalink: /teaching/
 <h2 id="courses">Courses</h2>
 <div class="course-list">
   {% for course in courses %}
+    {% assign details = site.data[course.course_data] | default: course %}
     <article class="course-card{% if course.image %} course-card-with-image{% endif %}">
       {% if course.image %}
         <a class="course-card-media" href="{{ course.url | relative_url }}" tabindex="-1" aria-hidden="true">
@@ -25,9 +26,9 @@ permalink: /teaching/
         </a>
       {% endif %}
       <div class="course-card-copy">
-        <p class="archive-type">{{ course.code }} · {{ course.term }}{% if course.institution %} · {% if course.institution_logo %}<span class="course-institution-logo" style="--institution-logo: url('{{ course.institution_logo | relative_url | escape }}');" aria-hidden="true"></span> {% endif %}{{ course.institution }}{% endif %}</p>
-        <h3><a href="{{ course.url | relative_url }}">{{ course.title }}</a></h3>
-        <p>{{ course.description }}</p>
+        <p class="archive-type">{{ details.code }} · {{ details.term }}{% if details.institution %} · {% if details.institution_logo %}<span class="course-institution-logo" style="--institution-logo: url('{{ details.institution_logo | relative_url | escape }}');" aria-hidden="true"></span> {% endif %}{{ details.institution }}{% endif %}</p>
+        <h3><a href="{{ course.url | relative_url }}">{{ details.title }}{% if details.subtitle %}: {{ details.subtitle }}{% endif %}</a></h3>
+        <p>{{ details.description }}</p>
         <a class="text-link" href="{{ course.url | relative_url }}">Course page →</a>
       </div>
     </article>

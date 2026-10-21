@@ -187,7 +187,7 @@ The optional `instructors` field appears as a byline below the course title and 
 
 Add lecture notes below the course folder as Markdown with `layout: page` and a `title`, then link them from the course page. Link slides, notebooks, and downloads the same way. Keep submissions, grades, and private student material in Canvas or another course system.
 
-For BIOS 214, edit the materials table in `teaching/bios-214/index.md`: one row per week, with Monday/Wednesday/Friday columns. The table uses HTML to merge the Thanksgiving break cells; each teaching cell has `markdown="span"`, so its contents and links remain editable in Markdown. Keep the `course-day-header` and `course-session` spans in place; they handle alignment. Mark room exceptions with `<sup>*</sup>` beside the date and explain them in the classroom note below the table. Replace the whole `<a role="link" aria-disabled="true">Coming soon</a>` placeholder with a Markdown link such as `[Notes](week-1/monday/)` or `[Lab](week-1/friday/)` once those materials exist.
+For BIOS 214, edit the shared course data and Markdown includes described below. `teaching/bios-214/index.md` controls the website layout and menu; its first menu link downloads the syllabus PDF.
 
 ## Add a mentorship
 
@@ -224,6 +224,43 @@ ruby scripts/check-content.rb
 bundle exec jekyll serve
 ```
 
+### BIOS 214 syllabus
+
+The course website, standalone syllabus, and PDF share their overlapping content:
+
+- `_data/bios-214.yml`: title, term, staff, links, times, locations, and schedule topics/dates.
+- `_includes/bios-214-overview.md` and `_includes/bios-214-learning-goals.md`: overview and learning goals.
+- `_includes/bios-214-setup.md`: setup instructions.
+- `_includes/bios-214-classroom.md` and `_includes/bios-214-schedule-day.md`: classroom note and session content.
+
+The website keeps its two-column introduction and schedule material links.
+For each day in `_data/bios-214.yml`, set `lecture_url` and `lab_url` to an
+HTTPS URL or a site path such as `/assets/teaching/lecture.pdf`. A filled field
+shows a **Materials** link; leave it empty to show **Coming soon**.
+`_includes/bios-214-materials.html` and `_includes/bios-214-schedule.md` format
+the same schedule data for the website and syllabus respectively.
+`_includes/bios-214-information.md` formats the syllabus information table.
+Grading and policies remain syllabus sections: edit
+`_includes/bios-214-grading.md` and `_includes/bios-214-syllabus.md`.
+`teaching/bios-214/syllabus.md` selects the shared course data.
+The `last_updated` field in `_data/bios-214.yml` supplies the website's schedule
+note and the PDF footer's revision date. Update it when the course content or
+materials change, rather than on each build.
+
+`scripts/render-syllabus.rb` uses Jekyll's Liquid renderer to expand the same
+includes and data as the website into `_syllabus/build/syllabus.md`. Pandoc
+applies `_syllabus/template.typ` and writes a Letter-size PDF directly with
+`--pdf-engine=typst`. Rebuild with `bash scripts/build-syllabus-pdf.sh` after
+`bundle install`; install Pandoc and Typst first. Fonts
+are bundled in `assets/fonts/latin-modern`. The generated PDF is
+`assets/teaching/bios-214-syllabus.pdf`, linked from the main course menu as
+Syllabus ↓.
+
+The build workflow lives in this website repository, not the `bios-214`
+notebook repository. `.github/workflows/pages.yml` builds the CV and syllabus
+PDFs before Jekyll, so the downloadable syllabus and course page come from
+the same source revision.
+
 Open <http://127.0.0.1:4000/>. YAML and Markdown changes are watched automatically. Restart the server after changing `_config.yml`.
 
 Run the tests before publishing:
@@ -250,8 +287,8 @@ latexmk -pdf -no-shell-escape -file-line-error -halt-on-error -interaction=nonst
 cp _cv/build/carlos-castillo-passi-cv.pdf assets/cv/carlos-castillo-passi-cv.pdf
 ```
 
-`_cv/build/` is generated and ignored. Source files, scripts, and templates are excluded from the published site. The repository itself is public: never put private details in source files, even in comments.
+`_cv/build/` and `_syllabus/build/` are generated and ignored. Source files, scripts, and templates are excluded from the published site. The repository itself is public: never put private details in source files, even in comments.
 
-The checked-in PDF supports local previews; updating a record does not automatically rebuild that local PDF. CI validates content, generates the CV lists from YAML, compiles a fresh PDF, builds Jekyll, and uploads the PDF as a workflow artifact. Only successful runs on `master` deploy; pull requests never deploy or commit generated files.
+The checked-in PDFs support local previews; editing source does not automatically rebuild those local PDFs. CI validates content, generates the CV lists from YAML, compiles a fresh CV PDF, and builds the syllabus PDF with Pandoc and Typst. It then builds Jekyll and uploads both PDFs as workflow artifacts. Only successful runs on `master` deploy; pull requests never deploy or commit generated files.
 
 Before the first deployment, select **Settings → Pages → Build and deployment → Source → GitHub Actions**. The workflow does not change that setting automatically.

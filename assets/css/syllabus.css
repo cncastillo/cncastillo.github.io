@@ -1,0 +1,150 @@
+@font-face {
+  font-family: 'Latin Modern Sans';
+  src: url('../fonts/latin-modern/lmsans10-regular.otf') format('opentype');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Latin Modern Sans';
+  src: url('../fonts/latin-modern/lmsans10-bold.otf') format('opentype');
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Latin Modern Roman';
+  src: url('../fonts/latin-modern/lmroman10-regular.otf') format('opentype');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Latin Modern Roman';
+  src: url('../fonts/latin-modern/lmroman10-bold.otf') format('opentype');
+  font-weight: 700;
+  font-display: swap;
+}
+
+:root {
+  /* KomaMRI logo colors: blue and charcoal, with neutral gray. */
+  --koma-blue: #2a7fb8;
+  --koma-charcoal: #4b4b4b;
+  --koma-gray: #929292;
+  color-scheme: light;
+  font-family: 'Latin Modern Sans', Arial, sans-serif;
+  color: var(--koma-charcoal);
+  background: #f3f6f8;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; }
+a { color: var(--koma-blue); text-underline-offset: 2px; }
+
+.syllabus-actions {
+  max-width: 8.5in;
+  margin: 24px auto 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: center;
+  padding: 0 20px;
+  font-size: 14px;
+}
+
+
+.syllabus {
+  max-width: 8.5in;
+  margin: 0 auto 36px;
+  padding: 0.6in 0.65in;
+  background: white;
+  box-shadow: 0 3px 20px #0000000d;
+  font-size: 11pt;
+  line-height: 1.38;
+}
+
+header { margin-bottom: 34px; font-family: 'Latin Modern Roman', 'Times New Roman', serif; }
+.syllabus-masthead { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 26px; }
+.institution { display: flex; align-items: center; gap: 9px; color: #000; font-weight: 600; margin: 0; }
+.institution img { flex: none; }
+.course-code { color: #666; font-size: 9pt; letter-spacing: 0.07em; text-transform: uppercase; margin: 0; text-align: right; white-space: nowrap; }
+.document-type { color: #666; font-size: 9pt; letter-spacing: 0.07em; text-transform: uppercase; margin: 0 0 7px; }
+h1 { font-family: inherit; font-size: 22pt; font-weight: 400; line-height: 1.12; margin: 0; color: var(--koma-charcoal); }
+h1 span { display: block; font-size: 19pt; margin-top: 5px; color: var(--koma-charcoal); }
+h2 { font-size: 11.5pt; color: var(--koma-blue); margin: 30px 0 16px; font-weight: 700; break-after: avoid; }
+p { margin: 0 0 9px; }
+#ai-policy ~ p { margin-bottom: 16px; }
+.pass-requirement { text-align: center; padding-bottom: 8pt; }
+.recurring { text-decoration: overline; }
+ol { padding-left: 21px; margin: 5px 0 12px; }
+li { margin-bottom: 3px; }
+
+table { border-collapse: collapse; width: 100%; margin: 10px 0 12px; font-size: 10.5pt; line-height: 1.3; }
+th, td { padding: 7px 9px; border: 1px solid #d1d5db; }
+thead th { background: #eaf3f9; font-weight: 700; text-align: left; }
+tbody tr:last-child:not(:first-child) td { border-bottom-color: var(--koma-gray); }
+.course-information table { table-layout: auto; border-top: 1px solid var(--koma-gray); border-bottom: 1px solid var(--koma-gray); }
+.course-information thead { display: none; }
+.course-information td { border: none; padding: 5px 8px; vertical-align: top; }
+.course-information td:first-child { width: 19%; }
+.course-information tbody tr:nth-child(3) td { border-bottom: 1px solid var(--koma-gray); }
+tr { break-inside: avoid; }
+.schedule-scroll { overflow-x: auto; }
+.schedule-hint { display: none; }
+.schedule { table-layout: fixed; font-size: 10pt; line-height: 1.5; }
+.schedule th:first-child { width: 16%; }
+.schedule th, .schedule td { vertical-align: top; padding: 16px 9px; border: 0; border-bottom: 1px solid var(--koma-gray); }
+.schedule tbody th { text-align: left; font-weight: 400; font-size: 9.5pt; background: #f5f8fa; }
+.schedule td strong:first-child { display: inline-block; margin-bottom: 7px; }
+.schedule td br { line-height: 1.5; }
+.schedule .course-day-header { display: block; margin-bottom: 7px; }
+.schedule .course-session { display: block; }
+.schedule .course-session + .course-session { margin-top: 8px; }
+.schedule .break { text-align: center; color: #666; background: #f5f8fa; padding: 14px; }
+.schedule tbody tr:nth-child(3) td { background: #f5f8fa; }
+.schedule tbody tr:nth-child(3) td:not(:first-child) { border-left: none; border-right: none; }
+.schedule span.break { display: block; width: calc(300% + 38px); padding: 4px 0; }
+.course-icon { width: 1em; height: 1em; margin-right: 0.2em; vertical-align: -0.12em; }
+p:has(> .setup-legend) { display: flex; flex-wrap: wrap; gap: 0.5em 1em; align-items: baseline; }
+.setup-legend { margin-left: auto; text-align: right; }
+sup { font-size: 0.75em; }
+
+@media (max-width: 650px) {
+  .syllabus { padding: 24px 18px; }
+  .syllabus-masthead { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .course-code { text-align: left; white-space: normal; }
+  .course-information td:first-child { width: 24%; }
+  h1 { font-size: 23pt; }
+  .schedule { min-width: 660px; }
+  .schedule-hint { display: block; font-size: 9.5pt; color: #666; }
+}
+
+@page {
+  size: Letter;
+  margin: 0.75in 0.65in 0.62in;
+  @top-left { content: "BIOS 214 · SYLLABUS"; font-family: 'Latin Modern Roman', serif; font-size: 9pt; color: #929292; vertical-align: bottom; padding-bottom: 8pt; }
+  @top-right { content: "AUTUMN 2026"; font-family: 'Latin Modern Roman', serif; font-size: 9pt; color: #929292; vertical-align: bottom; padding-bottom: 8pt; }
+  @bottom-left { content: "Carlos Castillo-Passi, Ph.D."; font-family: Arial, sans-serif; font-size: 8pt; color: #777; }
+  @bottom-right { content: counter(page); font-family: Arial, sans-serif; font-size: 8pt; color: #777; }
+}
+
+@page :first {
+  margin-top: 0.58in;
+  @top-left { content: none; }
+  @top-right { content: none; }
+}
+
+@media print {
+  :root { background: white; }
+  .syllabus-actions { display: none; }
+  .syllabus { max-width: none; margin: 0; padding: 0; box-shadow: none; font-size: 10.5pt; line-height: 1.3; }
+  header { margin-bottom: 24px; }
+  h2 { margin-top: 22px; }
+  p { margin-bottom: 8px; }
+  #ai-policy ~ p { margin-bottom: 14px; }
+  th, td { padding: 6px 9px; }
+  #before-first-class, #schedule { break-before: page; margin-top: 0; padding-top: 14pt; }
+  .schedule-scroll { overflow: visible; }
+  .schedule-hint { display: none; }
+  a { text-decoration: none; }
+  p, li { orphans: 2; widows: 2; }
+  table { break-inside: avoid; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
