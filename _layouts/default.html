@@ -1,10 +1,11 @@
+{% assign metadata = site.data[page.course_data] | default: page %}
 <!doctype html>
 <html lang="{{ site.lang | default: 'en' }}">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{% if page.url == '/' %}{{ site.data.profile.name | escape }}{% else %}{{ page.title | escape }} · {{ site.data.profile.name | escape }}{% endif %}</title>
-    <meta name="description" content="{{ page.description | default: site.data.profile.description | escape }}">
+    <title>{% if page.url == '/' %}{{ site.data.profile.name | escape }}{% else %}{{ metadata.title | escape }}{% if metadata.subtitle %}: {{ metadata.subtitle | escape }}{% endif %} · {{ site.data.profile.name | escape }}{% endif %}</title>
+    <meta name="description" content="{{ metadata.description | default: site.data.profile.description | escape }}">
     <link rel="canonical" href="{{ page.url | absolute_url }}">
     <link rel="icon" href="{{ site.data.profile.favicon | relative_url }}" type="image/png" sizes="128x128">
     <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}">

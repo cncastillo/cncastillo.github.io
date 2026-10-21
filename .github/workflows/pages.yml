@@ -1,4 +1,4 @@
-name: Build CV and website
+name: Build PDFs and website
 
 on:
   push:
@@ -27,10 +27,14 @@ jobs:
           ruby-version: '3.3'
           bundler: ${{ env.BUNDLER_VERSION }}
           bundler-cache: true
+      - uses: r-lib/actions/setup-pandoc@f9a764fea8d5c63df6ef9a5c7795bf7deb5d7e05 # v2
+        with:
+          pandoc-version: '3.10'
       - name: Validate content and generate CV records
         run: |
           ruby scripts/test-content.rb
           ruby scripts/test-cv.rb
+          ruby scripts/test-course-sharing.rb
       - name: Compile CV
         uses: xu-cheng/latex-action@6549dc21effb2730855a1281407ecfcececc6c1b # v4
         with:
@@ -40,6 +44,11 @@ jobs:
           args: -pdf -no-shell-escape -file-line-error -halt-on-error -interaction=nonstopmode -outdir=build -jobname=carlos-castillo-passi-cv
       - name: Include the freshly built CV in the site
         run: cp _cv/build/carlos-castillo-passi-cv.pdf assets/cv/carlos-castillo-passi-cv.pdf
+      - uses: typst-community/setup-typst@fee4b65b091cc546f02ce3be15fad8760f38a108 # v5
+        with:
+          typst-version: '0.15.0'
+      - name: Build syllabus PDF with Pandoc and Typst
+        run: bash scripts/build-syllabus-pdf.sh
       - name: Build website
         run: bundle exec jekyll build --safe
         env:
@@ -49,6 +58,12 @@ jobs:
         with:
           name: carlos-castillo-passi-cv
           path: assets/cv/carlos-castillo-passi-cv.pdf
+          if-no-files-found: error
+      - name: Upload syllabus preview
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: bios-214-syllabus
+          path: assets/teaching/bios-214-syllabus.pdf
           if-no-files-found: error
       - name: Upload Pages artifact
         if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'

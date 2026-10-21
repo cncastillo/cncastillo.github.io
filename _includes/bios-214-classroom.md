@@ -1,0 +1,1 @@
+**Classroom:** <img src="/assets/icons/room.svg" class="course-icon" alt="" width="14" height="14"> [{{ course.classroom.name }}]({{ course.classroom.url }}), except days {{ course.alternate_classroom.days }}: <img src="/assets/icons/room.svg" class="course-icon" alt="" width="14" height="14"> [{{ course.alternate_classroom.name }}]({{ course.alternate_classroom.url }}).
