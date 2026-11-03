@@ -7,7 +7,7 @@ site = Jekyll::Site.new(Jekyll.configuration('safe' => true, 'quiet' => true))
 site.read
 page = site.pages.find { |entry| entry.relative_path == 'teaching/bios-214/syllabus.md' }
 course = site.data.fetch(page.data.fetch('course_data'))
-metadata = course.slice('title', 'subtitle', 'code', 'term', 'institution', 'institution_logo')
+metadata = course.slice('title', 'subtitle', 'code', 'term', 'institution', 'institution_logo', 'institution_wordmark')
 metadata['title'] = "#{course.fetch('code')}: #{course.fetch('title')}"
 metadata['revision-date'] = course.fetch('last_updated')
 payload = site.site_payload

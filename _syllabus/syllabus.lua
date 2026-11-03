@@ -47,7 +47,7 @@ local function format_table(tbl)
     tbl.attributes['typst:inset'] = '(x: 5pt, y: 11pt)'
     tbl.attributes['typst:fill'] = '(x, y) => if y == 3 {komatint} else {none}'
     for _, row in ipairs(tbl.bodies[1].body) do
-      if pandoc.utils.stringify(row.cells[1].contents) == 'Week 3' then
+      if pandoc.utils.stringify(row.cells[1].contents) == 'Break' then
         row.cells[2].col_span = 3
         row.cells[2].alignment = pandoc.AlignCenter
         row.cells[3], row.cells[4] = nil, nil
@@ -58,9 +58,11 @@ local function format_table(tbl)
           if block.t == 'Plain' or block.t == 'Para' then
             for _, inline in ipairs(block.content) do
               if inline.t == 'Span' and
-                (inline.classes[1] == 'course-day-header' or inline.classes[1] == 'course-session') then
+                (inline.classes[1] == 'course-day-header' or inline.classes[1] == 'course-session' or
+                 inline.classes[1] == 'week-label' or inline.classes[1] == 'week-topic') then
                 if #sessions > 0 then
-                  sessions[#sessions + 1] = pandoc.RawBlock('typst', '#v(6pt, weak: false)')
+                  local gap = inline.classes[1] == 'week-topic' and 4 or 6
+                  sessions[#sessions + 1] = pandoc.RawBlock('typst', '#v(' .. gap .. 'pt, weak: false)')
                 end
                 sessions[#sessions + 1] = pandoc.Para(inline.content)
               end

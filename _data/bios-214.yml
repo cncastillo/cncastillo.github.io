@@ -2,9 +2,10 @@ title: Open-Source MRI Sequence Development
 subtitle: Simulation to Scanner
 code: BIOS 214
 term: Autumn 2026
-last_updated: October 21, 2026
+last_updated: November 2, 2026
 institution: Stanford School of Medicine
 institution_logo: /assets/icons/stanford-som-mono.svg
+institution_wordmark: /assets/icons/stanford-som-horizontal.svg
 description: Hands-on MRI sequence design, simulation, acquisition, and reconstruction with open-source tools.
 website: https://cncastillo.github.io/teaching/bios-214/
 canvas: https://canvas.stanford.edu/courses/233500
@@ -33,7 +34,7 @@ ta:
   url: https://profiles.stanford.edu/charles-mcgrath
   position: Postdoctoral Scholar in Radiology, Stanford University.
 weeks:
-  - number: 1
+  - number: 8
     topic: RF excitation
     days:
       - number: 1
@@ -55,7 +56,7 @@ weeks:
         lab: Test your chosen 2D RF pattern; compare with simulations
         lab_url:
         scanner: true
-  - number: 2
+  - number: 9
     topic: Spatial encoding
     days:
       - number: 4
@@ -77,10 +78,9 @@ weeks:
         lab: Acquire and reconstruct radial data
         lab_url:
         scanner: true
-  - number: 3
-    break: Thanksgiving break
+  - break: Thanksgiving break
     dates: November 23-27
-  - number: 4
+  - number: 10
     topic: Sequences and reconstruction
     days:
       - number: 7

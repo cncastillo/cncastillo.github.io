@@ -34,15 +34,16 @@
 #show link: set text(fill: komablue)
 #set enum(indent: 15pt, body-indent: 5pt, spacing: 5pt, tight: false)
 
+#let logo-unit = 180pt / 334.8
 #grid(
-  columns: (auto, 1fr, auto),
-  column-gutter: 6pt,
+  columns: (1fr, auto),
   align: left + horizon,
-  image("$institution_logo$", height: 15pt),
-  text(font: "Latin Modern Roman", size: 12pt, weight: "bold", fill: black)[$institution$],
+  // Offset the SVG's horizontal canvas padding without changing the artwork.
+  box(width: 180pt, height: 20pt, move(dx: -19.5 * logo-unit, dy: 6pt,
+    image("$institution_wordmark$", width: 180pt))),
   text(font: "Latin Modern Roman", size: 9pt, fill: komagray)[#upper([$term$])],
 )
-#v(20pt, weak: false)
+#v(46pt, weak: false)
 #text(font: "Latin Modern Roman", size: 9pt, fill: komagray)[SYLLABUS]
 #v(4pt)
 #text(font: "Latin Modern Roman", size: 22pt)[$title$]
