@@ -4,7 +4,7 @@
 | Week | Monday | Wednesday | Friday |
 |:-----|:-------|:----------|:-------|
 {% for week in course.weeks -%}
-| {% if week.break %}**Break**{% else %}<span class="week-label">**Week {{ week.number }}**</span>{% endif %}{% if week.topic %}<span class="week-topic">{{ week.topic }}</span>{% endif %}{% if week.question %}<span class="week-question">{{ week.question }}</span>{% endif %} | {% if week.break %}<span class="break"><img src="/assets/icons/turkey.svg" class="course-icon" alt="" width="14" height="14"> {{ week.dates }} · {{ week.break }}</span> |  |  |{% else %}{% for day in week.days %}{% capture session %}{% include bios-214-schedule-day.md day=day %}{% endcapture %}{{ session | strip }} | {% endfor %}{% endif %}
+| {% if week.break %}**Break**{% else %}<span class="week-label">**Week {{ week.number }}**</span>{% endif %}{% if week.topic %}<span class="week-topic">{{ week.topic }}</span>{% endif %} | {% if week.break %}<span class="break"><img src="/assets/icons/turkey.svg" class="course-icon" alt="" width="14" height="14"> {{ week.dates }} · {{ week.break }}</span> |  |  |{% else %}{% for day in week.days %}{% capture session %}{% include bios-214-schedule-day.md day=day %}{% endcapture %}{{ session | strip }} | {% endfor %}{% endif %}
 {% endfor -%}
 {: .schedule}
 

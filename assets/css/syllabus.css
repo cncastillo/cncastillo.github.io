@@ -97,10 +97,9 @@ tr { break-inside: avoid; }
 .schedule .course-day-header { display: block; margin-bottom: 7px; }
 .schedule .course-session { display: block; }
 .schedule .course-session + .course-session { margin-top: 8px; }
-.schedule .week-label, .schedule .week-topic, .schedule .week-question { display: block; }
+.schedule .week-label, .schedule .week-topic { display: block; }
 .schedule .week-label strong { margin-bottom: 0; }
-.schedule .week-topic, .schedule .week-question { margin-top: 8px; }
-.schedule .week-question { font-size: 0.85em; font-style: italic; color: #666; }
+.schedule .week-topic { margin-top: 8px; }
 .schedule .break { text-align: center; color: #666; background: #f5f8fa; padding: 14px; }
 .schedule tbody tr:nth-child(3) td { background: #f5f8fa; }
 .schedule tbody tr:nth-child(3) td:not(:first-child) { border-left: none; border-right: none; }

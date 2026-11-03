@@ -36,7 +36,6 @@ ta:
 weeks:
   - number: 8
     topic: RF excitation
-    question: Did I excite the magnetization I intended?
     days:
       - number: 1
         date: Nov 9
@@ -59,7 +58,6 @@ weeks:
         scanner: true
   - number: 9
     topic: Spatial encoding
-    question: Did I encode and sample the object correctly?
     days:
       - number: 4
         date: Nov 16
@@ -84,7 +82,6 @@ weeks:
     dates: November 23-27
   - number: 10
     topic: Sequences and reconstruction
-    question: Does the sequence produce the intended signal and contrast?
     days:
       - number: 7
         date: Nov 30
