@@ -5,7 +5,7 @@ require 'yaml'
 Dir.chdir(File.expand_path('..', __dir__))
 site = Jekyll::Site.new(Jekyll.configuration('safe' => true, 'quiet' => true))
 site.read
-page = site.pages.find { |entry| entry.relative_path == 'teaching/bios-214/syllabus.md' }
+page = Jekyll::Page.new(site, site.source, '_syllabus', 'source.md')
 course = site.data.fetch(page.data.fetch('course_data'))
 metadata = course.slice('title', 'subtitle', 'code', 'term', 'institution', 'institution_logo', 'institution_wordmark')
 metadata['title'] = "#{course.fetch('code')}: #{course.fetch('title')}"
