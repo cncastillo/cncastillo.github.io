@@ -2,7 +2,7 @@ title: Open-Source MRI Sequence Development
 subtitle: Simulation to Scanner
 code: BIOS 214
 term: Autumn 2026
-last_updated: November 2, 2026
+last_updated: November 3, 2026
 institution: Stanford School of Medicine
 institution_logo: /assets/icons/stanford-som-mono.svg
 institution_wordmark: /assets/icons/stanford-som-horizontal.svg
@@ -39,21 +39,21 @@ weeks:
     days:
       - number: 1
         date: Nov 9
-        lecture: Open source, AI agents, and MRI simulations
+        lecture: Open-source MRI, AI agents, and simulation
         lecture_url:
-        lab: Run and interpret a first Bloch simulation
+        lab: Your first MRI simulation with an agent
         lab_url:
       - number: 2
         date: Nov 11
-        lecture: RF excitation and selective pulses
+        lecture: Spatially selective RF excitation
         lecture_url:
-        lab: Simulate the 2D RF excitation sequence
+        lab: Design and simulate a 2D excitation pattern
         lab_url:
       - number: 3
         date: Nov 13
-        lecture: RF pulse validation
+        lecture: Echo formation and relaxation
         lecture_url:
-        lab: Test your chosen 2D RF pattern; compare with simulations
+        lab: Test your 2D excitation pattern
         lab_url:
         scanner: true
   - number: 9
@@ -61,19 +61,19 @@ weeks:
     days:
       - number: 4
         date: Nov 16
-        lecture: Gradients and Cartesian k-space
+        lecture: Spatial encoding and Cartesian imaging
         lecture_url:
-        lab: Simulate gradient moments and EPI artifacts
+        lab: Build and validate a Cartesian acquisition
         lab_url:
       - number: 5
         date: Nov 18
-        lecture: Radial and spiral trajectories
+        lecture: Nonuniform sampling and reconstruction
         lecture_url:
-        lab: Compare undersampling, delays, and off-resonance
+        lab: Design and simulate a radial acquisition
         lab_url:
       - number: 6
         date: Nov 20
-        lecture: Trajectories and hardware limits
+        lecture: Steady-state signal and image contrast
         lecture_url:
         lab: Acquire and reconstruct radial data
         lab_url:
@@ -85,20 +85,20 @@ weeks:
     days:
       - number: 7
         date: Nov 30
-        lecture: Gradient echo, spin echo, and steady states
+        lecture: Fast MRI sequences
         lecture_url:
-        lab: Simulate spoiling, banding, and relaxation
+        lab: Simulate spoiling and banding
         lab_url:
       - number: 8
         date: Dec 2
-        lecture: Coil sensitivities, parallel imaging, and compressed sensing
+        lecture: Accelerated imaging and reconstruction
         lecture_url:
-        lab: Reconstruct data using BART and MRIReco
+        lab: Build and validate a 2× accelerated EPI experiment
         lab_url:
       - number: 9
         date: Dec 4
-        lecture: Pulseq and OpenRecon
+        lecture: From image contrast to quantitative MRI
         lecture_url:
-        lab: Evaluate an acquisition and reconstruction pipeline
+        lab: Test accelerated EPI using regularized reconstruction
         lab_url:
         scanner: true
