@@ -227,7 +227,7 @@ bundle exec jekyll serve
 
 ### BIOS 214 syllabus
 
-The course website, standalone syllabus, and PDF share their overlapping content:
+The course website and syllabus PDF share their overlapping content:
 
 - `_data/bios-214.yml`: title, term, staff, links, times, locations, and schedule topics/dates.
 - `_includes/bios-214-overview.md` and `_includes/bios-214-learning-goals.md`: overview and learning goals.
@@ -243,7 +243,7 @@ the same schedule data for the website and syllabus respectively.
 `_includes/bios-214-information.md` formats the syllabus information table.
 Grading and policies remain syllabus sections: edit
 `_includes/bios-214-grading.md` and `_includes/bios-214-syllabus.md`.
-`teaching/bios-214/syllabus.md` selects the shared course data.
+`_syllabus/source.md` selects the shared course data for PDF generation; it is not published as a separate HTML syllabus.
 The `last_updated` field in `_data/bios-214.yml` supplies the website's schedule
 note and the PDF footer's revision date. Update it when the course content or
 materials change, rather than on each build.

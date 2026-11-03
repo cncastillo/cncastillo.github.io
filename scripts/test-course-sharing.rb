@@ -10,14 +10,16 @@ course['lecture_time'] = 'SHARED_TIME_CHECK'
 course['classroom']['name'] = 'SHARED_ROOM_CHECK'
 course['weeks'][0]['days'][0]['lecture'] = 'SHARED_SCHEDULE_CHECK'
 
-pages = %w[teaching/bios-214/index.md teaching/bios-214/syllabus.md teaching/index.md]
+pages = %w[teaching/bios-214/index.md teaching/index.md]
 documents = pages.map do |path|
   page = site.pages.find { |entry| entry.relative_path == path }
   html = Jekyll::Renderer.new(site, page).run
   raise "#{path}: shared title missing" unless html.include?('SHARED_TITLE_CHECK')
   html
 end
-website, syllabus = documents
+website = documents.first
+source = Jekyll::Page.new(site, site.source, '_syllabus', 'source.md')
+syllabus = Jekyll::Renderer.new(site, source).run
 %w[SHARED_TIME_CHECK SHARED_ROOM_CHECK SHARED_SCHEDULE_CHECK].each do |marker|
   [website, syllabus].each do |document|
     raise "Shared data edit did not propagate: #{marker}" unless document.include?(marker)
@@ -60,4 +62,4 @@ linked = render_materials.call
 raise 'Lab URL must support site paths' unless linked.include?('href="/assets/teaching/lab.html"')
 raise 'Linked materials must replace the placeholders' unless linked.scan('>Materials</a>').size == 2 && !linked.include?('aria-disabled="true"')
 
-puts 'Course sharing checks passed: shared edits reach both layouts; overview/goals match; schedule links remain.'
+puts 'Course sharing checks passed: shared edits reach the website and PDF source; overview/goals match; schedule links remain.'
