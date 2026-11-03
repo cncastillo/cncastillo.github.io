@@ -182,6 +182,7 @@ Copy `_templates/course.md` to `teaching/my-course/index.md` and edit its front 
 Use the optional `program` field for a small program/department footnote beneath the course content, separate from the site footer, with Markdown links if useful. The `sections` list controls the course menu. Its anchors must match the page headings (`## Materials` → `#materials`).
 
 Optional `institution_logo` points to a local transparent logo mask, displayed beside `institution` in the text color on the course card and course header.
+`institution_wordmark` points to the complete, unmodified institutional logo used in the Typst syllabus PDF.
 
 The optional `instructors` field appears as a byline below the course title and supports Markdown, for example `instructors: "**Your Name** and Co-instructor"`.
 

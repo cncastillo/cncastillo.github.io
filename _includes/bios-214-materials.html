@@ -8,7 +8,7 @@
   <tbody>
     {% for week in course.weeks %}
     <tr>
-      <td markdown="span">**Week {{ week.number }}**</td>
+      <td markdown="span">{% if week.break %}**Break**{% else %}**Week {{ week.number }}**{% endif %}</td>
       {% if week.break %}
       <td colspan="3" class="course-break"><img class="course-icon" src="{{ '/assets/icons/turkey.svg' | relative_url }}" alt="" width="24" height="24"> {{ week.dates }} · {{ week.break }}</td>
       {% else %}
