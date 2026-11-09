@@ -44,7 +44,7 @@ sections:
 
 <p class="schedule-updated">Last updated: {{ course.last_updated }}</p>
 
-<p><a href="{{ '/bios-214/lecture/' | relative_url }}">Slides</a> · <a href="{{ '/bios-214/lab/' | relative_url }}">Activities</a> · <a href="{{ '/bios-214/lecture/0/' | relative_url }}#/contributing-back-earns-additional-points">Contributing to OSS</a></p>
+<p><a href="{{ '/bios-214/lecture/' | relative_url }}">Slides</a> · <a href="{{ '/bios-214/lab/' | relative_url }}">Activities</a></p>
 
 {% include bios-214-materials.html %}
 
