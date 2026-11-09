@@ -17,7 +17,7 @@ Grading uses a point system, with points earned through attendance and completed
 </div>
 
 - **Lecture attendance:** Attend and record attendance using the Canvas check-in form.
-- **Coding laboratory:** Use the skill; submit a reproducible notebook with expected results and prompt history.
+- **Coding laboratory:** Use the course skill; submit `.jl` and `.html` notebooks with reproducible results and prompt history.
 - **Scanner laboratory:** Prepare and scan a Pulseq sequence; compare measurements with simulations.
 
 **Submission deadline:** Submit laboratory work through Canvas by **midnight at the end of the day**.

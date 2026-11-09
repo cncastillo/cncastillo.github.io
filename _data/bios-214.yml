@@ -2,13 +2,14 @@ title: Open-Source MRI Sequence Development
 subtitle: Simulation to Scanner
 code: BIOS 214
 term: Autumn 2026
-last_updated: November 3, 2026
+last_updated: November 9, 2026
 institution: Stanford School of Medicine
 institution_logo: /assets/icons/stanford-som-mono.svg
 institution_wordmark: /assets/icons/stanford-som-horizontal.svg
 description: Hands-on MRI sequence design, simulation, acquisition, and reconstruction with open-source tools.
 website: https://cncastillo.github.io/teaching/bios-214/
 canvas: https://canvas.stanford.edu/courses/233500
+activity0_url: /bios-214/lab/0/
 dates: November 9-December 4, 2026
 weekdays: Mondays, Wednesdays, and Fridays
 lecture_time: 9:30-10:20 a.m.
@@ -39,22 +40,25 @@ weeks:
     days:
       - number: 1
         date: Nov 9
-        lecture: Open-source MRI, AI agents, and simulation
-        lecture_url:
+        lecture: Open-source, AI agents, and MRI simulation
+        lecture_url: /bios-214/lecture/1/
+        video_url: https://www.youtube.com/watch?v=ttQpPyCUars
         lab: Your first MRI simulation with an agent
-        lab_url:
+        lab_url: /bios-214/lab/1/
       - number: 2
         date: Nov 11
         lecture: Spatially selective RF excitation
-        lecture_url:
+        lecture_url: /bios-214/lecture/2/
+        video_url: https://www.youtube.com/watch?v=9kbTvdXwARY
         lab: Design and simulate a 2D excitation pattern
-        lab_url:
+        lab_url: /bios-214/lab/2/
       - number: 3
         date: Nov 13
         lecture: Echo formation and relaxation
-        lecture_url:
+        lecture_url: /bios-214/lecture/3/
+        video_url: https://www.youtube.com/watch?v=4lbQavTGfro
         lab: Test your 2D excitation pattern
-        lab_url:
+        lab_url: /bios-214/lab/3/
         scanner: true
   - number: 9
     topic: Spatial encoding
@@ -62,21 +66,24 @@ weeks:
       - number: 4
         date: Nov 16
         lecture: Spatial encoding and Cartesian imaging
-        lecture_url:
+        lecture_url: /bios-214/lecture/4/
+        video_url: https://www.youtube.com/watch?v=vCL9s6VZwPI
         lab: Build and validate a Cartesian acquisition
-        lab_url:
+        lab_url: /bios-214/lab/4/
       - number: 5
         date: Nov 18
         lecture: Nonuniform sampling and reconstruction
-        lecture_url:
+        lecture_url: /bios-214/lecture/5/
+        video_url: https://www.youtube.com/watch?v=NdZMVhmq8kU
         lab: Design and simulate a radial acquisition
-        lab_url:
+        lab_url: /bios-214/lab/5/
       - number: 6
         date: Nov 20
         lecture: Steady-state signal and image contrast
-        lecture_url:
+        lecture_url: /bios-214/lecture/6/
+        video_url: https://www.youtube.com/watch?v=CmpV5I10MXk
         lab: Acquire and reconstruct radial data
-        lab_url:
+        lab_url: /bios-214/lab/6/
         scanner: true
   - break: Thanksgiving break
     dates: November 23-27
@@ -86,19 +93,22 @@ weeks:
       - number: 7
         date: Nov 30
         lecture: Fast MRI sequences
-        lecture_url:
+        lecture_url: /bios-214/lecture/7/
+        video_url: https://www.youtube.com/watch?v=kbUAtyUbTm8
         lab: Simulate spoiling and banding
-        lab_url:
+        lab_url: /bios-214/lab/7/
       - number: 8
         date: Dec 2
         lecture: Accelerated imaging and reconstruction
-        lecture_url:
+        lecture_url: /bios-214/lecture/8/
+        video_url: https://www.youtube.com/watch?v=Plzaf6VILIE
         lab: Build and validate a 2× accelerated EPI experiment
-        lab_url:
+        lab_url: /bios-214/lab/8/
       - number: 9
         date: Dec 4
         lecture: From image contrast to quantitative MRI
-        lecture_url:
+        lecture_url: /bios-214/lecture/9/
+        video_url: https://www.youtube.com/watch?v=lKhoqSNmNuI
         lab: Test accelerated EPI using regularized reconstruction
-        lab_url:
+        lab_url: /bios-214/lab/9/
         scanner: true
