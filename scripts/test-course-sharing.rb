@@ -60,6 +60,6 @@ raise 'An unlinked lab must retain its placeholder' unless linked.scan('aria-dis
 day['lab_url'] = '/assets/teaching/lab.html'
 linked = render_materials.call
 raise 'Lab URL must support site paths' unless linked.include?('href="/assets/teaching/lab.html"')
-raise 'Linked materials must replace the placeholders' unless linked.include?('>Slides</a>') && linked.include?('>Video</a>') && linked.include?(">Lab #{day['number']}</a>") && !linked.include?('aria-disabled="true"')
+raise 'Linked materials must replace the placeholders' unless linked.include?(">Slides #{day['number']}</a>") && linked.include?(">Video #{day['number']}</a>") && linked.include?(">Lab #{day['number']}</a>") && !linked.include?('aria-disabled="true"')
 
 puts 'Course sharing checks passed: shared edits reach the website and PDF source; overview/goals match; schedule links remain.'

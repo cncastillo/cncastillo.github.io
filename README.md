@@ -235,10 +235,11 @@ The course website and syllabus PDF share their overlapping content:
 - `_includes/bios-214-classroom.md` and `_includes/bios-214-schedule-day.md`: classroom note and session content.
 
 The website keeps its two-column introduction and schedule material links.
-For each day in `_data/bios-214.yml`, set `lecture_url` for **Slides**,
-`video_url` for **Video**, and `lab_url` for **Lab X** to an HTTPS URL or a
+For each day in `_data/bios-214.yml`, set `lecture_url` for **Slides X**,
+`video_url` for **Video X**, and `lab_url` for **Lab X** to an HTTPS URL or a
 site path such as `/assets/teaching/lecture.pdf`. Empty fields remain gray
 with a **Coming soon** tooltip until the material is uploaded.
+Day 1's `intro_lecture_url` adds **Slides 0** before **Slides 1 / Video 1**.
 Lab links point directly to the Pluto-rendered notebook in the course repository,
 such as `https://cncastillo.github.io/bios-214/lab/1/`.
 The notebook repository keeps each `activityN.jl` and its supplemental files

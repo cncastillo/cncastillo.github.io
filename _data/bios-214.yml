@@ -41,6 +41,7 @@ weeks:
       - number: 1
         date: Nov 9
         lecture: Open-source, AI agents, and MRI simulation
+        intro_lecture_url: /bios-214/lecture/0/
         lecture_url: /bios-214/lecture/1/
         video_url: https://www.youtube.com/watch?v=ttQpPyCUars
         lab: Your first MRI simulation with an agent
