@@ -34,7 +34,7 @@ end
   raise "#{id} differs between outputs" unless section_content(website, id) == section_content(syllabus, id)
 end
 days = course['weeks'].flat_map { |week| week['days'] || [] }
-missing_materials = days.sum { |day| %w[lecture_url lab_url].count { |key| day[key].to_s.strip.empty? } }
+missing_materials = days.sum { |day| %w[lecture_url video_url lab_url].count { |key| day[key].to_s.strip.empty? } }
 raise 'Keep placeholders for missing materials' unless website.scan('aria-disabled="true"').size == missing_materials
 raise 'Keep all nine class days' unless website.scan('class="course-day-header"').size == 9
 raise 'Keep the merged break row' unless website.include?('<td colspan="3" class="course-break">')
@@ -50,16 +50,16 @@ render_materials = lambda do
                          {registers: {site: site, page: payload['page']}}, page.path)
 end
 [nil, '', '  '].each do |blank|
-  day.merge!('lecture_url' => blank, 'lab_url' => blank)
-  raise 'Blank URLs must keep both placeholders' unless render_materials.call.scan('aria-disabled="true"').size == 2
+  day.merge!('lecture_url' => blank, 'video_url' => blank, 'lab_url' => blank)
+  raise 'Blank URLs must keep all three placeholders' unless render_materials.call.scan('aria-disabled="true"').size == 3
 end
-day.merge!('lecture_url' => 'https://example.org/lecture.pdf?x=1&y=2', 'lab_url' => nil)
+day.merge!('lecture_url' => 'https://example.org/lecture.pdf?x=1&y=2', 'video_url' => 'https://www.youtube.com/watch?v=ttQpPyCUars', 'lab_url' => nil)
 linked = render_materials.call
 raise 'Lecture URL must be escaped and linked' unless linked.include?('href="https://example.org/lecture.pdf?x=1&amp;y=2"')
 raise 'An unlinked lab must retain its placeholder' unless linked.scan('aria-disabled="true"').size == 1
 day['lab_url'] = '/assets/teaching/lab.html'
 linked = render_materials.call
 raise 'Lab URL must support site paths' unless linked.include?('href="/assets/teaching/lab.html"')
-raise 'Linked materials must replace the placeholders' unless linked.scan('>Materials</a>').size == 2 && !linked.include?('aria-disabled="true"')
+raise 'Linked materials must replace the placeholders' unless linked.include?('>Slides</a>') && linked.include?('>Video</a>') && linked.include?(">Lab #{day['number']}</a>") && !linked.include?('aria-disabled="true"')
 
 puts 'Course sharing checks passed: shared edits reach the website and PDF source; overview/goals match; schedule links remain.'

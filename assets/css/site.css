@@ -785,9 +785,11 @@ main { min-height: 70vh; }
 
 .course-content .course-session > span { font-size: 0.9em; }
 
-.course-session > a {
+.course-content .course-session > .course-material-links {
   margin-left: auto;
   text-align: right;
+  white-space: nowrap;
+  font-size: 1em;
 }
 
 .course-icon {
