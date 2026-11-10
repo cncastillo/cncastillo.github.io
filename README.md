@@ -227,6 +227,19 @@ bundle exec jekyll serve
 
 ### BIOS 214 syllabus
 
+To preview the course website, slides, and activities together, first render the
+materials in the `bios-214` checkout using its build instructions. Then run from
+this website checkout:
+
+```sh
+bash scripts/preview-bios-214.sh /path/to/bios-214
+```
+
+Open `http://127.0.0.1:4108/teaching/bios-214/`. The launcher copies the rendered
+materials into the preview, and Jekyll preserves them during website rebuilds.
+After rendering updated course materials, restart the launcher to refresh the copy.
+Internal navigation uses the current host, both locally and on GitHub Pages.
+
 The course website and syllabus PDF share their overlapping content:
 
 - `_data/bios-214.yml`: title, term, staff, links, times, locations, and schedule topics/dates.
@@ -236,7 +249,7 @@ The course website and syllabus PDF share their overlapping content:
 
 The website keeps its two-column introduction and schedule material links.
 For each day in `_data/bios-214.yml`, set `lecture_url` for **Slides X**,
-`video_url` for **Video X**, and `lab_url` for **Lab X** to an HTTPS URL or a
+`video_url` for **Video X**, and `lab_url` for **Activity X** to an HTTPS URL or a
 site path such as `/assets/teaching/lecture.pdf`. Empty fields remain gray
 with a **Coming soon** tooltip until the material is uploaded.
 Day 1's `intro_lecture_url` adds **Slides 0** before **Slides 1 / Video 1**.
