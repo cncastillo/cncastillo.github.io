@@ -18,6 +18,9 @@ defaults:
     values:
       layout: highlight
 
+keep_files:
+  - bios-214
+
 exclude:
   - Gemfile
   - Gemfile.lock
