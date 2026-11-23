@@ -2,7 +2,7 @@ title: Open-Source MRI Sequence Development
 subtitle: Simulation to Scanner
 code: BIOS 214
 term: Autumn 2026
-last_updated: November 9, 2026
+last_updated: November 23, 2026
 institution: Stanford School of Medicine
 institution_logo: /assets/icons/stanford-som-mono.svg
 institution_wordmark: /assets/icons/stanford-som-horizontal.svg
@@ -103,13 +103,13 @@ weeks:
         lecture: Accelerated imaging and reconstruction
         lecture_url: /bios-214/lecture/8/
         video_url: https://www.youtube.com/watch?v=Plzaf6VILIE
-        lab: Build and validate a 2× accelerated EPI experiment
+        lab: Build and validate a 2× accelerated 2D sequence
         lab_url: /bios-214/lab/8/
       - number: 9
         date: Dec 4
         lecture: From image contrast to quantitative MRI
         lecture_url: /bios-214/lecture/9/
         video_url: https://www.youtube.com/watch?v=lKhoqSNmNuI
-        lab: Test accelerated EPI using regularized reconstruction
+        lab: Test a 2× accelerated 2D sequence using regularized reconstruction
         lab_url: /bios-214/lab/9/
         scanner: true
