@@ -1,12 +1,26 @@
+- record_key: google-antigravity-2026
+  year: 2026
+  order: 1
+  date: "2026-11-24"
+  date_source: Google Antigravity Science Support activation email, November 24, 2026.
+  funder: Google
+  program: Antigravity Science Research Access
+  title: Google Antigravity Science Research Access
+  organization: Google
+  amount: 6-month free Gemini 4 access
+  role: Recipient
+  url: https://antigravity.google/use-cases/science
+
 - record_key: google-trc-2026
   year: 2026
+  order: 2
   date: "2026-10-01"
   date_source: Google TRC acceptance email, October 1, 2026.
   funder: Google
   program: TPU Research Cloud (TRC) Grant
   title: Google TPU Research Cloud (TRC) Grant
   organization: Google
-  amount: 6-months free TPU access
+  amount: 6-month free TPU access
   role: Project lead
 
 - record_key: numfocus-juliahealth-2025
