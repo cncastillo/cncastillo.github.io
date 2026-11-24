@@ -44,7 +44,7 @@
               <h3>{{ item.title | escape }}</h3>
               {% if timeline_kind == 'grant' %}
                 <p class="timeline-detail-venue">{{ item.funder | escape }} · {{ item.program | escape }}</p>
-                <p class="timeline-detail-note">{{ item.organization | escape }}{% if item.amount %} · {{ item.amount | escape }}{% endif %}{% if item.role %} · {{ item.role | escape }}{% endif %}</p>
+                {% if item.organization or item.amount or item.role %}<p class="timeline-detail-note">{{ item.organization | escape }}{% if item.amount %}{% if item.organization %} · {% endif %}{{ item.amount | escape }}{% endif %}{% if item.role %}{% if item.organization or item.amount %} · {% endif %}{{ item.role | escape }}{% endif %}</p>{% endif %}
               {% else %}
                 <p class="timeline-detail-venue">{{ item.venue | default: item.event | escape }}</p>
               {% endif %}
